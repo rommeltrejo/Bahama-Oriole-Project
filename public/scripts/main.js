@@ -322,7 +322,7 @@ FriendlyChat.prototype.checkSetup = function() {
         'You may also need to visit the Storage tab and paste the name of your bucket which is ' +
         'displayed there.');
   }
-};
+}; 
 
 window.onload = function() {
   window.friendlyChat = new FriendlyChat();
