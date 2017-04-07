@@ -13,7 +13,7 @@ lib-cov
 
 # Coverage directory used by tools like istanbul
 coverage
- 
+
 # nyc test coverage
 .nyc_output
 
@@ -35,8 +35,4 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
-.idea/Bahama-Oriole-Project.iml
-.idea/inspectionProfiles/
-.idea/modules.xml
-.idea/workspace.xml
-vcs.xml
+.idea/
