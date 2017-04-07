@@ -39,3 +39,4 @@ jspm_packages
 .idea/inspectionProfiles/
 .idea/modules.xml
 .idea/workspace.xml
+vcs.xml
