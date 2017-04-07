@@ -1,4 +1,4 @@
-# Bahama-Oriole-Project. Deveper Guide
+# Bahama-Oriole-Project Developer Guide
 
 # Follow this guide to get the files:
 1. Install or update Node.js on you computer: https://nodejs.org/en/download/
