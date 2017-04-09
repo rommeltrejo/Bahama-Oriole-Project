@@ -16,13 +16,15 @@
 
 2. if there was a merge error take a look at it. someone worked on that section
 
-3. commit your code: git commit -m "your update log"
+3. add the files git add public/* 
 
-4. push your code online: git push
+4. commit your code: git commit -m "your update log"
 
-5. publish to the website: firebase deploy
+5. push your code online: git push
 
-6. Wait till it finishes then go to https://cs447bioresearchform.firebaseapp.com/ to see changes.
+6. publish to the website: firebase deploy
+
+7. Wait till it finishes then go to https://cs447bioresearchform.firebaseapp.com/ to see changes.
 
   If it's not showing up. press shift when you click on refresh or open an incognito tab, if it doesn't show up try again or ask on Slack.
 

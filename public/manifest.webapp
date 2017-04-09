@@ -1,11 +1,11 @@
 {
   "version": "1.0.0",
-  "name": "Friendly Chat",
+  "name": "Bahama Oriole Project APP",
   "launch_path": "/index.html",
-  "description": "Chat with friends using Firebase 2.0",
+  "description": "App for Bahama orioles Researchers to enter, edit, and view data",
   "developer": {
-    "name": "Google inc.",
-    "url": "https://firebase.google.com"
+    "name": "UMBC Students",
+    "url": "https://cs447bioresearchform.firebaseapp.com"
   },
   "installs_allowed_from": [
     "*"
@@ -15,8 +15,8 @@
   },
   "locales": {
     "en": {
-      "name": "Friendly Chat",
-      "description": "Chat with friends using Firebase 2.0"
+      "name": "Bahama Oriole Project APP",
+      "description": "App for Bahama orioles Researchers to enter, edit, and view data"
     }
   }
 }
