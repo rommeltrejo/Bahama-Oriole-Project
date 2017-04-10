@@ -72,10 +72,9 @@ ResearchForm.prototype.loadMessages = function() {
   // Loads the last 12 messages and listen for new ones.
   var setMessage = function(data) {
     var val = data.val();
-    var allInfo = "" + val.num_pine + ". "+ val.weather + ".";
 
 
-    this.displayMessage(data.key, val.name, allInfo, val.photoUrl, val.imageUrl);
+    this.displayFormData(data.key, val, val.photoUrl, val.imageUrl);
   }.bind(this);
 
   this.messagesRef.limitToLast(12).on('child_added', setMessage);
@@ -302,6 +301,43 @@ ResearchForm.prototype.displayMessage = function(key, name, text, picUrl, imageU
   this.messageList.scrollTop = this.messageList.scrollHeight;
   this.messageInput.focus();
 };
+
+// Displays a Message in the UI.
+ResearchForm.prototype.displayFormData = function(key, formData, picUrl, imageUri) {
+    var div = document.getElementById(key);
+    // If an element for that message does not exists yet we create it.
+    if (!div) {
+        var container = document.createElement('div');
+        container.innerHTML = ResearchForm.MESSAGE_TEMPLATE;
+        div = container.firstChild;
+        div.setAttribute('id', key);
+        this.messageList.appendChild(div);
+    }
+    if (picUrl) {
+        div.querySelector('.pic').style.backgroundImage = 'url(' + picUrl + ')';
+    }
+    div.querySelector('.name').textContent = formData.name;
+    var messageElement = div.querySelector('.message');
+    if (formData.date) { // If the message is text.
+        messageElement.textContent = formData.date;
+        // Replace all line breaks by <br>.
+        messageElement.innerHTML = messageElement.innerHTML.replace(/\n/g, '<br>');
+    } else if (imageUri) { // If the message is an image.
+        var image = document.createElement('img');
+        image.addEventListener('load', function() {
+            this.messageList.scrollTop = this.messageList.scrollHeight;
+        }.bind(this));
+        this.setImageUrl(imageUri, image);
+        messageElement.innerHTML = '';
+        messageElement.appendChild(image);
+    }
+    // Show the card fading-in and scroll to view the new message.
+    setTimeout(function() {div.classList.add('visible')}, 1);
+    this.messageList.scrollTop = this.messageList.scrollHeight;
+    this.messageInput.focus();
+};
+
+
 
 // Displays a Message in the UI.
 ResearchForm.prototype.displayRealMessage = function(key, name, text, picUrl, imageUri) {
