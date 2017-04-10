@@ -2,7 +2,7 @@
   "version": "1.0.0",
   "name": "Bahama Oriole Project APP",
   "launch_path": "/index.html",
-  "description": "App for Bahama orioles Researchers to enter, edit, and view data",
+  "description": "App for Bahama Oriole Researchers to enter, edit, and view data",
   "developer": {
     "name": "UMBC Students",
     "url": "https://cs447bioresearchform.firebaseapp.com"
@@ -16,7 +16,7 @@
   "locales": {
     "en": {
       "name": "Bahama Oriole Project APP",
-      "description": "App for Bahama orioles Researchers to enter, edit, and view data"
+      "description": "App for Bahama oriole Researchers to enter, edit, and view data"
     }
   }
 }
