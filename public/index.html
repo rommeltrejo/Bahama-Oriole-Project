@@ -52,6 +52,8 @@
 </head>
 
 <body>
+
+
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 
   <!-- Header section containing logo  the color for the nav bar is set here-->
@@ -76,7 +78,147 @@
   <main class="mdl-layout__content mdl-color--grey-100">
     <div id="messages-card-container" class="mdl-cell mdl-cell--12-col mdl-grid">
 
-
+        <div id="researchers_form" class="mdl-cell mdl-cell--12-col mdl-grid">
+            <form></form>
+            <div id="res" class="alert"></div>
+            <script type="text/javascript" src="deps/jquery.min.js"></script>
+            <script type="text/javascript" src="deps/underscore.js"></script>
+            <script type="text/javascript" src="deps/opt/jsv.js"></script>
+            <script type="text/javascript" src="lib/jsonform.js"></script>
+            <script type="text/javascript">
+                $('form').jsonForm
+                (
+                    {
+                        "schema":
+                            {
+                                "name":
+                                    {
+                                        "type": "string",
+                                        "title": "Name",
+                                        "required": true
+                                    },
+                                "location":
+                                    {
+                                        "type": "string",
+                                        "title": "Location",
+                                        "required": true
+                                    },
+                                "date":
+                                    {
+                                        "type": "string",
+                                        "title": "Date",
+                                        "required": true
+                                    },
+                                "point_number":
+                                    {
+                                        "title": "Point Number",
+                                        "type": "integer",
+                                        "required": true
+                                    },
+                                "habitat_a_g_2nd":
+                                    {
+                                        "type": "integer",
+                                        "title": "AG/2nd",
+                                        "required": true,
+                                        "enum" : [0,10, 20, 30,40,50,60,70,80,90,100]
+                                    },
+                                "habitat_coppice":
+                                    {
+                                        "type": "integer",
+                                        "title": "Coppice",
+                                        "required": true,
+                                        "enum" : [0,10, 20, 30,40,50,60,70,80,90,100]
+                                    },
+                                "habitat_developed":
+                                    {
+                                        "type": "integer",
+                                        "title": "Developed",
+                                        "required": true,
+                                        "enum" : [0,10, 20, 30,40,50,60,70,80,90,100]
+                                    },
+                                "habitat_mixed": {
+                                    "type": "integer",
+                                    "title": "Mixed",
+                                    "required": true,
+                                    "enum" : [0,10, 20, 30,40,50,60,70,80,90,100]
+                                },
+                                "habitat_pine": {
+                                    "type": "integer",
+                                    "title": "pine",
+                                    "required": true,
+                                    "enum" : [0,10, 20, 30,40,50,60,70,80,90,100]
+                                },
+                                "habitat_wetland" :
+                                    {
+                                        "type": "integer",
+                                        "title": "Wetland",
+                                        "required": true,
+                                        "enum" : [0,10, 20, 30,40,50,60,70,80,90,100]
+                                    },
+                                "habitat_notes":
+                                    {
+                                        "type": "string",
+                                        "title": "Habitat Notes",
+                                        "required": true
+                                    },
+                                "num_cocos":
+                                    {
+                                        "type" : "string",
+                                        "title": "# of coconut trees",
+                                        "enum" : ["0","1-4", "5-10", "11-20","21-50", "51-100+"]
+                                    },
+                                "num_pines":
+                                    {
+                                        "type": "string",
+                                        "title": "# of pines trees",
+                                        "enum" : ["0","1-4", "5-10", "11-20","21-50", "51-100+"]
+                                    },
+                                "num_deadpine":
+                                    {
+                                        "type": "string",
+                                        "title": "# of deadpine trees",
+                                        "enum" : ["0","1-4", "5-10", "11-20","21-50", "51-100+"]
+                                    } ,
+                                "num_thatch" :
+                                    {
+                                        "type": "string",
+                                        "title": "# of thatch",
+                                        "enum" : ["0","1-4", "5-10", "11-20","21-50", "51-100+"]
+                                    },
+                                "weather":
+                                    {
+                                        "title" : "weather",
+                                        "type" : "string",
+                                        "enum" : ["< 50% clear","> 95% cloudy", "Calm"]
+                                    },
+                                "pine_understory":
+                                    {
+                                        "type": "string",
+                                        "title": "Pine Understory",
+                                        "enum": ["0-1m","1-2m","2-5m","NA"]
+                                    },
+                                "understory_notes" : {
+                                    "type": "string",
+                                    "title": "Understory Notes",
+                                    "required": false
+                                }
+                            },
+                        onSubmit: function (errors, values){
+                            if (errors)
+                            {
+                                $('#res').html('<p>I beg your pardon?</p>');
+                            }
+                            else
+                            {
+                                $('#res').html('<p>Hello ' + values.name + '.' +
+                                    (values.age ? '<br/>You are ' + values.age + '.' : '') +
+                                    '</p>');
+                            }
+                        }
+                    }
+                );
+            </script>
+        </div>
       <div id="messages-card" class="mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-cell--6-col-tablet mdl-cell--6-col-desktop">
         <div class="mdl-card__supporting-text mdl-color-text--grey-600">
           <div id="messages">
@@ -110,147 +252,7 @@
     </div>
   </main>
 </div>
-    
-<form></form>
-<div id="res" class="alert"></div>
-<script type="text/javascript" src="deps/jquery.min.js"></script>
-<script type="text/javascript" src="deps/underscore.js"></script>
-<script type="text/javascript" src="deps/opt/jsv.js"></script>
-<script type="text/javascript" src="lib/jsonform.js"></script>
-<script type="text/javascript">
-  $('form').jsonForm
-(
-    {
-        "schema":
-            {
-                "name":
-                    {
-                        "type": "string",
-                        "title": "Name",
-                        "required": true
-                    },
-                "location":
-                    {
-                        "type": "string",
-                        "title": "Location",
-                        "required": true
-                    },
-                "date":
-                    {
-                        "type": "string",
-                        "title": "Date",
-                        "required": true
-                    },
-                "point_number":
-                    {
-                        "title": "Point Number",
-                        "type": "integer",
-                        "required": true
-                    },
-                "habitat.a_g_2nd":
-                    {
-                        "type": "integer",
-                        "title": "AG/2nd",
-                        "required": true,
-                        "enum" : [0,10, 20, 30,40,50,60,70,80,90,100]
-                    },
-                "habitat.coppice":
-                    {
-                        "type": "integer",
-                        "title": "Coppice",
-                        "required": true,
-                        "enum" : [0,10, 20, 30,40,50,60,70,80,90,100]
-                    },
-                "habitat.developed":
-                    {
-                        "type": "integer",
-                        "title": "Developed",
-                        "required": true,
-                        "enum" : [0,10, 20, 30,40,50,60,70,80,90,100]
-                    },
-                "habitat.mixed": {
-                    "type": "integer",
-                    "title": "Mixed",
-                    "required": true,
-                    "enum" : [0,10, 20, 30,40,50,60,70,80,90,100]
-                },
-                "habitat.pine": {
-                    "type": "integer",
-                    "title": "pine",
-                    "required": true,
-                    "enum" : [0,10, 20, 30,40,50,60,70,80,90,100]
-                },
-                "habitat.wetland" :
-                    {
-                        "type": "integer",
-                        "title": "Wetland",
-                        "required": true,
-                        "enum" : [0,10, 20, 30,40,50,60,70,80,90,100]
-                    },
-                "habitat_notes":
-                    {
-                        "type": "string",
-                        "title": "Habitat Notes",
-                        "required": true
-                    },
-                "num_cocos":
-                    {
-                        "type" : "string",
-                        "title": "# of coconut trees",
-                        "enum" : ["0","1-4", "5-10", "11-20","21-50", "51-100+"]
-                    },
-                "num_pines":
-                    {
-                        "type": "string",
-                        "title": "# of pines trees",
-                        "enum" : ["0","1-4", "5-10", "11-20","21-50", "51-100+"]
-                    },
-                "num_deadpine":
-                    {
-                        "type": "string",
-                        "title": "# of deadpine trees",
-                        "enum" : ["0","1-4", "5-10", "11-20","21-50", "51-100+"]
-                    } ,
-                "num_thatch" :
-                    {
-                        "type": "string",
-                        "title": "# of thatch",
-                        "enum" : ["0","1-4", "5-10", "11-20","21-50", "51-100+"]
-                    },
-                "weather":
-                    {
-                        "title" : "weather",
-                        "type" : "string",
-                        "enum" : ["< 50% clear","> 95% cloudy", "Calm"]
-                    },
-                "pine_understory":
-                    {
-                        "title": "string",
-                        "title": "Pine Understory",
-                        "enum": ["0-1m","1-2m","2-5m","NA"]
-                    },
-                "understory_notes":
-                    {
-                        "title": "text",
-                        "title": "Understory Notes",
-                        "required": false
-                    }
-            },
-        onSubmit: function (errors, values){
-            if (errors)
-            {
-                $('#res').html('<p>I beg your pardon?</p>');
-            }
-            else
-            {
-                $('#res').html('<p>Hello ' + values.name + '.' +
-                    (values.age ? '<br/>You are ' + values.age + '.' : '') +
-                    '</p>');
-            }
-        }
-    }
-);
-    </script>
+
 
 
 <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>

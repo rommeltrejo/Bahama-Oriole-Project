@@ -37,3 +37,7 @@ jspm_packages
 .node_repl_history
 .idea/
 .firebaserc
+.DS_Store
+public/.DS_Store
+public/jsonform-master.zip
+public/jsonform-master/
