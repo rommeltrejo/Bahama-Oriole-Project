@@ -36,6 +36,7 @@ main, #messages-card {
 #messages-card {
   margin-top: 15px;
     width: 150%;
+    visibility: hidden;
 }
 .mdl-layout__header-row span {
   margin-left: 15px;
@@ -145,7 +146,7 @@ main, #messages-card {
   justify-content: flex-end;
   padding-right: 10px;
 }
-#user-container #user-pic {
+#user-container #user-pic, #researchers_form {
   top: -3px;
   position: relative;
   display: inline-block;

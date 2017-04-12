@@ -110,9 +110,6 @@ ResearchForm.prototype.saveFormResults = function(e) {
         var currentUser = this.auth.currentUser;
         // Add a new message entry to the Firebase Database.
         this.messagesRef.push({
-
-
-
             name: currentUser.displayName,
             text: this.messageInput.value,
             photoUrl: currentUser.photoURL || '/images/profile_placeholder.png'
