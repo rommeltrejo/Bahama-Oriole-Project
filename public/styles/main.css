@@ -146,7 +146,7 @@ main, #messages-card {
   justify-content: flex-end;
   padding-right: 10px;
 }
-#user-container #user-pic, #researchers_form {
+#user-container #user-pic{
   top: -3px;
   position: relative;
   display: inline-block;
