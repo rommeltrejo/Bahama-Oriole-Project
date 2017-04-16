@@ -64,11 +64,28 @@
 
   <!-- Header section containing logo  the color for the nav bar is set here-->
   <header class="mdl-layout__header mdl-color-text--white mdl-color--yellow-700">
-	  <ul id="menu"></ul>
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">Bahama Oriole Project</a>
+    </div>
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">Home</a></li>
+      <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu<span class="caret"></span></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Search</a></li>
+          <li><a href="#">View</a></li>
+          <li><a href="#">Edit</a></li>
+        </ul>
+      </li>
+      <li><a href="#">Search</a></li>
+      <li><a href="#">View</a></li>
+      <li><a href="#">Edit</a></li>
+    </ul>
+  </div>
+</nav>
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
-      <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
-        <h3>Bahama Oriole App</h3>
-      </div>
+      
       <div id="user-container">
         <div hidden id="user-pic"></div>
         <div hidden id="user-name"></div>
