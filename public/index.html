@@ -195,7 +195,7 @@
                                     {
                                         "title" : "Cloud",
                                         "type" : "string",
-                                        "enum" : ["clear", "< 50% cloudy","> 95% cloudy"]
+                                        "enum" : ["Clear", "< 50% cloudy","> 95% cloudy"]
                                     },
 								"Wind":
 								{
@@ -216,6 +216,17 @@
                                     "required": false
                                 }
                             },
+						"form": [
+							{
+     						 	"type": "fieldset",
+						      	"title": "Weather",
+						      	"expandable": false,
+						      	"items": 
+								[
+						        "Cloud",
+						        "Wind"
+						      	]
+    					}],
                         onSubmit: function (errors, values){
                             if (errors)
                             {
@@ -228,17 +239,6 @@
                                     '</p>');
                             }
                         },
-                    	"form": [
-							{
-     						 	"type": "fieldset",
-						      	"title": "Weather",
-						      	"expandable": false,
-						      	"items": 
-								[
-						        "Cloud",
-						        "Wind"
-						      	]
-    					}]
 					}
                 );
             </script>
