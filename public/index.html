@@ -150,7 +150,7 @@
                                 },
                                 "habitat_pine": {
                                     "type": "integer",
-                                    "title": "pine",
+                                    "title": "Pine",
                                     "required": true,
                                     "enum" : [0,10, 20, 30,40,50,60,70,80,90,100]
                                 },
@@ -170,32 +170,36 @@
                                 "num_cocos":
                                     {
                                         "type" : "string",
-                                        "title": "# of coconut trees",
+                                        "title": "No. of coconut trees",
                                         "enum" : ["0","1-4", "5-10", "11-20","21-50", "51-100+"]
                                     },
                                 "num_pines":
                                     {
                                         "type": "string",
-                                        "title": "# of pines trees",
+                                        "title": "No. of pines trees",
                                         "enum" : ["0","1-4", "5-10", "11-20","21-50", "51-100+"]
                                     },
                                 "num_deadpine":
                                     {
                                         "type": "string",
-                                        "title": "# of deadpine trees",
+                                        "title": "No. of deadpine trees",
                                         "enum" : ["0","1-4", "5-10", "11-20","21-50", "51-100+"]
                                     } ,
                                 "num_thatch" :
                                     {
                                         "type": "string",
-                                        "title": "# of thatch",
+                                        "title": "No. of thatch",
                                         "enum" : ["0","1-4", "5-10", "11-20","21-50", "51-100+"]
                                     },
-                                "weather":
+                                "Weather":
                                     {
-                                        "title" : "weather",
+                                        "title" : "Cloud",
                                         "type" : "string",
-                                        "enum" : ["< 50% clear","> 95% cloudy", "Calm"]
+                                        "enum" : ["clear", "< 50% cloudy","> 95% cloudy"]
+										
+										"title" : "Wind",
+                                        "type" : "string",
+                                        "enum" : ["Calm","1-3 km/h", "3-5 km/h", "5-7 km/h", "7-10 km/h", "10+ kmph"]
                                     },
                                 "pine_understory":
                                     {
@@ -281,3 +285,4 @@
 <script src="lib/main.js"></script>
 </body>
 </html>
+
