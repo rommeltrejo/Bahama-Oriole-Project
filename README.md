@@ -4,9 +4,9 @@
 1. Install or update Node.js on you computer: https://nodejs.org/en/download/
 
 2. then follow the guide https://firebase.google.com/docs/cli/ Don't do firebase init
-npm install -g firebase-tools
-firebase login
-npm install -g firebase-tools
+ * npm install -g firebase-tools
+ * firebase login
+ * npm install -g firebase-tools
 
 3. select a directory to keep files for this project
 
