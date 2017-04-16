@@ -216,6 +216,25 @@
                                     "required": false
                                 }
                             },
+						"form": [
+    						{
+      							"key": "name",
+     							"type": "string",
+   							},
+							{
+								"key": "location",
+								"type": "string"
+							}
+    						{
+     							 "type": "fieldset",
+      							 "title": "Weather",
+      							 "expandable": true,
+     							 "items": [
+      							 "Cloud",
+       							 "Wind"
+      							]
+    							}
+  						],
                         onSubmit: function (errors, values){
                             if (errors)
                             {
