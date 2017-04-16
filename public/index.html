@@ -192,6 +192,17 @@
                                         "title": "No. of thatch",
                                         "enum" : ["0", "1-4", "5-10", "11-20", "21-50", "51-100+"]
                                     },
+								"Weather":
+									[{
+										"type": "fieldset",
+						      			"title": "Weather",
+						      			"expandable": false,
+						      			"items": 
+										[
+						        			"Cloud",
+						        			"Wind"
+						      			]
+									}],
                                 "Cloud":
                                     {
                                         "title" : "Cloud",
@@ -217,17 +228,6 @@
                                     "required": false
                                 }
                             },
-						"form": [
-							{
-     						 	"type": "fieldset",
-						      	"title": "Weather",
-						      	"expandable": false,
-						      	"items": 
-								[
-						        "Cloud",
-						        "Wind"
-						      	]
-    					}],
                         onSubmit: function (errors, values){
                             if (errors)
                             {
