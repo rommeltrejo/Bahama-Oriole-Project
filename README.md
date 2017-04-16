@@ -6,7 +6,6 @@
 2. then follow the guide https://firebase.google.com/docs/cli/ Don't do firebase init
  * npm install -g firebase-tools
  * firebase login
- * npm install -g firebase-tools
 
 3. select a directory to keep files for this project
 
