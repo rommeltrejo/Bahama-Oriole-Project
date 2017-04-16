@@ -101,6 +101,7 @@
                                     {
                                         "type": "string",
                                         "title": "Name",
+										"required": true
                    
                                     },
                                 "location":
@@ -208,7 +209,7 @@
                                     {
                                         "type": "string",
                                         "title": "Pine Understory",
-                                        "enum": ["0-1m","1-2m","2-5m","NA"]
+                                        "enum": ["0-1m", "1-2m", "2-5m", "NA"]
                                     },
                                 "understory_notes" : {
                                     "type": "string",
@@ -217,10 +218,6 @@
                                 }
                             },
 						"form": [
-							{
-      							"key": "name",
-     							"type": "string",
-   							},
 							{
      						 	"type": "fieldset",
 						      	"title": "Weather",
