@@ -3,11 +3,26 @@
 # Follow this guide to get the files:
 1. Install or update Node.js on you computer: https://nodejs.org/en/download/
 
-2. then follow the guide https://firebase.google.com/docs/cli/
+2. then follow the guide https://firebase.google.com/docs/cli/ Don't do firebase init
+npm install -g firebase-tools
+firebase login
+npm install -g firebase-tools
 
 3. select a directory to keep files for this project
 
 4. git clone https://github.com/rommeltrejo/Bahama-Oriole-Project.git (or the ssh link from the Clone or Download button)
+
+5. cd into Bahama-Oriole-Project
+
+6. firebase init
+
+7. select Bahama oriole project
+
+8. select hosting
+
+9. press Enter
+
+10. Type N for everything except the Do you want to install firebase dependencies
 
   Code is located in public the files, root file contains firebase configuration file
 
