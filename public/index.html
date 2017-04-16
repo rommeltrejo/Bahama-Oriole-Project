@@ -64,6 +64,7 @@
 
   <!-- Header section containing logo  the color for the nav bar is set here-->
   <header class="mdl-layout__header mdl-color-text--white mdl-color--yellow-700">
+	  <ul id="menu"></ul>
     <div class="mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-grid">
       <div class="mdl-layout__header-row mdl-cell mdl-cell--12-col mdl-cell--12-col-tablet mdl-cell--12-col-desktop">
         <h3>Bahama Oriole App</h3>
@@ -103,24 +104,28 @@
                                         "title": "Name",
                    
                                     },
+								
                                 "location":
                                     {
                                         "type": "string",
                                         "title": "Location",
                                         "required": true
                                     },
+								
                                 "date":
                                     {
                                         "type": "string",
                                         "title": "Date",
                                         "required": true
                                     },
+								
                                 "point_number":
                                     {
                                         "title": "Point Number",
                                         "type": "integer",
                                         "required": true
                                     },
+								
                                 "habitat_a_g_2nd":
                                     {
                                         "type": "integer",
@@ -128,6 +133,7 @@
                                         "required": true,
                                         "enum" : [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
                                     },
+								
                                 "habitat_coppice":
                                     {
                                         "type": "integer",
@@ -135,6 +141,7 @@
                                         "required": true,
                                         "enum" : [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
                                     },
+								
                                 "habitat_developed":
                                     {
                                         "type": "integer",
@@ -142,18 +149,21 @@
                                         "required": true,
                                         "enum" : [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
                                     },
+								
                                 "habitat_mixed": {
                                     "type": "integer",
                                     "title": "Mixed",
                                     "required": true,
                                     "enum" : [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
                                 },
+								
                                 "habitat_pine": {
                                     "type": "integer",
                                     "title": "Pine",
                                     "required": true,
                                     "enum" : [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
                                 },
+								
                                 "habitat_wetland" :
                                     {
                                         "type": "integer",
@@ -161,42 +171,49 @@
                                         "required": true,
                                         "enum" : [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
                                     },
+								
                                 "habitat_notes":
                                     {
                                         "type": "string",
                                         "title": "Habitat Notes",
                                         "required": true
                                     },
+								
                                 "num_cocos":
                                     {
                                         "type" : "string",
                                         "title": "No. of coconut trees",
                                         "enum" : ["0", "1-4", "5-10", "11-20", "21-50", "51-100+"]
                                     },
+								
                                 "num_pines":
                                     {
                                         "type": "string",
                                         "title": "No. of pines trees",
                                         "enum" : ["0", "1-4", "5-10", "11-20", "21-50", "51-100+"]
                                     },
+								
                                 "num_deadpine":
                                     {
                                         "type": "string",
                                         "title": "No. of deadpine trees",
                                         "enum" : ["0", "1-4", "5-10", "11-20", "21-50", "51-100+"]
-                                    } ,
+                                    },
+								
                                 "num_thatch" :
                                     {
                                         "type": "string",
                                         "title": "No. of thatch",
                                         "enum" : ["0", "1-4", "5-10", "11-20", "21-50", "51-100+"]
                                     },
+								
                                 "Cloud":
                                     {
                                         "title" : "Cloud",
                                         "type" : "string",
                                         "enum" : ["Clear", "< 50% cloudy", "> 95% cloudy"]
                                     },
+								
 								"Wind":
 								{
 									"title" : "Wind",
@@ -216,25 +233,6 @@
                                     "required": false
                                 }
                             },
-						"other": [
-    						{
-      							"key": "name",
-     							"type": "string",
-   							},
-							{
-								"key": "location",
-								"type": "string",
-							},
-    						{
-     							 "type": "fieldset",
-      							 "title": "Weather",
-      							 "expandable": true,
-     							 "items": [
-      							 "Cloud",
-       							 "Wind"
-      							]
-    							}
-  						],
                         onSubmit: function (errors, values){
                             if (errors)
                             {
