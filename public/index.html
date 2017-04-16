@@ -101,7 +101,6 @@
                                     {
                                         "type": "string",
                                         "title": "Name",
-										"required": true
                    
                                     },
                                 "location":
@@ -192,17 +191,7 @@
                                         "title": "No. of thatch",
                                         "enum" : ["0", "1-4", "5-10", "11-20", "21-50", "51-100+"]
                                     },
-								"Weather":
-									[{
-										"type": "fieldset",
-						      			"title": "Weather",
-						      			"expandable": false,
-						      			"items": 
-										[
-						        			"Cloud",
-						        			"Wind"
-						      			]
-									}],
+								""
                                 "Cloud":
                                     {
                                         "title" : "Cloud",
@@ -220,7 +209,7 @@
                                     {
                                         "type": "string",
                                         "title": "Pine Understory",
-                                        "enum": ["0-1m", "1-2m", "2-5m", "NA"]
+                                        "enum": ["0-1m", "1-2m", "2-5m","NA"]
                                     },
                                 "understory_notes" : {
                                     "type": "string",
@@ -228,6 +217,17 @@
                                     "required": false
                                 }
                             },
+						"form": [
+							{
+     						 	"type": "fieldset",
+						      	"title": "Weather",
+						      	"expandable": false,
+						      	"items": 
+								[
+						        "Cloud",
+						        "Wind"
+						      	]
+    					}],
                         onSubmit: function (errors, values){
                             if (errors)
                             {
