@@ -15,13 +15,20 @@
  */
 'use strict';
 
+var userPic = document.getElementById('user-pic');
+  var username = document.getElementById('user-name');
+  var signInButton = document.getElementById('sign-in');
+  var signOutButton = document.getElementById('sign-out');
+  // Shortcuts to Firebase SDK features.
+  //var auth = firebase.auth();
+  //var database = firebase.database();
+  //var storage = firebase.storage();
+  // Initiates Firebase auth and listen to auth state changes.
+  
 // Initializes ResearchForm.
 function ResearchForm() {
 
-    this.userPic = document.getElementById('user-pic');
-  this.username = document.getElementById('user-name');
-  this.signInButton = document.getElementById('sign-in');
-  this.signOutButton = document.getElementById('sign-out');
+
   
     
     /*
