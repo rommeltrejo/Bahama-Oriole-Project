@@ -15,20 +15,13 @@
  */
 'use strict';
 
-var userPic = document.getElementById('user-pic');
-  var username = document.getElementById('user-name');
-  var signInButton = document.getElementById('sign-in');
-  var signOutButton = document.getElementById('sign-out');
-  // Shortcuts to Firebase SDK features.
-  //var auth = firebase.auth();
-  //var database = firebase.database();
-  //var storage = firebase.storage();
-  // Initiates Firebase auth and listen to auth state changes.
-  
 // Initializes ResearchForm.
 function ResearchForm() {
 
-
+    this.userPic = document.getElementById('user-pic');
+  this.username = document.getElementById('user-name');
+  this.signInButton = document.getElementById('sign-in');
+  this.signOutButton = document.getElementById('sign-out');
   
     
     /*
@@ -229,7 +222,7 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
     this.signInButton.setAttribute('hidden', 'true');
 
     // We load currently existing chant messages.
-    this.loadMessages();
+   // this.loadMessages();
 
     // We save the Firebase Messaging Device token and enable notifications.
     this.saveMessagingDeviceToken();
@@ -437,10 +430,10 @@ ResearchForm.prototype.checkSetup = function() {
         'displayed there.');
   }
 };
-/*
+
 window.onload = function() {
   window.Researchform = new ResearchForm();
-};*/
+};
 
 
 
