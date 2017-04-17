@@ -17,7 +17,15 @@
 
 // Initializes ResearchForm.
 function ResearchForm() {
-  this.checkSetup();
+
+    this.userPic = document.getElementById('user-pic');
+  this.username = document.getElementById('user-name');
+  this.signInButton = document.getElementById('sign-in');
+  this.signOutButton = document.getElementById('sign-out');
+  
+    
+    /*
+    this.checkSetup();
 
   // Shortcuts to DOM Elements.
   this.messageList = document.getElementById('messages');
@@ -43,12 +51,13 @@ function ResearchForm() {
   this.messageInput.addEventListener('keyup', buttonTogglingHandler);
   this.messageInput.addEventListener('change', buttonTogglingHandler);
 
+    
   // Events for image upload.
   this.submitImageButton.addEventListener('click', function() {
     this.mediaCapture.click();
-  }.bind(this));
+  }.bind(this));*/
 
-  this.mediaCapture.addEventListener('change', this.saveImageMessage.bind(this));
+//  this.mediaCapture.addEventListener('change', //this.saveImageMessage.bind(this));
   this.initFirebase();
 }
 
@@ -421,10 +430,10 @@ ResearchForm.prototype.checkSetup = function() {
         'displayed there.');
   }
 };
-
+/*
 window.onload = function() {
   window.Researchform = new ResearchForm();
-};
+};*/
 
 
 
