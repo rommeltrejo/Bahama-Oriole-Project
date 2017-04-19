@@ -21,6 +21,31 @@ html, body {
 
 }
 
+#leuser-container {
+  
+  display: flex;
+  justify-content: flex-end;
+  
+}
+#leuser-container #user-pic{
+  top: 0px;
+  position: relative;
+  display: inline-block;
+  background-image: url('../images/profile_placeholder.png');
+  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  background-size: 40px;
+  border-radius: 20px;
+}
+#user-container #user-name {
+  top: 0px;
+  font-size: 16px;
+  line-height: 36px;
+  padding-right: 10px;
+  padding-left: 20px;
+}
+
 
 #user-container {
   
