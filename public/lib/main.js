@@ -428,7 +428,9 @@ $( document ).ready(
 
 // Query functions for searchPage.html
 
-// Set the configuration for your app
+function getData(){
+
+  // Set the configuration for your app
 // TODO: Replace with your project's config object
 var config = {
   apiKey: "AIzaSyAjPBFtz03tQZb2fiZPmRABgubO1LRYmH4",
@@ -442,7 +444,6 @@ firebase.initializeApp(config);
 // Get a reference to the database service
 var database = firebase.database();
 
-function getData(){
   var getName = firebase.database().ref("results/");
   getName.orderByValue().on("value", function(data){
     data.forEach(function(data){
