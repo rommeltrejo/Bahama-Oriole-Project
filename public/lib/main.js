@@ -26,7 +26,7 @@ function ResearchForm() {
     this.signInButton = document.getElementById('sign-in');
     this.signOutButton = document.getElementById('sign-out');
 
-    
+
 
     this.checkSetup();
     this.initFirebase();
