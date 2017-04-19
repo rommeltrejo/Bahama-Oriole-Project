@@ -73,7 +73,7 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         var username = user.displayName;
 
         // Set the user's profile pic and name.
-        this.userPic.style.backgroundImage = "url('/images/profile_placeholder.png')";
+        this.userPic.style.backgroundImage = 'url(' + (profilePicUrl || '/images/profile_placeholder.png') + ')';
 
         test.userpic =  this.userPic;
 
