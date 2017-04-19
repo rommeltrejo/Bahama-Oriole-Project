@@ -1,23 +1,9 @@
-/**
- * Copyright 2015 Google Inc. All Rights Reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *      http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 'use strict';
 
-
-
 // Initializes ResearchForm.
+var test = {};
+
+
 function ResearchForm() {
 
     this.submitButton = document.getElementsByClassName("btn btn-primary");
@@ -34,11 +20,7 @@ function ResearchForm() {
 
 
     /*
- // Shortcuts to DOM Elements.
-
-
  // Saves message on form submit.
-
      this.messageForm.addEventListener('submit', this.saveMessage.bind(this));
  // Toggle for the button.
  var buttonTogglingHandler = this.toggleButton.bind(this);
@@ -49,7 +31,7 @@ function ResearchForm() {
 
 }
 
-//useful
+//##############################            useful
 
 // Checks that the Firebase SDK has been correctly setup and configured.
 ResearchForm.prototype.checkSetup = function() {
@@ -91,7 +73,10 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         var username = user.displayName;
 
         // Set the user's profile pic and name.
-        this.userPic.style.backgroundImage = "url(/images/profile_placeholder.png')";
+        this.userPic.style.backgroundImage = "url('/images/profile_placeholder.png')";
+
+        test.userpic =  this.userPic;
+
         this.username.textContent = username;
 
         // Show user's profile and sign-out button.
@@ -116,7 +101,23 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
     }
 };
 
-
+//future use: could be used to send notifications to users
+// Saves the messaging device token to the datastore.
+ResearchForm.prototype.saveMessagingDeviceToken = function() {
+    firebase.messaging().getToken().then(function(currentToken) {
+        if (currentToken) {
+            console.log('Got FCM device token:', currentToken);
+            // Saving the Device Token to the datastore.
+            firebase.database().ref('/fcmTokens').child(currentToken)
+                .set(firebase.auth().currentUser.uid);
+        } else {
+            // Need to request permissions to show notifications.
+            this.requestNotificationsPermissions();
+        }
+    }.bind(this)).catch(function(error){
+        console.error('Unable to get messaging token.', error);
+    });
+};
 
 
 //I have no idea if used
@@ -267,22 +268,6 @@ ResearchForm.prototype.checkSignedInWithMessage = function() {
   return false;
 };
 
-// Saves the messaging device token to the datastore.
-ResearchForm.prototype.saveMessagingDeviceToken = function() {
-  firebase.messaging().getToken().then(function(currentToken) {
-    if (currentToken) {
-      console.log('Got FCM device token:', currentToken);
-      // Saving the Device Token to the datastore.
-      firebase.database().ref('/fcmTokens').child(currentToken)
-          .set(firebase.auth().currentUser.uid);
-    } else {
-      // Need to request permissions to show notifications.
-      this.requestNotificationsPermissions();
-    }
-  }.bind(this)).catch(function(error){
-    console.error('Unable to get messaging token.', error);
-  });
-};
 
 // Requests permissions to show notifications.
 ResearchForm.prototype.requestNotificationsPermissions = function() {
