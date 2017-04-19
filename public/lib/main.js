@@ -26,8 +26,6 @@ function ResearchForm() {
     this.signInButton = document.getElementById('sign-in');
     this.signOutButton = document.getElementById('sign-out');
 
-
-
     this.checkSetup();
     this.initFirebase();
 
@@ -93,7 +91,7 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         var username = user.displayName;
 
         // Set the user's profile pic and name.
-        this.userPic.style.backgroundImage = 'url(' + (profilePicUrl || '/images/profile_placeholder.png') + ')';
+        this.userPic.style.backgroundImage = "url(/images/profile_placeholder.png')";
         this.username.textContent = username;
 
         // Show user's profile and sign-out button.
@@ -104,8 +102,6 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         // Hide sign-in button.
         this.signInButton.setAttribute('hidden', 'true');
 
-        // We load currently existing chant messages.
-        // this.loadMessages();
 
         // We save the Firebase Messaging Device token and enable notifications.
         this.saveMessagingDeviceToken();
