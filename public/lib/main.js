@@ -441,4 +441,29 @@ $( document ).ready(
   }
 );
 
+// Query functions for searchPage.html
+
+// Set the configuration for your app
+// TODO: Replace with your project's config object
+var config = {
+  apiKey: "AIzaSyAjPBFtz03tQZb2fiZPmRABgubO1LRYmH4",
+  authDomain: "cs447bioresearchform.firebaseapp.com",
+  databaseURL: "https://cs447bioresearchform.firebaseio.com",
+  storageBucket: "cs447bioresearchform.appspot.com",
+  messagingSenderId: "263717268269"
+};
+firebase.initializeApp(config);
+
+// Get a reference to the database service
+var database = firebase.database();
+
+function getData(){
+  var getName = firebase.database().ref("results/");
+  getName.orderByValue().on("value", function(data){
+    data.forEach(function(data){
+      console.log(data.val().name);
+    });
+  });
+}
+
 
