@@ -61,7 +61,7 @@
 	        <button hidden id="sign-out" > Sign-out </button>
 	        <button hidden id="sign-in" >
 
-	          <i class="material-icons">account_circle</i>Sign-in with Google/UMBC email
+	          <i class="material-icons"> account_circle </i> Sign-in with Google/UMBC email
 	        </button>
 	</nav>
         </header>
@@ -217,6 +217,13 @@
                                     "enum" : ["Calm", "1-3 km/h", "3-5 km/h", "5-7 km/h", "7-10 km/h", "10+ kmph"]
 								}
                             },
+                        "form":[
+                            "*",
+                            {
+                                "type": "submit",
+                                "title": "Submit Observations"
+                            }
+                        ],
                         onSubmit: function (errors, values){
                             if (errors)
                             {
