@@ -42,8 +42,19 @@ html, body {
     overflow:scroll;
 }
 
+#searchBlock{
+  width: 100%;
+  margin: auto;
+}
+
 #searchBar{
-  width: 130px;
+  display: block;
+  margin: auto;
+  width: 60%;
+  height: 40px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  padding: 10px 20px 10px 20px;
   -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
 }
