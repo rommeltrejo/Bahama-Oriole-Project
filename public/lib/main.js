@@ -56,7 +56,6 @@ ResearchForm.prototype.checkSetup = function() {
 ResearchForm.prototype.signIn = function() {
     // Sign in Firebase using popup auth and Google as the identity provider.
     var provider = new firebase.auth.GoogleAuthProvider();
-    this.auth.signInWithPopup('form.html');
     this.auth.signInWithPopup(provider);
 };
 
