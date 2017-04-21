@@ -37,6 +37,7 @@ html, body {
   height: 40px;
   background-size: 40px;
   border-radius: 20px;
+  margin-top: 6px;
 }
 #user-container #user-name {
   top: 0px;
@@ -74,3 +75,69 @@ html, body {
     font-weight: bold;
     font-size-adjust: 250%;
 }
+
+#sign-in {
+     background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  text-shadow: 1px 1px 3px #c72cc7;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 5px 20px 5px 20px;
+  text-decoration: none;
+  margin-top: 6px;
+  margin-left: 5px;
+}
+
+#sign-in:hover{
+   background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+
+
+
+
+#sign-out {
+     background: #3498db;
+  background-image: -webkit-linear-gradient(top, #3498db, #2980b9);
+  background-image: -moz-linear-gradient(top, #3498db, #2980b9);
+  background-image: -ms-linear-gradient(top, #3498db, #2980b9);
+  background-image: -o-linear-gradient(top, #3498db, #2980b9);
+  background-image: linear-gradient(to bottom, #3498db, #2980b9);
+  -webkit-border-radius: 28;
+  -moz-border-radius: 28;
+  border-radius: 28px;
+  text-shadow: 1px 1px 3px #c72cc7;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 12px;
+  padding: 7px 20px 7px 20px;
+  text-decoration: none;
+  margin-top: 6px;
+  margin-left: 5px;
+}
+
+#sign-out:hover{
+   background: #3cb0fd;
+  background-image: -webkit-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -moz-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -ms-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: -o-linear-gradient(top, #3cb0fd, #3498db);
+  background-image: linear-gradient(to bottom, #3cb0fd, #3498db);
+  text-decoration: none;
+}
+
+
