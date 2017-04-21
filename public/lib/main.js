@@ -9,9 +9,7 @@ function ResearchForm() {
     this.submitButton = document.getElementsByClassName("btn btn-primary");
     this.userPic = document.getElementById('user-pic');
     this.username = document.getElementById('user-name');
-    this.signInButton = document.getElementById('sign-in') = "<button onclick='location.href='form.html'' hidden id='sign-in'>\
-	          <i class='material-icons'> </i> Sign-in with Google/UMBC email\
-	        </button>";
+    this.signInButton = document.getElementById('sign-in');
     this.signOutButton = document.getElementById('sign-out');
 
     this.checkSetup();
