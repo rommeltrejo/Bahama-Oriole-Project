@@ -84,7 +84,7 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         this.username.removeAttribute('hidden');
         this.userPic.removeAttribute('hidden');
         this.signOutButton.removeAttribute('hidden');
-        window.location.href='form.html';
+        location.href='form.html';
 
         // Hide sign-in button.
         this.signInButton.setAttribute('hidden', 'true');
