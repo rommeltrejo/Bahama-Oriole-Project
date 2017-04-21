@@ -56,8 +56,7 @@ ResearchForm.prototype.checkSetup = function() {
 ResearchForm.prototype.signIn = function() {
     // Sign in Firebase using popup auth and Google as the identity provider.
     var provider = new firebase.auth.GoogleAuthProvider();
-    this.auth.signInWithPopup(provider);
-    window.location = 'form.html';
+    this.auth.signInWithPopup(provider,'form.html');
 };
 
 // Signs-out of Friendly Chat.
