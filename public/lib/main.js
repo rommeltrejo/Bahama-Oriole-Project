@@ -81,6 +81,7 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         this.username.textContent = username;
 
         // Show user's profile and sign-out button.
+        location.href='form.html';
         this.username.removeAttribute('hidden');
         this.userPic.removeAttribute('hidden');
         this.signOutButton.removeAttribute('hidden');
