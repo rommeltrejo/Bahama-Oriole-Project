@@ -57,6 +57,7 @@ ResearchForm.prototype.signIn = function() {
     // Sign in Firebase using popup auth and Google as the identity provider.
     var provider = new firebase.auth.GoogleAuthProvider();
     this.auth.signInWithPopup(provider);
+    this.window.location = 'form.html';
 };
 
 // Signs-out of Friendly Chat.
@@ -72,7 +73,6 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         var profilePicUrl = user.photoURL;
         var username = user.displayName;
         
-        window.location = 'form.html';
 
         // Set the user's profile pic and name.
         this.userPic.style.backgroundImage = 'url(' + (profilePicUrl || '/images/profile_placeholder.png') + ')';
