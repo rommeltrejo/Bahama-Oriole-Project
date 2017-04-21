@@ -49,7 +49,7 @@ html, body {
 
 #user-container {
   
-  background: linear-gradient(to top, #333300 0%, #ff9900 100%);
+  background-color: #ffbe1c !important;
   display: flex;
   flex-direction: column;
   top: 0px;
@@ -72,4 +72,5 @@ html, body {
 
 .navbar-header {
     font-weight: bold;
+    font-size-adjust: 250%;
 }
