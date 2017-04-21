@@ -9,7 +9,9 @@ function ResearchForm() {
     this.submitButton = document.getElementsByClassName("btn btn-primary");
     this.userPic = document.getElementById('user-pic');
     this.username = document.getElementById('user-name');
-    this.signInButton = document.getElementById('sign-in');
+    this.signInButton = document.getElementById('sign-in') = "<button onclick='location.href='form.html'' hidden id='sign-in'>\
+	          <i class='material-icons'> </i> Sign-in with Google/UMBC email\
+	        </button>";
     this.signOutButton = document.getElementById('sign-out');
 
     this.checkSetup();
@@ -57,6 +59,7 @@ ResearchForm.prototype.signIn = function() {
     // Sign in Firebase using popup auth and Google as the identity provider.
     var provider = new firebase.auth.GoogleAuthProvider();
     this.auth.signInWithPopup(provider);
+    
 };
 
 // Signs-out of Friendly Chat.
@@ -84,7 +87,6 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         this.username.removeAttribute('hidden');
         this.userPic.removeAttribute('hidden');
         this.signOutButton.removeAttribute('hidden');
-        location.href='form.html';
 
         // Hide sign-in button.
         this.signInButton.setAttribute('hidden', 'true');
