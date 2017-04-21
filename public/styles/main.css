@@ -49,7 +49,7 @@ html, body {
 
 #user-container {
   
-  background-color: #fbc02d !important;
+  background: linear-gradient(to left, #333300 0%, #ff9900 100%);
   display: flex;
   flex-direction: column;
   top: 0px;
@@ -65,4 +65,11 @@ html, body {
     height: 100%;
     background-color: #f5f5f5 !important;
     overflow:scroll;
+}
+
+
+
+
+.navbar-header {
+    font-weight: bold;
 }
