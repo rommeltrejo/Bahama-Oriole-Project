@@ -45,9 +45,8 @@ ResearchForm.prototype.checkSetup = function() {
             'and make sure the storageBucket attribute is not empty. ' +
             'You may also need to visit the Storage tab and paste the name of your bucket which is ' +
             'displayed there.');
-    }else
-    {
-        console.log("firebase connection established successfully.")
+    } else {
+        console.log("firebase connection established successfully.");
     }
 
 };
