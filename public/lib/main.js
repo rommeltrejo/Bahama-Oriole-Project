@@ -132,38 +132,6 @@ ResearchForm.prototype.initFirebase = function() {
 };
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//I have no idea if used
-
-
-
-
-
-
-
-
-
-
-
-
 // Returns true if user is signed-in. Otherwise false and displays a message.
 ResearchForm.prototype.checkSignedInWithMessage = function() {
   // Return true if the user is signed in Firebase
@@ -187,36 +155,26 @@ ResearchForm.prototype.requestNotificationsPermissions = function() {
   });
 };
 
+// Query functions for searchPage.html
+ResearchForm.prototype.getData = function(valz) {
+  var ref = firebase.database().ref('results/');
 
+ref.orderByChild("name").on("child_added", function (data){
+    console.log(data.val().name)
+});
+
+
+//   ref.on("value", function(snapshot) {
+//    console.log(snapshot.val().results[1][valz]    );
+// }, function (error) {
+//    console.log("Error: " + error.code);
+// });
+
+};
+ 
 
 $( document ).ready(
   function () {
       window.Researchform = new ResearchForm();
   }
 );
-
-// Query functions for searchPage.html
-function getData(){
-  // Set the configuration for your app
-  // TODO: Replace with your project's config object
-  var config = {
-  apiKey: "AIzaSyAjPBFtz03tQZb2fiZPmRABgubO1LRYmH4",
-  authDomain: "cs447bioresearchform.firebaseapp.com",
-  databaseURL: "https://cs447bioresearchform.firebaseio.com",
-  storageBucket: "cs447bioresearchform.appspot.com",
-  messagingSenderId: "263717268269"
-  };
-  firebase.initializeApp(config);
-
-  // Get a reference to the database service
-  var database = firebase.database();
-
-  var getName = firebase.database().ref("results/");
-  getName.orderByValue().on("value", function(data){
-    data.forEach(function(data){
-      console.log(data.val().name);
-    });
-  });
-}
-
-
