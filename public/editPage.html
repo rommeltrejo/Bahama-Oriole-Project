@@ -27,35 +27,72 @@
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 		<!-- Bootstrap-->
 		<!-- JQuery-->
-
+		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+		<!-- Bootstrap-->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+		<!-- Bootstrap-->
+    
+		<!-- Firebase -->
+		<script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+		
+		<!-- Firebase -->
+        <script  src="lib/main.js"></script>    
+
 	</head>
+	<script>
+    // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAjPBFtz03tQZb2fiZPmRABgubO1LRYmH4",
+            authDomain: "cs447bioresearchform.firebaseapp.com",
+            databaseURL: "https://cs447bioresearchform.firebaseio.com",
+            storageBucket: "cs447bioresearchform.appspot.com",
+            messagingSenderId: "263717268269"
+        };
+       firebase.initializeApp(config);
+	</script>    
+        <!-- json form material-->
+	<script type="text/javascript" src="deps/underscore.js"></script>
+	<script type="text/javascript" src="deps/opt/jsv.js"></script>
+	<script type="text/javascript" src="lib/jsonform.js"></script>
+    
+	</head>
+    
+    <!-- This is the navigation bar -->
 	<body>
-		<header id="user-container" >
+        <header id="user-container" >
         <nav>
   		<div>
     		<div class="navbar-header">
       			<a class="navbar-brand" href="index.html">Bahama Oriole Project</a>
     		</div>
     		<ul class="nav navbar-nav">
-				<li class="dropdown">
-					<a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu<span class="caret"></span></a>	
-					<ul class="dropdown-menu">
+			
+                <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu<span class="caret"></span></a>        		
+                    <ul class="dropdown-menu">
 						<li><a href="searchPage.html">Search</a></li>
 						<li><a href="editPage.html">Edit</a></li>
 						<li><a href="#">Settings</a></li>
 					</ul>
-				</li>
+      			</li>
+				
     		</ul>
 		</div>
-        <div hidden id="user-pic"></div>
-	    <div hidden id="user-name"></div>
-	    <button hidden id="sign-out" > Sign-out </button>
-	    <button hidden id="sign-in" >
-	        <i class="material-icons"></i>Sign-in with Google/UMBC email
-	    </button>
-	</nav>
+        <div id="leuser-container">
+		
+            <div hidden id="user-pic"></div>
+	        <div hidden id="user-name"></div>
+	        <button hidden id="sign-out" > Sign-out </button>
+	        <button hidden id="sign-in">
+				<i class="material-icons"> </i> Sign-in with Google/UMBC email
+	        </button>
+			
+        </div>
+		</nav>
         </header>
+		
+        
+        <!-- form body-->
 	
 	
 		

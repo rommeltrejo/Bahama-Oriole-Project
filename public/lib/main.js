@@ -23,7 +23,6 @@ function ResearchForm() {
  // Saves message on form submit.
      this.messageForm.addEventListener('submit', this.saveMessage.bind(this));
  // Toggle for the button.
- var buttonTogglingHandler = this.toggleButton.bind(this);
  this.messageInput.addEventListener('keyup', buttonTogglingHandler);
  this.messageInput.addEventListener('change', buttonTogglingHandler);
 
@@ -45,9 +44,8 @@ ResearchForm.prototype.checkSetup = function() {
             'and make sure the storageBucket attribute is not empty. ' +
             'You may also need to visit the Storage tab and paste the name of your bucket which is ' +
             'displayed there.');
-    }else
-    {
-        console.log("firebase connection established successfully.")
+    } else {
+        console.log("firebase connection established successfully.");
     }
 
 };
@@ -122,8 +120,6 @@ ResearchForm.prototype.saveMessagingDeviceToken = function() {
 };
 
 
-//I have no idea if used
-
 
 // Sets up shortcuts to Firebase features and initiate firebase auth.
 ResearchForm.prototype.initFirebase = function() {
@@ -135,124 +131,6 @@ ResearchForm.prototype.initFirebase = function() {
   this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
 };
 
-// Loads chat messages history and listens for upcoming ones.
-ResearchForm.prototype.loadMessages = function() {
-  // Reference to the /messages/ database path.
-  this.messagesRef = this.database.ref('results');
-  // Make sure we remove all previous listeners.
-  this.messagesRef.off();
-
-  // Loads the last 12 messages and listen for new ones.
-  var setMessage = function(data) {
-    var val = data.val();
-
-
-    this.displayFormData(data.key, val, val.photoUrl, val.imageUrl);
-  }.bind(this);
-
-  this.messagesRef.limitToLast(12).on('child_added', setMessage);
-  this.messagesRef.limitToLast(12).on('child_changed', setMessage);
-};
-
-// Saves a new message on the Firebase DB.
-ResearchForm.prototype.saveMessage = function(e) {
-  e.preventDefault();
-  // Check that the user entered a message and is signed in.
-  if (this.messageInput.value && this.checkSignedInWithMessage()) {
-    var currentUser = this.auth.currentUser;
-    // Add a new message entry to the Firebase Database.
-    this.messagesRef.push({
-      name: currentUser.displayName,
-      text: this.messageInput.value,
-      photoUrl: currentUser.photoURL || '/images/profile_placeholder.png'
-    }).then(function() {
-      // Clear message text field and SEND button state.
-      ResearchForm.resetMaterialTextfield(this.messageInput);
-      this.toggleButton();
-    }.bind(this)).catch(function(error) {
-      console.error('Error writing new message to Firebase Database', error);
-    });
-  }
-};
-
-// Saves a new message on the Firebase DB.
-ResearchForm.prototype.saveFormResults = function(e) {
-    e.preventDefault();
-    // Check that the user entered a message and is signed in.
-    if ( this.checkSignedInWithMessage()) { //&& with something know form is ready
-        var currentUser = this.auth.currentUser;
-        // Add a new message entry to the Firebase Database.
-        this.messagesRef.push({
-            name: currentUser.displayName,
-            text: this.messageInput.value,
-            photoUrl: currentUser.photoURL || '/images/profile_placeholder.png'
-        }).then(function() {
-            // Clear message text field and SEND button state.
-            ResearchForm.resetMaterialTextfield(this.messageInput);
-            this.toggleButton();
-        }.bind(this)).catch(function(error) {
-            console.error('Error writing new message to Firebase Database', error);
-        });
-    }
-};
-
-
-// Sets the URL of the given img element with the URL of the image stored in Firebase Storage.
-ResearchForm.prototype.setImageUrl = function(imageUri, imgElement) {
-  // If the image is a Firebase Storage URI we fetch the URL.
-  if (imageUri.startsWith('gs://')) {
-    imgElement.src = ResearchForm.LOADING_IMAGE_URL; // Display a loading image first.
-    this.storage.refFromURL(imageUri).getMetadata().then(function(metadata) {
-      imgElement.src = metadata.downloadURLs[0];
-    });
-  } else {
-    imgElement.src = imageUri;
-  }
-};
-
-// Saves a new message containing an image URI in Firebase.
-// This first saves the image in Firebase storage.
-ResearchForm.prototype.saveImageMessage = function(event) {
-  var file = event.target.files[0];
-
-  // Clear the selection in the file picker input.
-  this.imageForm.reset();
-
-  // Check if the file is an image.
-  if (!file.type.match('image.*')) {
-    var data = {
-      message: 'You can only share images',
-      timeout: 2000
-    };
-    this.signInSnackbar.MaterialSnackbar.showSnackbar(data);
-    return;
-  }
-
-  // Check if the user is signed-in
-  if (this.checkSignedInWithMessage()) {
-
-    // We add a message with a loading icon that will get updated with the shared image.
-    var currentUser = this.auth.currentUser;
-    this.messagesRef.push({
-      name: currentUser.displayName,
-      imageUrl: ResearchForm.LOADING_IMAGE_URL,
-      photoUrl: currentUser.photoURL || '/images/profile_placeholder.png'
-    }).then(function(data) {
-
-      // Upload the image to Firebase Storage.
-      var filePath = currentUser.uid + '/' + data.key + '/' + file.name;
-      return this.storage.ref(filePath).put(file).then(function(snapshot) {
-
-        // Get the file's Storage URI and update the chat message placeholder.
-        var fullPath = snapshot.metadata.fullPath;
-        return data.update({imageUrl: this.storage.ref(fullPath).toString()});
-      }.bind(this));
-    }.bind(this)).catch(function(error) {
-      console.error('There was an error uploading a file to Firebase Storage:', error);
-    });
-  }
-};
-
 
 // Returns true if user is signed-in. Otherwise false and displays a message.
 ResearchForm.prototype.checkSignedInWithMessage = function() {
@@ -260,13 +138,8 @@ ResearchForm.prototype.checkSignedInWithMessage = function() {
   if (this.auth.currentUser) {
     return true;
   }
-
   // Display a message to the user using a Toast.
-  var data = {
-    message: 'You must sign-in first',
-    timeout: 2000
-  };
-  this.signInSnackbar.MaterialSnackbar.showSnackbar(data);
+  alert("you must sign in first")
   return false;
 };
 
@@ -282,176 +155,26 @@ ResearchForm.prototype.requestNotificationsPermissions = function() {
   });
 };
 
-// Resets the given MaterialTextField.
-ResearchForm.resetMaterialTextfield = function(element) {
-  element.value = '';
-  element.parentNode.MaterialTextfield.boundUpdateClassesHandler();
-};
+// Query functions for searchPage.html
+ResearchForm.prototype.getData = function(valz) {
+  var ref = firebase.database().ref('results/');
 
-// Template for messages.
-ResearchForm.MESSAGE_TEMPLATE =
-    '<div class="message-container">' +
-      '<div class="spacing"><div class="pic"></div></div>' +
-      '<div class="message"></div>' +
-      '<div class="name"></div>' +
-    '</div>'; 
-
-// A loading image URL.
-ResearchForm.LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif';
-
-// Displays a Message in the UI.
-ResearchForm.prototype.displayMessage = function(key, name, text, picUrl, imageUri) {
-  var div = document.getElementById(key);
-  // If an element for that message does not exists yet we create it.
-  if (!div) {
-    var container = document.createElement('div');
-    container.innerHTML = ResearchForm.MESSAGE_TEMPLATE;
-    div = container.firstChild;
-    div.setAttribute('id', key);
-    this.messageList.appendChild(div);
-  }
-  if (picUrl) {
-    div.querySelector('.pic').style.backgroundImage = 'url(' + picUrl + ')';
-  }
-  div.querySelector('.name').textContent = name;
-  var messageElement = div.querySelector('.message');
-  if (text) { // If the message is text.
-    messageElement.textContent = text;
-    // Replace all line breaks by <br>.
-    messageElement.innerHTML = messageElement.innerHTML.replace(/\n/g, '<br>');
-  } else if (imageUri) { // If the message is an image.
-    var image = document.createElement('img');
-    image.addEventListener('load', function() {
-      this.messageList.scrollTop = this.messageList.scrollHeight;
-    }.bind(this));
-    this.setImageUrl(imageUri, image);
-    messageElement.innerHTML = '';
-    messageElement.appendChild(image);
-  }
-  // Show the card fading-in and scroll to view the new message.
-  setTimeout(function() {div.classList.add('visible')}, 1);
-  this.messageList.scrollTop = this.messageList.scrollHeight;
-  this.messageInput.focus();
-};
-
-// Displays a Message in the UI.
-ResearchForm.prototype.displayFormData = function(key, formData, picUrl, imageUri) {
-    var div = document.getElementById(key);
-    // If an element for that message does not exists yet we create it.
-    if (!div) {
-        var container = document.createElement('div');
-        container.innerHTML = ResearchForm.MESSAGE_TEMPLATE;
-        div = container.firstChild;
-        div.setAttribute('id', key);
-        this.messageList.appendChild(div);
-    }
-    if (picUrl) {
-        div.querySelector('.pic').style.backgroundImage = 'url(' + picUrl + ')';
-    }
-    div.querySelector('.name').textContent = formData.name;
-    var messageElement = div.querySelector('.message');
-    if (formData.date) { // If the message is text.
-        messageElement.textContent = formData.date;
-        // Replace all line breaks by <br>.
-        messageElement.innerHTML = messageElement.innerHTML.replace(/\n/g, '<br>');
-    } else if (imageUri) { // If the message is an image.
-        var image = document.createElement('img');
-        image.addEventListener('load', function() {
-            this.messageList.scrollTop = this.messageList.scrollHeight;
-        }.bind(this));
-        this.setImageUrl(imageUri, image);
-        messageElement.innerHTML = '';
-        messageElement.appendChild(image);
-    }
-    // Show the card fading-in and scroll to view the new message.
-    setTimeout(function() {div.classList.add('visible')}, 1);
-    this.messageList.scrollTop = this.messageList.scrollHeight;
-    this.messageInput.focus();
-};
+ref.orderByChild("name").on("child_added", function (data){
+    console.log(data.val().name)
+});
 
 
-
-// Displays a Message in the UI.
-ResearchForm.prototype.displayRealMessage = function(key, name, text, picUrl, imageUri) {
-    var div = document.getElementById(key);
-    // If an element for that message does not exists yet we create it.
-    if (!div) {
-        var container = document.createElement('div');
-        container.innerHTML = ResearchForm.MESSAGE_TEMPLATE;
-        div = container.firstChild;
-        div.setAttribute('id', key);
-        this.messageList.appendChild(div);
-    }
-    if (picUrl) {
-        div.querySelector('.pic').style.backgroundImage = 'url(' + picUrl + ')';
-    }
-    div.querySelector('.name').textContent = name;
-    var messageElement = div.querySelector('.message');
-    if (text) { // If the message is text.
-        messageElement.textContent = text;
-        // Replace all line breaks by <br>.
-        messageElement.innerHTML = messageElement.innerHTML.replace(/\n/g, '<br>');
-    } else if (imageUri) { // If the message is an image.
-        var image = document.createElement('img');
-        image.addEventListener('load', function() {
-            this.messageList.scrollTop = this.messageList.scrollHeight;
-        }.bind(this));
-        this.setImageUrl(imageUri, image);
-        messageElement.innerHTML = '';
-        messageElement.appendChild(image);
-    }
-    // Show the card fading-in and scroll to view the new message.
-    setTimeout(function() {div.classList.add('visible')}, 1);
-    this.messageList.scrollTop = this.messageList.scrollHeight;
-    this.messageInput.focus();
-};
-
-
-// Enables or disables the submit button depending on the values of the input
-// fields.
-ResearchForm.prototype.toggleButton = function() {
-  if (this.messageInput.value) {
-    this.submitButton.removeAttribute('disabled');
-  } else {
-    this.submitButton.setAttribute('disabled', 'true');
-  }
-};
-
-
-window.onload = function() {
+//   ref.on("value", function(snapshot) {
+//    console.log(snapshot.val().results[1][valz]    );
+// }, function (error) {
+//    console.log("Error: " + error.code);
+// });
 
 };
+ 
 
 $( document ).ready(
   function () {
       window.Researchform = new ResearchForm();
   }
 );
-
-// Query functions for searchPage.html
-
-function getData(){
-
-  // Set the configuration for your app
-// TODO: Replace with your project's config object
-var config = {
-  apiKey: "AIzaSyAjPBFtz03tQZb2fiZPmRABgubO1LRYmH4",
-  authDomain: "cs447bioresearchform.firebaseapp.com",
-  databaseURL: "https://cs447bioresearchform.firebaseio.com",
-  storageBucket: "cs447bioresearchform.appspot.com",
-  messagingSenderId: "263717268269"
-};
-firebase.initializeApp(config);
-
-// Get a reference to the database service
-var database = firebase.database();
-
-  var getName = firebase.database().ref("results/");
-  getName.orderByValue().on("value", function(data){
-    data.forEach(function(data){
-      console.log(data.val().name);
-    });
-  });
-}
-
-
