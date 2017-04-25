@@ -141,3 +141,32 @@ html, body {
 }
 
 
+.col-sm-8 {
+    top: 20px;
+}
+
+.control-label {
+    top: 20px;
+}
+
+
+
+.col-sm-offset-2 {
+    top: 20px;
+}
+
+
+
+.dropdown {
+    background-color: burlywood;
+}
+
+.navbar-brand {
+    color:black;
+    font-weight: bolder;
+}
+
+.dropdown-toggle {
+    color: black;
+    font-weight: 600;
+}
