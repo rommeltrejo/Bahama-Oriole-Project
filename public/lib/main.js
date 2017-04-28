@@ -168,12 +168,19 @@ ResearchForm.prototype.requestNotificationsPermissions = function() {
 ;
 
 // Query functions for searchPage.html
-ResearchForm.prototype.getData = function(valz) {
-    var ref = firebase.database().ref('results/');
-
+ResearchForm.prototype.getData = function() {
+    //var ref = firebase.database().ref('results/');
+	var name = document.getElementById("field1"); //name field
+	var location = document.getElementById("field2"); //location field
+	
+	var rootRef = firebase.database().ref(); //rootRef	
+	var nameRef = rootRef.child('name').child(name); //every matching name
+	var locationRef = rootRef.child('location').child(location); //every matching location
+	
     ref.orderByChild("name").on("child_added", function(data) {
         console.log(data.val().name)
     });
+	
     //   ref.on("value", function(snapshot) {
     //    console.log(snapshot.val().results[1][valz]    );
     // }, function (error) {
