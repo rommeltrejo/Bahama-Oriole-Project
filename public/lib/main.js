@@ -184,6 +184,7 @@ ResearchForm.prototype.searchPageFunction = function() {
 	if (location == null){
 		//only search by name
 		var nameRef = rootRef.child('name').child(name);
+		nameRef.orderByChild("point_number");
 	}
 	else if (name == null){
 		//only search by location
