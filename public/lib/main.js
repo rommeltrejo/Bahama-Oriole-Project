@@ -169,14 +169,32 @@ ResearchForm.prototype.requestNotificationsPermissions = function() {
 
 // Query functions for searchPage.html
 ResearchForm.prototype.getData = function() {
-    //var ref = firebase.database().ref('results/');
-    var name = document.getElementById("field1"); //name field
-    var location = document.getElementById("field2"); //location field
-    
-    var rootRef = firebase.database().ref(); //rootRef  
-    var nameRef = rootRef.child('name').child(name); //every matching name
-    var locationRef = rootRef.child('location').child(location); //every matching location
-    
+	var name = document.getElementById("field1"); //name field
+	var location = document.getElementById("field2"); //location field	
+	
+	if ((name == null) && (location == null)){
+		//if both are null, show no results
+		
+		return;
+	}
+	
+	var rootRef = firebase.database().ref(); //rootRef, this is everything
+	
+	if (location == null){
+		//only search by name
+		var nameRef = rootRef.child('name').child(name);
+	}
+	else if (name == null){
+		//only search by location
+		var locationRef = rootRef.child('location').child(location);		
+	}
+	else{
+		//search for both and join them
+		var locationRef = rootRef.child('location').child(location);
+		var nameRef = rootRef.child('name').child(name);
+	}
+	
+
     ref.orderByChild("name").on("child_added", function(data) {
         console.log(data.val().name)
     });
