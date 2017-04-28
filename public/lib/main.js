@@ -122,10 +122,25 @@ ResearchForm.prototype.initFirebase = function() {
     this.auth = firebase.auth();
     this.database = firebase.database();
     this.storage = firebase.storage();
+
+    this.initDataGetters();
+
     // Initiates Firebase auth and listen to auth state changes.
     this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
 }
 ;
+
+ResearchForm.prototype.initDataGetters = function() {
+    this.dbRootRef = firebase.database().ref().child("results"); 
+};
+
+function savedata(param){
+  var message = (param ||"lelelle")
+
+  Researchform.dbRootRef.push({fieldName:'messageField', text:message});
+  
+}
+
 
 // Returns true if user is signed-in. Otherwise false and displays a message.
 ResearchForm.prototype.checkSignedInWithMessage = function() {
@@ -173,7 +188,5 @@ ResearchForm.prototype.verify_submission = function() {
 
 $(document).ready(function() {
     window.Researchform = new ResearchForm();
-
-
 });
 
