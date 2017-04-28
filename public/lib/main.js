@@ -134,12 +134,12 @@ ResearchForm.prototype.initDataGetters = function() {
     this.dbRootRef = firebase.database().ref().child("results"); 
 };
 
-function savedata(param){
+function saveData(param){
   var Observation = (param ||"noOb")
   Researchform.dbRootRef.push({Observation});
 //example
 /*
- savedata({
+ saveData({
       "data_pic" : "",
       "date" : "03/11/2017",
       "hab_pic" : "",
