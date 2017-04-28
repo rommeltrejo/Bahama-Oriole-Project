@@ -205,14 +205,15 @@ ResearchForm.prototype.requestNotificationsPermissions = function() {
 }
 ;
 
+//NEED A GENERAL GETDATA FUNCTION!!!
 // Query functions for searchPage.html
-ResearchForm.prototype.getData = function() {
+ResearchForm.prototype.searchPageFunction = function() {
 	var name = document.getElementById("field1"); //name field
 	var location = document.getElementById("field2"); //location field	
 	
 	if ((name == null) && (location == null)){
-		//if both are null, show no results
-		
+		//if both are null, show no resultss
+		document.write("<div>Sorry, no results found</div>");
 		return;
 	}
 	
@@ -224,7 +225,7 @@ ResearchForm.prototype.getData = function() {
 	}
 	else if (name == null){
 		//only search by location
-		var locationRef = rootRef.child('location').child(location);		
+		var locationRef = rootRef.child('location').child(location);	
 	}
 	else{
 		//search for both and join them
@@ -233,9 +234,9 @@ ResearchForm.prototype.getData = function() {
 	}
 	
 
-    ref.orderByChild("name").on("child_added", function(data) {
+    /*ref.orderByChild("name").on("child_added", function(data) {
         console.log(data.val().name)
-    });
+    });*/
     
     //   ref.on("value", function(snapshot) {
     //    console.log(snapshot.val().results[1][valz]    );
