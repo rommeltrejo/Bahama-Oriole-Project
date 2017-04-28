@@ -136,8 +136,8 @@ ResearchForm.prototype.initDataGetters = function() {
 
 function savedata(param){
   var message = (param ||"noOb")
-  
-  Researchform.dbRootRef.push({text:message});
+
+  Researchform.dbRootRef.push({message});
 }
 
 
