@@ -135,11 +135,49 @@ ResearchForm.prototype.initDataGetters = function() {
 };
 
 function savedata(param){
-  var message = (param ||"lelelle")
+  var Observation = (param ||"noOb")
+  Researchform.dbRootRef.push({Observation});
+//example
+/*
+ savedata({
+      "data_pic" : "",
+      "date" : "03/11/2017",
+      "hab_pic" : "",
+      "habitat" : {
+        "a_g_2nd" : 29,
+        "coppice" : 1,
+        "developed" : 20,
+        "mixed" : 10,
+        "pine" : 20,
+        "wetland" : 20
+      },
+      "habitat_notes" : "locals are present in this area",
+      "location_point" : "113A",
+      "name" : "Researcher Name",
+      "num_cocos" : "1-4",
+      "num_dead_pine" : "0",
+      "num_pine" : "0",
+      "num_thatch" : "11-20",
+      "observations" : [ {
+        "animal" : "ASY",
+        "detection_method" : "sight",
+        "distance" : "20",
+        "notes" : ""
+      }, {
+        "animal" : "HY",
+        "detection_method" : "echo location",
+        "distance" : "2",
+        "notes" : ""
+      } ],
+      "pine_understory" : "NA",
+      "understory_Notes" : "",
+      "weather" : "< 50% clear",
+      "wind" : "1-5 km/hour"
+    })
+ */
 
-  Researchform.dbRootRef.push({fieldName:'messageField', text:message});
-  
 }
+
 
 
 // Returns true if user is signed-in. Otherwise false and displays a message.
