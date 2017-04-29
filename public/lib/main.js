@@ -208,7 +208,8 @@ ResearchForm.prototype.requestNotificationsPermissions = function() {
 //NEED A GENERAL GETDATA FUNCTION!!!
 // Query functions for searchPage.html
 ResearchForm.prototype.searchByLocation = function() {
-	var location = document.getElementById("field2"); //get location field	
+	var location = document.getElementById("field2"); //get location field
+    document.getElementById("field1").value = "";	
 	
 	if (location == null){
 		//if both are null, show no resultss
@@ -235,6 +236,7 @@ ResearchForm.prototype.searchByLocation = function() {
 
 ResearchForm.prototype.searchByName = function() {
 	var name = document.getElementById("field1"); //get name field
+    document.getElementById("field1").value = "";
 	
 	if (name == null){
 		//if both are null, show no resultss
