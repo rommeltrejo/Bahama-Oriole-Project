@@ -207,32 +207,44 @@ ResearchForm.prototype.requestNotificationsPermissions = function() {
 
 //NEED A GENERAL GETDATA FUNCTION!!!
 // Query functions for searchPage.html
-ResearchForm.prototype.searchPageFunction = function() {
-	var name = document.getElementById("field1"); //name field
-	var location = document.getElementById("field2"); //location field	
+ResearchForm.prototype.searchByLocation = function() {
+	var location = document.getElementById("field2"); //get location field	
 	
-	if ((name == null) && (location == null)){
+	if (location == null){
 		//if both are null, show no resultss
 		document.write("<div>Sorry, no results found</div>");
 		return;
 	}
 	
 	var rootRef = firebase.database().ref(); //rootRef, this is everything
+	var nameRef = rootRef.child('location').child(location);
+	nameRef.orderByChild("point_number");
 	
-	if (location == null){
-		//only search by name
-		var nameRef = rootRef.child('name').child(name);
-		nameRef.orderByChild("point_number");
+
+    /*ref.orderByChild("name").on("child_added", function(data) {
+        console.log(data.val().name)
+    });*/
+    
+    //   ref.on("value", function(snapshot) {
+    //    console.log(snapshot.val().results[1][valz]    );
+    // }, function (error) {
+    //    console.log("Error: " + error.code);
+    // });
+
+};
+
+ResearchForm.prototype.searchByName = function() {
+	var name = document.getElementById("field1"); //get name field
+	
+	if (name == null){
+		//if both are null, show no resultss
+		document.write("<div>Sorry, no results found</div>");
+		return;
 	}
-	else if (name == null){
-		//only search by location
-		var locationRef = rootRef.child('location').child(location);	
-	}
-	else{
-		//search for both and join them
-		var locationRef = rootRef.child('location').child(location);
-		var nameRef = rootRef.child('name').child(name);
-	}
+	
+	var rootRef = firebase.database().ref(); //rootRef, this is everything
+	var nameRef = rootRef.child('name').child(name);
+	nameRef.orderByChild("point_number");
 	
 
     /*ref.orderByChild("name").on("child_added", function(data) {
