@@ -40,4 +40,4 @@ jspm_packages
 public/.DS_Store
 public/jsonform-master.zip
 public/jsonform-master/
-cs447bioresearchform-export.json
+/cs447bioresearchform-export.json
