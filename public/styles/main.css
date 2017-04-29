@@ -138,8 +138,9 @@ html, body {
 }
 
 
-.col-sm-8 {
+.col-sm-8, .col-sm-2 {
     top: 20px;
+	position: static !important;
 }
 
 .control-label {
