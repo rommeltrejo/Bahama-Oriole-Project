@@ -157,8 +157,6 @@ ResearchForm.prototype.initDataGetters = function() {
 function saveData(param){
   var Observation = (param ||"no_Observation")
   Researchform.dbRootRef.push(Observation);
-//example
-
 }
 
 
