@@ -248,4 +248,31 @@ ResearchForm.prototype.verify_submission = function() {
 
 $(document).ready(function() {
     window.Researchform = new ResearchForm();
+
+});
+
+//This will create the json object from the given form data
+(function ($) {
+    $.fn.serializeFormJSON = function () {
+
+        var jsonArray = {};
+        var a = this.serializeArray();
+        $.each(a, function () {
+            if (jsonArray[this.name]) {
+                if (!jsonArray[this.name].push) {
+                    jsonArray[this.name] = [jsonArray[this.name]];
+                }
+                jsonArray[this.name].push(this.value || '');
+            } else {
+                jsonArray[this.name] = this.value || '';
+            }
+        });
+        return jsonArray;
+    };
+})(jQuery);
+
+$('#mainForm').submit(function (e) {
+    e.preventDefault();
+    var data = $(this).serializeFormJSON();
+    console.log(data);
 });

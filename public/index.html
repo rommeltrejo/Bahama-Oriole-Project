@@ -41,7 +41,6 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 		<!-- Bootstrap-->
         <!-- JQuery-->
-        
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <!-- Bootstrap-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -110,241 +109,241 @@
         </div> -->
       <br>  
 <div class="container" id="submit_form">
-        <form class="form-horizontal">
+        <form class="form-horizontal" id="mainForm" method="post" action="#">
             <div class="form-group">
                 <label class="control-label col-sm-2" for="nameField">Name: </label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="nameField"> 
+                    <input type="text" name ="name" class="form-control" id="nameField"> 
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="locationField">Location: </label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="locationField"> 
+                    <input type="text" name="location" class="form-control" id="locationField"> 
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="dateField">Date: </label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="dateField"> 
+                    <input type="text" name="date" class="form-control" id="dateField"> 
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="pointField">Point Number: </label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="pointField"> 
+                    <input type="text" name="location_point" class="form-control" id="pointField"> 
                 </div>
             </div>
             <div class="form-group">
                 <label for="ag" class="control-label col-sm-2">AG/2nd:</label>
                 <div class="col-sm-2">
-                <select class="form-control" id="ag">
-                    <option>0</option>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                    <option>40</option>
-                    <option>50</option>
-                    <option>60</option>
-                    <option>70</option>
-                    <option>80</option>
-                    <option>90</option>
-                    <option>100</option>
+                <select class="form-control" id="ag" name="ag">
+                    <option value="0">0</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
                   </select>
                   </div>
             </div>
             <div class="form-group">
                 <label for="coppice" class="control-label col-sm-2">Coppice:</label>
                 <div class="col-sm-2">
-                <select class="form-control" id="coppice">
-                    <option>0</option>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                    <option>40</option>
-                    <option>50</option>
-                    <option>60</option>
-                    <option>70</option>
-                    <option>80</option>
-                    <option>90</option>
-                    <option>100</option>
+                <select class="form-control" id="coppice" name="coppice">
+                    <option value="0">0</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
                   </select>
                   </div>
             </div>
             <div class="form-group">
                 <label for="developed" class="control-label col-sm-2">Developed:</label>
                 <div class="col-sm-2">
-                <select class="form-control" id="developed">
-                    <option>0</option>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                    <option>40</option>
-                    <option>50</option>
-                    <option>60</option>
-                    <option>70</option>
-                    <option>80</option>
-                    <option>90</option>
-                    <option>100</option>
+                <select class="form-control" id="developed" name="developed">
+                    <option value="0">0</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
                   </select>
                   </div>
             </div>
             <div class="form-group">
                 <label for="mixed" class="control-label col-sm-2">Mixed:</label>
                 <div class="col-sm-2">
-                <select class="form-control" id="mixed">
-                    <option>0</option>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                    <option>40</option>
-                    <option>50</option>
-                    <option>60</option>
-                    <option>70</option>
-                    <option>80</option>
-                    <option>90</option>
-                    <option>100</option>
+                <select class="form-control" id="mixed" name="mixed">
+                    <option value="0">0</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
                   </select>
                   </div>
             </div>
             <div class="form-group">
                 <label for="pine" class="control-label col-sm-2">Pine:</label>
                 <div class="col-sm-2">
-                <select class="form-control" id="pine">
-                    <option>0</option>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                    <option>40</option>
-                    <option>50</option>
-                    <option>60</option>
-                    <option>70</option>
-                    <option>80</option>
-                    <option>90</option>
-                    <option>100</option>
+                <select class="form-control" id="pine" name="pine">
+                    <option value="0">0</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
                   </select>
                   </div>
             </div>
             <div class="form-group">
                 <label for="wetland" class="control-label col-sm-2">Wetland:</label>
                 <div class="col-sm-2">
-                <select class="form-control" id="wetland">
-                    <option>0</option>
-                    <option>10</option>
-                    <option>20</option>
-                    <option>30</option>
-                    <option>40</option>
-                    <option>50</option>
-                    <option>60</option>
-                    <option>70</option>
-                    <option>80</option>
-                    <option>90</option>
-                    <option>100</option>
+                <select class="form-control" id="wetland" name="wetland">
+                    <option value="0">0</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
                   </select>
                   </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="notesField">Habitat Notes: </label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="notesField"> 
+                    <input type="text" class="form-control" id="notesField" name="habitat_noted"> 
                 </div>
             </div>
             <div class="form-group">
                 <label for="coconut" class="control-label col-sm-2">No. of Coconut Trees:</label>
                 <div class="col-sm-2">
-                <select class="form-control" id="coconut">
-                    <option>0</option>
-                    <option>1-4</option>
-                    <option>5-10</option>
-                    <option>11-20</option>
-                    <option>21-50</option>
-                    <option>51-100+</option>
+                <select class="form-control" id="coconut" name="num_cocos">
+                    <option value="0">0</option>
+                    <option value="1-4">1-4</option>
+                    <option value="5-10">5-10</option>
+                    <option value="11-20">11-20</option>
+                    <option value="21-50">21-50</option>
+                    <option value="51-100+">51-100+</option>
                 </select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="numPine" class="control-label col-sm-2">No. of Pine Trees:</label>
                 <div class="col-sm-2">
-                <select class="form-control" id="numPine">
-                    <option>0</option>
-                    <option>1-4</option>
-                    <option>5-10</option>
-                    <option>11-20</option>
-                    <option>21-50</option>
-                    <option>51-100+</option>
+                <select class="form-control" id="numPine" name="num_pine">
+                    <option value="0">0</option>
+                    <option value="1-4">1-4</option>
+                    <option value="5-10">5-10</option>
+                    <option value="11-20">11-20</option>
+                    <option value="21-50">21-50</option>
+                    <option value="51-100+">51-100+</option>
                 </select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="deadpine" class="control-label col-sm-2">No. of Deadpine Trees:</label>
                 <div class="col-sm-2">
-                <select class="form-control" id="deadpine">
-                    <option>0</option>
-                    <option>1-4</option>
-                    <option>5-10</option>
-                    <option>11-20</option>
-                    <option>21-50</option>
-                    <option>51-100+</option>
+                <select class="form-control" id="deadpine" name="num_dead_pine">
+                     <option value="0">0</option>
+                    <option value="1-4">1-4</option>
+                    <option value="5-10">5-10</option>
+                    <option value="11-20">11-20</option>
+                    <option value="21-50">21-50</option>
+                    <option value="51-100+">51-100+</option>
                 </select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="thatch" class="control-label col-sm-2">No. of Thatch:</label>
                 <div class="col-sm-2">
-                <select class="form-control" id="thatch">
-                    <option>0</option>
-                    <option>1-4</option>
-                    <option>5-10</option>
-                    <option>11-20</option>
-                    <option>21-50</option>
-                    <option>51-100+</option>
+                <select class="form-control" id="thatch" name="num_thatch">
+                    <option value="0">0</option>
+                    <option value="1-4">1-4</option>
+                    <option value="5-10">5-10</option>
+                    <option value="11-20">11-20</option>
+                    <option value="21-50">21-50</option>
+                    <option value="51-100+">51-100+</option>
                 </select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="understory" class="control-label col-sm-2">Pine Understory:</label>
                 <div class="col-sm-2">
-                <select class="form-control" id="understory">
-                    <option>0-1m</option>
-                    <option>1-2m</option>
-                    <option>2-5m</option>
-                    <option>N/A</option>
+                <select class="form-control" id="understory" name="pine_understory">
+                    <option value="0-1m">0-1m</option>
+                    <option value="1-2m">1-2m</option>
+                    <option value="2-5m">2-5m</option>
+                    <option value="N/A">N/A</option>
                 </select>
                 </div>
             </div>
             <div class="form-group">
                 <label class="control-label col-sm-2" for="understoryField">Understory Notes: </label>
                 <div class="col-sm-8">
-                    <input type="text" class="form-control" id="understoryField"> 
+                    <input type="text" class="form-control" id="understoryField" name="understory_Notes"> 
                 </div>
             </div>
             <div class="form-group">
                 <label for="cloud" class="control-label col-sm-2">Cloud</label>
                 <div class="col-sm-2">
-                <select class="form-control" id="cloud">
-                    <option>Clear</option>
-                    <option>< 50% cloudy</option>
-                    <option>> 95% cloudy</option>
+                <select class="form-control" id="cloud" name="weather">
+                    <option value="Clear">Clear</option>
+                    <option value="< 50% cloudy">< 50% cloudy</option>
+                    <option value=">95% cloudy">> 95% cloudy</option>
                 </select>
                 </div>
             </div>
             <div class="form-group">
                 <label for="wind" class="control-label col-sm-2">Wind</label>
                 <div class="col-sm-2">
-                <select class="form-control" id="wind">
-                    <option>Calm</option>
-                    <option>1-3 km/h</option>
-                    <option>3-5 km/h</option>
-                    <option>5-7 km/h</option>
-                    <option>7-10 km/h</option>
-                    <option>10+ km/h</option>
+                <select class="form-control" id="wind" name="wind">
+                    <option value="Calm">Calm</option>
+                    <option value="1-3km/h">1-3 km/h</option>
+                    <option value="3-5km/h">3-5 km/h</option>
+                    <option value="5-7km/h">5-7 km/h</option>
+                    <option value="7-10km/h">7-10 km/h</option>
+                    <option value="10+km/h">10+ km/h</option>
                 </select>
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" onclick="Researchform.getData()" id="submitForm">Submit</button>
+                    <button type="submit" class="btn btn-default" id="submitForm">Submit</button>
                 </div>
             </div>
         </form>
