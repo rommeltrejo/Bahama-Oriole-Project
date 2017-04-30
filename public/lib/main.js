@@ -256,8 +256,8 @@ $(document).ready(function() {
     $.fn.serializeFormJSON = function () {
 
         var jsonArray = {};
-        var a = this.serializeArray();
-        $.each(a, function () {
+        var serialize = this.serializeArray();
+        $.each(serialize, function () {
             if (jsonArray[this.name]) {
                 if (!jsonArray[this.name].push) {
                     jsonArray[this.name] = [jsonArray[this.name]];
@@ -272,7 +272,8 @@ $(document).ready(function() {
 })(jQuery);
 
 $('#mainForm').submit(function (e) {
-    e.preventDefault();
+    // This prevent from clearing the form after submit
+    //e.preventDefault();
     var data = $(this).serializeFormJSON();
     console.log(data);
 });
