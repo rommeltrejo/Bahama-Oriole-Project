@@ -157,7 +157,7 @@ ResearchForm.prototype.initDataGetters = function() {
 function saveData(param){
  // var Observation = (param ||"no_Observation")
  // Researchform.dbRootRef.push(Observation);
-  ResearchForm.dbRootRef.push(param);
+  Researchform.dbRootRef.push(param);
 }
 
 
@@ -281,8 +281,9 @@ $(document).ready(function() {
 
 $('#mainForm').submit(function (e) {
     // This prevent from clearing the form after submit
-    //e.preventDefault();
+    e.preventDefault();
     var data = $(this).serializeFormJSON();
     console.log(data);
     saveData(data); //Will push the json object to the database
+    return false;
 });
