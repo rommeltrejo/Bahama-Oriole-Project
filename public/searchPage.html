@@ -97,8 +97,7 @@
         </div>
     </nav>
         </header>
-        
-    
+    <br>
     <!--Name and location fields-->
     <div class="container" id="researchers_form">
         <form class="form-horizontal">
@@ -111,7 +110,7 @@
 			<!--submit button for name-->
 			<div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" onclick="searchByName()">Submit</button>					
+                    <button type="submit" class="btn btn-default" onclick="Researchform.searchByName()">Submit</button>					
 				</div>
             </div>
 			<!--Location field-->
@@ -123,15 +122,17 @@
             <!--submit button for location-->
             <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                    <button type="submit" class="btn btn-default" onclick="searchByLocation()">Submit</button>					
+                    <button type="submit" class="btn btn-default" onclick="Researchform.searchByLocation()">Submit</button>					
 				</div>
             </div>
         </form>
     </div>
+    <!-- Displays results here -->
+    <div id="displayResults">
 
-
-        <!-- init -->
-        <script  src="lib/main.js"></script>    
+    </div>
+    <!-- init -->
+    <script  src="lib/main.js"></script>    
 </body>
 
 </html>

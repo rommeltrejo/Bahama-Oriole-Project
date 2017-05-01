@@ -155,8 +155,9 @@ ResearchForm.prototype.initDataGetters = function() {
  * @param {*} param 
  */
 function saveData(param){
-  var Observation = (param ||"no_Observation")
-  Researchform.dbRootRef.push(Observation);
+ // var Observation = (param ||"no_Observation")
+ // Researchform.dbRootRef.push(Observation);
+  ResearchForm.dbRootRef.push(param);
 }
 
 
@@ -216,18 +217,25 @@ ResearchForm.prototype.searchByLocation = function() {
 };
 
 ResearchForm.prototype.searchByName = function() {
-	var name = document.getElementById("field1"); //get name field
-    document.getElementById("field1").value = "";
+    var playersRef = firebase.database().ref("results/");
+
+    playersRef.orderByChild("name").on("child_added", function(data) {
+        console.log(data.val().name);
+    });
+
+
+	// var name = document.getElementById("nameField"); //get name field
+    // document.getElementById("nameField").value = "";
 	
-	if (name == null){
-		//if both are null, show no resultss
-		document.write("<div>Sorry, no results found</div>");
-		return;
-	}
+	// if (name == null){
+	// 	//if both are null, show no resultss
+	// 	document.write("<div>Sorry, no results found</div>");
+	// 	return;
+	// }
 	
-	var rootRef = firebase.database().ref(); //rootRef, this is everything
-	var nameRef = rootRef.child('name').child(name);
-	nameRef.orderByChild("point_number");
+	// var rootRef = firebase.database().ref(); //rootRef, this is everything
+	// var nameRef = rootRef.child('name').child(name);
+	// nameRef.orderByChild("point_number");
 	
 
     /*ref.orderByChild("name").on("child_added", function(data) {
@@ -276,5 +284,5 @@ $('#mainForm').submit(function (e) {
     //e.preventDefault();
     var data = $(this).serializeFormJSON();
     console.log(data);
-    //saveData(data);
+    saveData(data); //Will push the json object to the database
 });
