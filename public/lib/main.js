@@ -110,11 +110,10 @@ ResearchForm.prototype.saveMessagingDeviceToken = function() {
             this.requestNotificationsPermissions();
         }
     }
-    .bind(this)).catch(function(error) {
-        console.error('Unable to get messaging token.', error);
-    });
-}
-;
+     .bind(this)).catch(function(error) {
+         //console.error('Unable to get messaging token.', error);
+     });
+};
 
 // Sets up shortcuts to Firebase features and initiate firebase auth.
 ResearchForm.prototype.initFirebase = function() {
