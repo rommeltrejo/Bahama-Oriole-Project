@@ -160,8 +160,6 @@ function saveData(param){
   Researchform.dbRootRef.push(param);
 }
 
-
-
 // Returns true if user is signed-in. Otherwise false and displays a message.
 ResearchForm.prototype.checkSignedInWithMessage = function() {
     // Return true if the user is signed in Firebase
@@ -171,19 +169,6 @@ ResearchForm.prototype.checkSignedInWithMessage = function() {
     // Display a message to the user using a Toast.
     alert("you must sign in first")
     return false;
-}
-;
-
-// Requests permissions to show notifications.
-ResearchForm.prototype.requestNotificationsPermissions = function() {
-    console.log('Requesting notifications permission...');
-    firebase.messaging().requestPermission().then(function() {
-        // Notification permission granted.
-        this.saveMessagingDeviceToken();
-    }
-    .bind(this)).catch(function(error) {
-        console.error('Unable to get permission to notify.', error);
-    });
 }
 ;
 
