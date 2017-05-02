@@ -177,15 +177,14 @@ var secondPart =  "</button> </br>"
 
 function le(field_name){
   
-var ref = firebase.database().ref("results");
+	var ref = firebase.database().ref("results");
 
-// Attach an asynchronous callback to read the data at our posts reference
+	// Attach an asynchronous callback to read the data at our posts reference
 
-ref.on("child_added", function(snapshot, prevChildKey) {
-  var newPost = snapshot.val();
-  document.getElementById("displayResults").innerHTML += sampleResult + newPost.name + secondPart;
-});
-
+	ref.on("child_added", function(snapshot, prevChildKey) {
+		var newPost = snapshot.val();
+		document.getElementById("displayResults").innerHTML += sampleResult + newPost.name + secondPart;
+	});
 
 }
 
@@ -222,29 +221,29 @@ ResearchForm.prototype.searchByLocation = function() {
 };
 
 ResearchForm.prototype.searchByName = function() {
-    var playersRef = firebase.database().ref("results/");
-
-    playersRef.orderByChild("name").on("child_added", function(data) {
-        console.log(data.val().name);
-    });
-
-
-	// var name = document.getElementById("nameField"); //get name field
-    // document.getElementById("nameField").value = "";
+  
+	var name = document.getElementById("nameField"); //get name field
+    document.getElementById("nameField").value = "";
 	
-	// if (name == null){
-	// 	//if both are null, show no resultss
-	// 	document.write("<div>Sorry, no results found</div>");
-	// 	return;
-	// }
+	if (name == null){
+		//if both are null, show no resultss
+		document.write("<div>Sorry, no results found</div>");
+		return;
+	}
 	
-	// var rootRef = firebase.database().ref(); //rootRef, this is everything
-	// var nameRef = rootRef.child('name').child(name);
-	// nameRef.orderByChild("point_number");
+	var rootRef = firebase.database().ref(); //rootRef, this is everything
+	var nameRef = rootRef.child('name').child(name);
+	nameRef.orderByChild("point_number");
 	
 
     /*ref.orderByChild("name").on("child_added", function(data) {
         console.log(data.val().name)
+    });*/
+	
+	/*var playersRef = firebase.database().ref("results/");
+
+    playersRef.orderByChild("name").on("child_added", function(data) {
+        console.log(data.val().name);
     });*/
     
     //   ref.on("value", function(snapshot) {
