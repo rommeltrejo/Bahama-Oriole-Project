@@ -179,7 +179,6 @@ function searchFunction(field_name, search_value){
   
 	var ref = firebase.database().ref("results");
 
-<<<<<<< HEAD
 // Attach an asynchronous callback to read the data at our posts reference
 ref.on("child_added", function(snapshot, prevChildKey) {
   var newPost = snapshot.val();
@@ -187,14 +186,7 @@ ref.on("child_added", function(snapshot, prevChildKey) {
 if(newPost[field_name].includes(search_value))
   document.getElementById("displayResults").innerHTML += sampleResult + newPost[field_name] + secondPart;
 });
-=======
-	// Attach an asynchronous callback to read the data at our posts reference
->>>>>>> 0a40f2590ce4fd8e10ae03a162e34800af606212
 
-	ref.on("child_added", function(snapshot, prevChildKey) {
-		var newPost = snapshot.val();
-		document.getElementById("displayResults").innerHTML += sampleResult + newPost.name + secondPart;
-	});
 
 }
 
