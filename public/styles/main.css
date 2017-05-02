@@ -168,3 +168,7 @@ html, body {
     color: black;
     font-weight: 600;
 }
+
+span {
+	display: inline-block;
+}
