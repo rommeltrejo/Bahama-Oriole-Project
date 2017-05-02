@@ -188,9 +188,6 @@ function le(field_name){
 
 }
 
-
-
-
 //NEED A GENERAL GETDATA FUNCTION!!!
 // Query functions for searchPage.html
 ResearchForm.prototype.searchByLocation = function() {
