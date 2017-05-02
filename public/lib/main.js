@@ -171,6 +171,27 @@ ResearchForm.prototype.checkSignedInWithMessage = function() {
 }
 ;
 
+var sampleResult = "<button>"
+var secondPart =  "</button> </br>"
+
+
+function le(field_name){
+  
+var ref = firebase.database().ref("results");
+
+// Attach an asynchronous callback to read the data at our posts reference
+
+ref.on("child_added", function(snapshot, prevChildKey) {
+  var newPost = snapshot.val();
+  document.getElementById("displayResults").innerHTML += sampleResult + newPost.name + secondPart;
+});
+
+
+}
+
+
+
+
 //NEED A GENERAL GETDATA FUNCTION!!!
 // Query functions for searchPage.html
 ResearchForm.prototype.searchByLocation = function() {
