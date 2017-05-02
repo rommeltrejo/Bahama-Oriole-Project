@@ -170,6 +170,6 @@ html, body {
 }
 
 .obs {
-	display: inline-block;
-	width: auto;
+	display: inline-block !important;
+	width: auto !important;
 }
