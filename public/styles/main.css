@@ -171,4 +171,5 @@ html, body {
 
 .obs {
 	display: inline-block;
+	width: auto;
 }
