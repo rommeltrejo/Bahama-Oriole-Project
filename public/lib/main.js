@@ -265,7 +265,7 @@ $(document).ready(function() {
 
 $('#mainForm').submit(function (e) {
     // This prevent from clearing the form after submit
-    e.preventDefault();
+    //e.preventDefault();
     var data = $(this).serializeFormJSON();
     console.log(data);
     saveData(data); //Will push the json object to the database
