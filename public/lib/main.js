@@ -177,8 +177,9 @@ var secondPart =  "</button> </br>"
 
 function searchFunction(field_name, search_value){
   
-var ref = firebase.database().ref("results");
+	var ref = firebase.database().ref("results");
 
+<<<<<<< HEAD
 // Attach an asynchronous callback to read the data at our posts reference
 ref.on("child_added", function(snapshot, prevChildKey) {
   var newPost = snapshot.val();
@@ -186,7 +187,14 @@ ref.on("child_added", function(snapshot, prevChildKey) {
 if(newPost[field_name].includes(search_value))
   document.getElementById("displayResults").innerHTML += sampleResult + newPost[field_name] + secondPart;
 });
+=======
+	// Attach an asynchronous callback to read the data at our posts reference
+>>>>>>> 0a40f2590ce4fd8e10ae03a162e34800af606212
 
+	ref.on("child_added", function(snapshot, prevChildKey) {
+		var newPost = snapshot.val();
+		document.getElementById("displayResults").innerHTML += sampleResult + newPost.name + secondPart;
+	});
 
 }
 
@@ -223,29 +231,29 @@ ResearchForm.prototype.searchByLocation = function() {
 };
 
 ResearchForm.prototype.searchByName = function() {
-    var playersRef = firebase.database().ref("results/");
-
-    playersRef.orderByChild("name").on("child_added", function(data) {
-        console.log(data.val().name);
-    });
-
-
-	// var name = document.getElementById("nameField"); //get name field
-    // document.getElementById("nameField").value = "";
+  
+	var name = document.getElementById("nameField"); //get name field
+    document.getElementById("nameField").value = "";
 	
-	// if (name == null){
-	// 	//if both are null, show no resultss
-	// 	document.write("<div>Sorry, no results found</div>");
-	// 	return;
-	// }
+	if (name == null){
+		//if both are null, show no resultss
+		document.write("<div>Sorry, no results found</div>");
+		return;
+	}
 	
-	// var rootRef = firebase.database().ref(); //rootRef, this is everything
-	// var nameRef = rootRef.child('name').child(name);
-	// nameRef.orderByChild("point_number");
+	var rootRef = firebase.database().ref(); //rootRef, this is everything
+	var nameRef = rootRef.child('name').child(name);
+	nameRef.orderByChild("point_number");
 	
 
     /*ref.orderByChild("name").on("child_added", function(data) {
         console.log(data.val().name)
+    });*/
+	
+	/*var playersRef = firebase.database().ref("results/");
+
+    playersRef.orderByChild("name").on("child_added", function(data) {
+        console.log(data.val().name);
     });*/
     
     //   ref.on("value", function(snapshot) {
@@ -287,7 +295,7 @@ $(document).ready(function() {
 
 $('#mainForm').submit(function (e) {
     // This prevent from clearing the form after submit
-    e.preventDefault();
+    //e.preventDefault();
     var data = $(this).serializeFormJSON();
     console.log(data);
     saveData(data); //Will push the json object to the database
