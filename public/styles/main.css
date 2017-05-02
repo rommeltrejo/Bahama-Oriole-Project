@@ -169,6 +169,7 @@ html, body {
     font-weight: 600;
 }
 
-span {
-	display: inline-block;
+.obs {
+	display: inline-block !important;
+	width: auto !important;
 }
