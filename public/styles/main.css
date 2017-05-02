@@ -169,6 +169,6 @@ html, body {
     font-weight: 600;
 }
 
-span {
+.obs {
 	display: inline-block;
 }
