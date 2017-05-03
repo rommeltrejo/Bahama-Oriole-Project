@@ -191,18 +191,15 @@ function addNewSearchResult(result_value){
 }
 
 
-function searchFunction(field_name){
-	
-	var search_value = document.getElementById("searchField").value; //get what user typed	
-	//we should do a getElementById to get what the user typed above.
-	
+function searchFunction(field_name, search_value){
+  
 	var ref = firebase.database().ref("results");
 	// Attach an asynchronous callback to read the data at our posts reference
 	ref.on("child_added", function(snapshot, prevChildKey) {
 		var newPost = snapshot.val();
 		if(newPost[field_name].includes(search_value)){
 			document.getElementById("displayResults").innerHTML += sampleResult + newPost[field_name] + secondPart;
-            addNewSearchResult(newPost[field_name]);
+          //  addNewSearchResult(newPost[field_name]);
 		}
 	});
 }
