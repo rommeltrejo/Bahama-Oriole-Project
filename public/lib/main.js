@@ -28,6 +28,7 @@ function ResearchForm() {
 
 }
 
+
 //##############################            useful
 
 // Checks that the Firebase SDK has been correctly setup and configured.
@@ -174,61 +175,65 @@ ResearchForm.prototype.checkSignedInWithMessage = function() {
 var sampleResult = "<button>"
 var secondPart =  "</button> </br>"
 
+var how_many_children = 0;
+
+function addNewSearchResult(result_value, preview){
+    var ul = document.getElementById("displayResultsList");
+    var li = document.createElement("li");
+    li.innerHTML = '  <div class="panel panel-default">'+
+    '<div class="panel-heading">'+result_value+'</div>'+
+    '<div class="panel-body">'+
+    "Researcher: "+ preview.name + '</br>'+
+    "Date: "+ preview.date + '</br>'+
+    "Location: "+ preview.location_point + '</br>'+
+    "Date: "+ preview.start_time + '</br>'+
+    '</div>'+
+    '</div>';
+    how_many_children +=1;
+    li.setAttribute("id", "element"+how_many_children); // added line
+    ul.appendChild(li);
+}
+
 
 function searchFunction(field_name, search_value){
   
 	var ref = firebase.database().ref("results");
+    var preview = {
+        "name": "",
+        "date":"",
+        "location_point":"",
+        "start_time":""
+    }
 	// Attach an asynchronous callback to read the data at our posts reference
 	ref.on("child_added", function(snapshot, prevChildKey) {
 		var newPost = snapshot.val();
 		if(newPost[field_name].includes(search_value)){
-			document.getElementById("displayResults").innerHTML += sampleResult + newPost[field_name] + secondPart;
+
+            preview.date =              newPost.date;
+            preview.name =              newPost.name;
+            preview.location_point =    newPost.location_point;
+            preview.start_time =        "Dec 31, 1971";
+            addNewSearchResult(newPost[field_name], preview);
 		}
 	});
 }
 
 //NEED A GENERAL GETDATA FUNCTION!!!
 // Query functions for searchPage.html
-ResearchForm.prototype.searchByLocation = function() {
-	var location = document.getElementById("field2"); //get location field
-    document.getElementById("field1").value = "";	
-	
-	if (location == null){
-		//if both are null, show no resultss
-		document.write("<div>Sorry, no results found</div>");
-		return;
-	}
-	
-	var rootRef = firebase.database().ref(); //rootRef, this is everything
-	var nameRef = rootRef.child('location').child(location);
-	nameRef.orderByChild("point_number");
-	
-
-    /*ref.orderByChild("name").on("child_added", function(data) {
-        console.log(data.val().name)
-    });*/
+function searchByLocation(search_value) {
     
-    //   ref.on("value", function(snapshot) {
-    //    console.log(snapshot.val().results[1][valz]    );
-    // }, function (error) {
-    //    console.log("Error: " + error.code);
-    // });
-
+	var rootRef = firebase.database().ref(); //rootRef, this is everything
+	var locationRef = rootRef.child('location').child(search_value);
+	//search anything under 'location' field that matches what the user typed
+	locationRef.orderByChild("point_number"); //ordering them tentatively by point #
+	
 };
 
-ResearchForm.prototype.searchByName = function() {
-  
-	var name = document.getElementById("nameField"); //get name field
-    document.getElementById("nameField").value = "";
-	
-	if (name == null){
-		//if both are null, show no resultss
-		document.write("<div>Sorry, no results found</div>");
-		return;
-	}
-	
+function searchByName(search_value) {
+  	
 	var rootRef = firebase.database().ref(); //rootRef, this is everything
-	var nameRef = rootRef.child('name').child(name);
+	var nameRef = rootRef.child('name').child(search_value);
+	//search anything under 'name' field that matches what the user typed
 	nameRef.orderByChild("point_number");
 	
 
