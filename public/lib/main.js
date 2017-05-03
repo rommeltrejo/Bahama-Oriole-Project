@@ -178,9 +178,10 @@ var secondPart =  "</button> </br>"
 var how_many_children = 0;
 
 function addNewSearchResult(result_value, preview){
-    var ul = document.getElementById("displayResultsList");
-    var li = document.createElement("li");
-    li.innerHTML = '  <div class="panel panel-default">'+
+    var results = document.getElementById("displayResults");
+    
+    results.innerHTML += '  <div id="'+"result"+how_many_children +'"'+
+    ' class="panel panel-primary">'+
     '<div class="panel-heading">'+result_value+'</div>'+
     '<div class="panel-body">'+
     "Researcher: "+ preview.name + '</br>'+
@@ -190,14 +191,18 @@ function addNewSearchResult(result_value, preview){
     '</div>'+
     '</div>';
     how_many_children +=1;
-    li.setAttribute("id", "element"+how_many_children); // added line
-    ul.appendChild(li);
 }
 
 
 function searchFunction(field_name, search_value){
   
+
+  
 	var ref = firebase.database().ref("results");
+    ref.off();
+    document.getElementById("displayResults").innerHTML ="";
+    ref = firebase.database().ref("results");
+
     var preview = {
         "name": "",
         "date":"",

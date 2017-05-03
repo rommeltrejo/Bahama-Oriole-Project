@@ -100,6 +100,477 @@
 		    
 		
         <!-- form body-->
+		
+	<div class="container" id="submit_form">
+		<form class="form-horizontal" id="mainForm" method="post">
+			<!--name-->
+			<div class="form-group">
+                <label class="control-label col-sm-2" for="nameField">Name: </label>
+                <div class="col-sm-8">
+                    <input type="text" name ="name" class="form-control" id="nameField"> 
+                </div>
+            </div>
+			<!--location-->
+			<div class="form-group">
+				<label class="control-label col-sm-2" for="locationField">Location: </label>
+					<div class="col-sm-8">
+                    <input type="text" name="location" class="form-control" id="locationField"> 
+                </div>
+			</div>
+			<!--date-->
+			<div class="form-group">
+                <label class="control-label col-sm-2" for="dateField">Date: </label>
+                <div class="col-sm-8">
+                    <input type="text" name="date" class="form-control" id="dateField"> 
+                </div>
+            </div>
+			<!--point #-->
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="pointField">Point Number: </label>
+                <div class="col-sm-8">
+                    <input type="text" name="location_point" class="form-control" id="pointField"> 
+                </div>
+            </div>
+			<!--AG/2nd-->
+			<div class="form-group">
+                <label for="ag" class="control-label col-sm-2">AG/2nd:</label>
+                <div class="col-sm-2">
+                <select class="form-control" id="ag" name="a_g_2nd">
+                    <option value="0">0</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
+                  </select>
+                  </div>
+            </div>
+			<!--Coppice-->
+			<div class="form-group">
+                <label for="coppice" class="control-label col-sm-2">Coppice:</label>
+                <div class="col-sm-2">
+                <select class="form-control" id="coppice" name="coppice">
+                    <option value="0">0</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
+                  </select>
+                  </div>
+            </div>
+			<!--Developed-->
+			<div class="form-group">
+                <label for="developed" class="control-label col-sm-2">Developed:</label>
+                <div class="col-sm-2">
+                <select class="form-control" id="developed" name="developed">
+                    <option value="0">0</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
+                  </select>
+                  </div>
+            </div>			
+			<!--Mixed-->
+			<div class="form-group">
+                <label for="mixed" class="control-label col-sm-2">Mixed:</label>
+                <div class="col-sm-2">
+                <select class="form-control" id="mixed" name="mixed">
+                    <option value="0">0</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
+                  </select>
+                  </div>
+            </div>			
+			<!--Pine-->
+			<div class="form-group">
+                <label for="pine" class="control-label col-sm-2">Pine:</label>
+                <div class="col-sm-2">
+                <select class="form-control" id="pine" name="pine">
+                    <option value="0">0</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
+                  </select>
+                  </div>
+            </div>
+			<!--Wetland-->
+			<div class="form-group">
+                <label for="wetland" class="control-label col-sm-2">Wetland:</label>
+                <div class="col-sm-2">
+                <select class="form-control" id="wetland" name="wetland">
+                    <option value="0">0</option>
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="30">30</option>
+                    <option value="40">40</option>
+                    <option value="50">50</option>
+                    <option value="60">60</option>
+                    <option value="70">70</option>
+                    <option value="80">80</option>
+                    <option value="90">90</option>
+                    <option value="100">100</option>
+                  </select>
+                  </div>
+            </div>
+			<!--Habitat Notes-->
+             <div class="form-group">
+                <label class="control-label col-sm-2" for="notesField">Habitat Notes: </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="notesField" name="habitat_noted"> 
+                </div>
+            </div>
+			<!--Observations-->
+			<div class="form-group">
+				<label class="control-label col-sm-2">Observations: </label>
+				<!--Group 1-->
+				<button data-toggle="collapse" data-target="#obs1">Group 1</button><br>
+				<div id="obs1" class="col-sm-8 collapse">
+					<br>
+					<!--animal drop down-->
+                    <span class="obs">
+						<label for="obsAnimal" style="display:block">Animal</label>
+						<select class="form-control obs" id="obsAnimal1" name="obsAnimal1">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<!--detect-->
+					<span class="obs">
+						<label for="obsDetect" style="display:block">Detect</label>
+						<input type="text" class="form-control obs" id="obsDetect1" name="obsDetect1" size="1"> 
+					</span>
+					<!--distance-->
+					<span class="obs">
+						<label for="obsDistance" style="display:block">Distance</label>
+						<input type="text" class="form-control obs" id="obsDistance1" name="obsDistance1" size="1"> 
+					</span>
+					<!--notes-->
+					<span class="obs">
+						<label for="obsNotes" style="display:block">Notes</label>
+						<input type="text" class="form-control obs" id="obsNotes1" name="obsNotes1" size="5"> 
+					</span>
+					<br>
+					<!--second row-->
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal2" name="obsAnimal2">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect2" name="obsDetect2" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance2" name="obsDistance2" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes2" name="obsNotes2" size="5"></span>
+					<br>
+					<!--third row-->
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal3" name="obsAnimal3">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect3" name="obsDetect3" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance3" name="obsDistance3" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes3" name="obsNotes3" size="5"></span>
+					<br>
+					<!--fourth row-->
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal4" name="obsAnimal4">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect4" name="obsDetect4" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance4" name="obsDistance4" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes4" name="obsNotes4" size="5"></span>
+					<br>
+					<!--fifth row-->
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal5" name="obsAnimal5">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect5" name="obsDetect5" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance5" name="obsDistance5" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes5" name="obsNotes5" size="5"></span>
+				</div>
+			</div>
+			<!--second group of observations fields-->
+			<div class="form-group">
+				<label class="control-label col-sm-2">Observations: </label>
+				<button data-toggle="collapse" data-target="#obs2">Group 2</button><br>
+				<div id="obs2" class="col-sm-8 collapse">
+					<br>
+                    <span class="obs">
+						<label for="obsAnimal" style="display:block">Animal</label>
+						<select class="form-control obs" id="obsAnimal6" name="obsAnimal6">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs">
+						<label for="obsDetect" style="display:block">Detect</label>
+						<input type="text" class="form-control obs" id="obsDetect6" name="obsDetect6" size="1"> 
+					</span>
+					<span class="obs">
+						<label for="obsDistance" style="display:block">Distance</label>
+						<input type="text" class="form-control obs" id="obsDistance6" name="obsDistance6" size="1"> 
+					</span>
+					<span class="obs">
+						<label for="obsNotes" style="display:block">Notes</label>
+						<input type="text" class="form-control obs" id="obsNotes6" name="obsNotes6" size="5"> 
+					</span>
+					<br>
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal7" name="obsAnimal7">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect7" name="obsDetect7" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance7" name="obsDistance7" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes7" name="obsNotes7" size="5"></span>
+					<br>
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal8" name="obsAnimal8">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect8" name="obsDetect8" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance8" name="obsDistance8" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes8" name="obsNotes8" size="5"></span>
+					<br>
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal9" name="obsAnimal9">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect9" name="obsDetect9" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance9" name="obsDistance9" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes9" name="obsNotes9" size="5"></span>
+					<br>
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal10" name="obsAnimal10">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect10" name="obsDetect10" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance10" name="obsDistance10" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes10" name="obsNotes10" size="5"></span>
+					<br>
+				</div>			
+			</div>
+			<!--Cocount Trees-->
+			<div class="form-group">
+                <label for="coconut" class="control-label col-sm-2">No. of Coconut Trees:</label>
+                <div class="col-sm-2">
+                <select class="form-control" id="coconut" name="num_cocos">
+                    <option value="0">0</option>
+                    <option value="1-4">1-4</option>
+                    <option value="5-10">5-10</option>
+                    <option value="11-20">11-20</option>
+                    <option value="21-50">21-50</option>
+                    <option value="51-100+">51-100+</option>
+                </select>
+                </div>
+            </div>
+			<!--Pine Trees-->
+            <div class="form-group">
+                <label for="numPine" class="control-label col-sm-2">No. of Pine Trees:</label>
+                <div class="col-sm-2">
+                <select class="form-control" id="numPine" name="num_pine">
+                    <option value="0">0</option>
+                    <option value="1-4">1-4</option>
+                    <option value="5-10">5-10</option>
+                    <option value="11-20">11-20</option>
+                    <option value="21-50">21-50</option>
+                    <option value="51-100+">51-100+</option>
+                </select>
+                </div>
+            </div>
+			<!--Deadpine Trees-->
+            <div class="form-group">
+                <label for="deadpine" class="control-label col-sm-2">No. of Deadpine Trees:</label>
+                <div class="col-sm-2">
+                <select class="form-control" id="deadpine" name="num_dead_pine">
+                     <option value="0">0</option>
+                    <option value="1-4">1-4</option>
+                    <option value="5-10">5-10</option>
+                    <option value="11-20">11-20</option>
+                    <option value="21-50">21-50</option>
+                    <option value="51-100+">51-100+</option>
+                </select>
+                </div>
+            </div>
+			<!--Thatch-->
+            <div class="form-group">
+                <label for="thatch" class="control-label col-sm-2">No. of Thatch:</label>
+                <div class="col-sm-2">
+                <select class="form-control" id="thatch" name="num_thatch">
+                    <option value="0">0</option>
+                    <option value="1-4">1-4</option>
+                    <option value="5-10">5-10</option>
+                    <option value="11-20">11-20</option>
+                    <option value="21-50">21-50</option>
+                    <option value="51-100+">51-100+</option>
+                </select>
+                </div>
+            </div>
+			<!--Pine Unverstory-->
+            <div class="form-group">
+                <label for="understory" class="control-label col-sm-2">Pine Understory:</label>
+                <div class="col-sm-2">
+                <select class="form-control" id="understory" name="pine_understory">
+                    <option value="0-1m">0-1m</option>
+                    <option value="1-2m">1-2m</option>
+                    <option value="2-5m">2-5m</option>
+                    <option value="N/A">N/A</option>
+                </select>
+                </div>
+			</div>
+			<!--Understory Notes-->
+			 <div class="form-group">
+                <label class="control-label col-sm-2" for="understoryField">Understory Notes: </label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control" id="understoryField" name="understory_Notes"> 
+                </div>
+            </div>
+			<!--Cloud-->
+			 <div class="form-group">
+                <label for="cloud" class="control-label col-sm-2">Cloud</label>
+                <div class="col-sm-2">
+                <select class="form-control" id="cloud" name="weather">
+                    <option value="Clear">Clear</option>
+                    <option value="< 50% cloudy">< 50% cloudy</option>
+                    <option value=">95% cloudy">> 95% cloudy</option>
+                </select>
+                </div>
+            </div>
+			<!--Wind-->
+			 <div class="form-group">
+                <label for="wind" class="control-label col-sm-2">Wind</label>
+                <div class="col-sm-2">
+                <select class="form-control" id="wind" name="wind">
+                    <option value="Calm">Calm</option>
+                    <option value="1-3km/h">1-3 km/h</option>
+                    <option value="3-5km/h">3-5 km/h</option>
+                    <option value="5-7km/h">5-7 km/h</option>
+                    <option value="7-10km/h">7-10 km/h</option>
+                    <option value="10+km/h">10+ km/h</option>
+                </select>
+                </div>
+            </div>
+		</form>
+	
+	</div>
+		
+		
 	
 	
         <!-- init -->
