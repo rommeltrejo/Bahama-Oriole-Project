@@ -28,6 +28,35 @@ function ResearchForm() {
 
 }
 
+//Timer functions
+var time = document.getElementById("timer");
+var x;
+
+function start() {
+	document.getElementById("b").disabled = true;
+	var seconds = 0;
+	var minutes = 3;
+	x = setInterval(function() {
+		if (seconds == 0) {
+			seconds = 60;
+			minutes--;
+		}
+		seconds--;
+		
+		if (seconds < 10) { time.innerHTML = minutes + ":0" + seconds; }
+		else { time.innerHTML = minutes + ":" + seconds; }
+		
+		if (seconds == 0 && minutes == 0) { clearInterval(x); }
+	}, 1000)
+}
+
+function reset() {
+	clearInterval(x);
+	timer.innerHTML = "3:00"
+	document.getElementById("b").disabled = false;
+}
+
+
 //##############################            useful
 
 // Checks that the Firebase SDK has been correctly setup and configured.
