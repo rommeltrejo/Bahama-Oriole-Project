@@ -297,3 +297,11 @@ $('#mainForm').submit(function (e) {
     saveData(data); //Will push the json object to the database
     return false;
 });
+
+//Timer (Maybe)
+function countDown(){
+var maxTime = 3;
+var timer = new Date().getMinutes();
+
+console.log(timer);
+}
