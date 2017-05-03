@@ -176,30 +176,43 @@ var secondPart =  "</button> </br>"
 
 var how_many_children = 0;
 
-function addNewSearchResult(result_value){
+function addNewSearchResult(result_value, preview){
     var ul = document.getElementById("displayResultsList");
     var li = document.createElement("li");
     li.innerHTML = '  <div class="panel panel-default">'+
     '<div class="panel-heading">'+result_value+'</div>'+
-    '<div class="panel-body">Panel Content</div>'+
-  '</div>'
+    '<div class="panel-body">'+
+    "Researcher: "+ preview.name + '</br>'+
+    "Date: "+ preview.date + '</br>'+
+    "Location: "+ preview.location_point + '</br>'+
+    "Date: "+ preview.start_time + '</br>'+
+    '</div>'+
+    '</div>';
     how_many_children +=1;
     li.setAttribute("id", "element"+how_many_children); // added line
     ul.appendChild(li);
-    //alert(li.id);    
-
 }
 
 
 function searchFunction(field_name, search_value){
   
 	var ref = firebase.database().ref("results");
+    var preview = {
+        "name": "",
+        "date":"",
+        "location_point":"",
+        "start_time":""
+    }
 	// Attach an asynchronous callback to read the data at our posts reference
 	ref.on("child_added", function(snapshot, prevChildKey) {
 		var newPost = snapshot.val();
 		if(newPost[field_name].includes(search_value)){
-			document.getElementById("displayResults").innerHTML += sampleResult + newPost[field_name] + secondPart;
-          //  addNewSearchResult(newPost[field_name]);
+
+            preview.date =              newPost.date;
+            preview.name =              newPost.name;
+            preview.location_point =    newPost.location_point;
+            preview.start_time =        "Dec 31, 1971";
+            addNewSearchResult(newPost[field_name], preview);
 		}
 	});
 }
