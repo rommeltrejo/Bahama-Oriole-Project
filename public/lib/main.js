@@ -191,8 +191,11 @@ function addNewSearchResult(result_value){
 }
 
 
-function searchFunction(field_name, search_value){
-  
+function searchFunction(field_name){
+	
+	var search_value = document.getElementById("searchField").value; //get what user typed	
+	//we should do a getElementById to get what the user typed above.
+	
 	var ref = firebase.database().ref("results");
 	// Attach an asynchronous callback to read the data at our posts reference
 	ref.on("child_added", function(snapshot, prevChildKey) {
@@ -206,46 +209,20 @@ function searchFunction(field_name, search_value){
 
 //NEED A GENERAL GETDATA FUNCTION!!!
 // Query functions for searchPage.html
-ResearchForm.prototype.searchByLocation = function() {
-	var location = document.getElementById("field2"); //get location field
-    document.getElementById("field1").value = "";	
-	
-	if (location == null){
-		//if both are null, show no resultss
-		document.write("<div>Sorry, no results found</div>");
-		return;
-	}
-	
-	var rootRef = firebase.database().ref(); //rootRef, this is everything
-	var nameRef = rootRef.child('location').child(location);
-	nameRef.orderByChild("point_number");
-	
-
-    /*ref.orderByChild("name").on("child_added", function(data) {
-        console.log(data.val().name)
-    });*/
+function searchByLocation(search_value) {
     
-    //   ref.on("value", function(snapshot) {
-    //    console.log(snapshot.val().results[1][valz]    );
-    // }, function (error) {
-    //    console.log("Error: " + error.code);
-    // });
-
+	var rootRef = firebase.database().ref(); //rootRef, this is everything
+	var locationRef = rootRef.child('location').child(search_value);
+	//search anything under 'location' field that matches what the user typed
+	locationRef.orderByChild("point_number"); //ordering them tentatively by point #
+	
 };
 
-ResearchForm.prototype.searchByName = function() {
-  
-	var name = document.getElementById("nameField"); //get name field
-    document.getElementById("nameField").value = "";
-	
-	if (name == null){
-		//if both are null, show no resultss
-		document.write("<div>Sorry, no results found</div>");
-		return;
-	}
-	
+function searchByName(search_value) {
+  	
 	var rootRef = firebase.database().ref(); //rootRef, this is everything
-	var nameRef = rootRef.child('name').child(name);
+	var nameRef = rootRef.child('name').child(search_value);
+	//search anything under 'name' field that matches what the user typed
 	nameRef.orderByChild("point_number");
 	
 
