@@ -175,7 +175,10 @@ var sampleResult = "<button>"
 var secondPart =  "</button> </br>"
 
 
-function searchFunction(field_name, search_value){
+function searchFunction(field_name){
+	
+	var search_value = document.getElementById("searchField").value; //get what user typed	
+	//we should do a getElementById to get what the user typed above.
 	
 	var ref = firebase.database().ref("results");
 	// Attach an asynchronous callback to read the data at our posts reference
@@ -198,19 +201,11 @@ function searchByLocation(search_value) {
 	
 };
 
-ResearchForm.prototype.searchByName = function() {
-  
-	var name = document.getElementById("nameField"); //get name field
-    document.getElementById("nameField").value = "";
-	
-	if (name == null){
-		//if both are null, show no resultss
-		document.write("<div>Sorry, no results found</div>");
-		return;
-	}
-	
+function searchByName(search_value) {
+  	
 	var rootRef = firebase.database().ref(); //rootRef, this is everything
-	var nameRef = rootRef.child('name').child(name);
+	var nameRef = rootRef.child('name').child(search_value);
+	//search anything under 'name' field that matches what the user typed
 	nameRef.orderByChild("point_number");
 	
 
