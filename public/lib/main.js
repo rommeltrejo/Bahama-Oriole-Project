@@ -174,6 +174,22 @@ ResearchForm.prototype.checkSignedInWithMessage = function() {
 var sampleResult = "<button>"
 var secondPart =  "</button> </br>"
 
+var how_many_children = 0;
+
+function addNewSearchResult(result_value){
+    var ul = document.getElementById("displayResultsList");
+    var li = document.createElement("li");
+    li.innerHTML = '  <div class="panel panel-default">'+
+    '<div class="panel-heading">'+result_value+'</div>'+
+    '<div class="panel-body">Panel Content</div>'+
+  '</div>'
+    how_many_children +=1;
+    li.setAttribute("id", "element"+how_many_children); // added line
+    ul.appendChild(li);
+    //alert(li.id);    
+
+}
+
 
 function searchFunction(field_name, search_value){
   
@@ -183,6 +199,7 @@ function searchFunction(field_name, search_value){
 		var newPost = snapshot.val();
 		if(newPost[field_name].includes(search_value)){
 			document.getElementById("displayResults").innerHTML += sampleResult + newPost[field_name] + secondPart;
+            addNewSearchResult(newPost[field_name]);
 		}
 	});
 }
