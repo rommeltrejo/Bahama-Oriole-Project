@@ -173,14 +173,3 @@ html, body {
 	display: inline-block !important;
 	width: auto !important;
 }
-
-#timerbox {
-	position: fixed;
-	bottom: 0;
-	right: 0;
-	padding: 20px;
-}
-
-#timer {
-	font-size: 20px;
-}
