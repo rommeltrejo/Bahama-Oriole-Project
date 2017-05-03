@@ -212,8 +212,8 @@ function searchFunction(field_name, search_value){
 	// Attach an asynchronous callback to read the data at our posts reference
 	ref.on("child_added", function(snapshot, prevChildKey) {
 		var newPost = snapshot.val();
-		if(newPost[field_name].includes(search_value)){
-
+		if(newPost[field_name].toLowerCase().includes(search_value.toLowerCase()))
+        {
             preview.date =              newPost.date;
             preview.name =              newPost.name;
             preview.location_point =    newPost.location_point;
