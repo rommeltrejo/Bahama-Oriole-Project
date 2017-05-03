@@ -235,44 +235,205 @@
             </div>
 			
 			<div class="form-group">
-				<label class="control-label col-sm-2" for="notesField">Observations: </label>
-				<div class="col-sm-8">
+				<label class="control-label col-sm-2">Observations: </label>
+				<button data-toggle="collapse" data-target="#obs1">Group 1</button><br>
+				<div id="obs1" class="col-sm-8 collapse">
+					<br>
                     <span class="obs">
 						<label for="obsAnimal" style="display:block">Animal</label>
-						<input type="text" class="form-control obs" id="obsAnimal1" name="obsAnimal1" size="5"> 
+						<select class="form-control obs" id="obsAnimal1" name="obsAnimal1">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
 					</span>
 					<span class="obs">
-						<label for="obsDetect" style="display:block">How detect</label>
-						<input type="text" class="form-control obs" id="obsDetect1" name="obsDetect1" size="5"> 
+						<label for="obsDetect" style="display:block">Detect</label>
+						<input type="text" class="form-control obs" id="obsDetect1" name="obsDetect1" size="1"> 
 					</span>
 					<span class="obs">
 						<label for="obsDistance" style="display:block">Distance</label>
-						<input type="text" class="form-control obs" id="obsDistance1" name="obsDistance1" size="5"> 
+						<input type="text" class="form-control obs" id="obsDistance1" name="obsDistance1" size="1"> 
 					</span>
 					<span class="obs">
 						<label for="obsNotes" style="display:block">Notes</label>
-						<input type="text" class="form-control obs" id="obsNotes1" name="obsNotes1" size="30"> 
+						<input type="text" class="form-control obs" id="obsNotes1" name="obsNotes1" size="5"> 
 					</span>
 					<br>
-					<span class="obs"><input type="text" class="form-control obs" id="obsAnimal2" name="obsAnimal2" size="5"></span>
-					<span class="obs"><input type="text" class="form-control obs" id="obsDetect2" name="obsDetect2" size="5"></span>
-					<span class="obs"><input type="text" class="form-control obs" id="obsDistance2" name="obsDistance2" size="5"></span>
-					<span class="obs"><input type="text" class="form-control obs" id="obsNotes2" name="obsNotes2" size="30"></span>
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal2" name="obsAnimal2">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect2" name="obsDetect2" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance2" name="obsDistance2" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes2" name="obsNotes2" size="5"></span>
 					<br>
-					<span class="obs"><input type="text" class="form-control obs" id="obsAnimal3" name="obsAnimal3" size="5"></span>
-					<span class="obs"><input type="text" class="form-control obs" id="obsDetect3" name="obsDetect3" size="5"></span>
-					<span class="obs"><input type="text" class="form-control obs" id="obsDistance3" name="obsDistance3" size="5"></span>
-					<span class="obs"><input type="text" class="form-control obs" id="obsNotes3" name="obsNotes3" size="30"></span>
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal3" name="obsAnimal3">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect3" name="obsDetect3" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance3" name="obsDistance3" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes3" name="obsNotes3" size="5"></span>
 					<br>
-					<span class="obs"><input type="text" class="form-control obs" id="obsAnimal4" name="obsAnimal4" size="5"></span>
-					<span class="obs"><input type="text" class="form-control obs" id="obsDetect4" name="obsDetect4" size="5"></span>
-					<span class="obs"><input type="text" class="form-control obs" id="obsDistance4" name="obsDistance4" size="5"></span>
-					<span class="obs"><input type="text" class="form-control obs" id="obsNotes4" name="obsNotes4" size="30"></span>
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal4" name="obsAnimal4">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect4" name="obsDetect4" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance4" name="obsDistance4" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes4" name="obsNotes4" size="5"></span>
 					<br>                                                    
-					<span class="obs"><input type="text" class="form-control obs" id="obsAnimal5" name="obsAnimal5" size="5"></span>
-					<span class="obs"><input type="text" class="form-control obs" id="obsDetect5" name="obsDetect5" size="5"></span>
-					<span class="obs"><input type="text" class="form-control obs" id="obsDistance5" name="obsDistance5" size="5"></span>
-					<span class="obs"><input type="text" class="form-control obs" id="obsNotes5" name="obsNotes5" size="30"></span>
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal5" name="obsAnimal5">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect5" name="obsDetect5" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance5" name="obsDistance5" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes5" name="obsNotes5" size="5"></span>
+                </div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-2">Observations: </label>
+				<button data-toggle="collapse" data-target="#obs2">Group 2</button><br>
+				<div id="obs2" class="col-sm-8 collapse">
+					<br>
+                    <span class="obs">
+						<label for="obsAnimal" style="display:block">Animal</label>
+						<select class="form-control obs" id="obsAnimal6" name="obsAnimal6">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs">
+						<label for="obsDetect" style="display:block">Detect</label>
+						<input type="text" class="form-control obs" id="obsDetect6" name="obsDetect6" size="1"> 
+					</span>
+					<span class="obs">
+						<label for="obsDistance" style="display:block">Distance</label>
+						<input type="text" class="form-control obs" id="obsDistance6" name="obsDistance6" size="1"> 
+					</span>
+					<span class="obs">
+						<label for="obsNotes" style="display:block">Notes</label>
+						<input type="text" class="form-control obs" id="obsNotes6" name="obsNotes6" size="5"> 
+					</span>
+					<br>
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal7" name="obsAnimal7">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect7" name="obsDetect7" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance7" name="obsDistance7" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes7" name="obsNotes7" size="5"></span>
+					<br>
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal8" name="obsAnimal8">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect8" name="obsDetect8" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance8" name="obsDistance8" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes8" name="obsNotes8" size="5"></span>
+					<br>
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal9" name="obsAnimal9">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect9" name="obsDetect9" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance9" name="obsDistance9" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes9" name="obsNotes9" size="5"></span>
+					<br>                                                    
+					<span class="obs">
+						<select class="form-control obs" id="obsAnimal10" name="obsAnimal10">
+							<option value="ASY">ASY</option>
+							<option value="WP">WP</option>
+							<option value="HY">HY</option>
+							<option value="Cat">Cat</option>
+							<option value="Dog">Dog</option>
+							<option value="CB">CB</option>
+							<option value="SW">SW</option>
+							<option value="HW">HW</option>
+							<option value="Unknown">???</option>
+						</select>
+					</span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDetect10" name="obsDetect10" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsDistance10" name="obsDistance10" size="1"></span>
+					<span class="obs"><input type="text" class="form-control obs" id="obsNotes10" name="obsNotes10" size="5"></span>
                 </div>
 			</div>
 			
