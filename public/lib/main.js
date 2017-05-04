@@ -50,13 +50,25 @@ ResearchForm.prototype.signIn = function() {
     var provider = new firebase.auth.GoogleAuthProvider();
     this.auth.signInWithPopup(provider);
 
+    this.formify();
+
 }
 ;
+
+ResearchForm.prototype.formify =  function(){
+    if(this.auth.currentUser)
+        document.getElementById("submit_form").className = "container"
+    else
+        document.getElementById("submit_form").className = "hidden"
+}
+
 
 // Signs-out of Friendly Chat.
 ResearchForm.prototype.signOut = function() {
     // Sign out of Firebase.
     this.auth.signOut();
+    
+     this.formify();
 }
 ;
 
@@ -95,6 +107,10 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         // Show sign-in button.
         this.signInButton.removeAttribute('hidden');
     }
+
+
+     this.formify();
+
 }
 ;
 
@@ -124,6 +140,9 @@ ResearchForm.prototype.initFirebase = function() {
     this.storage = firebase.storage();
 
     this.initDataGetters();
+    
+     this.formify();
+
 
     // Initiates Firebase auth and listen to auth state changes.
     this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
@@ -163,11 +182,17 @@ function saveData(param){
 // Returns true if user is signed-in. Otherwise false and displays a message.
 ResearchForm.prototype.checkSignedInWithMessage = function() {
     // Return true if the user is signed in Firebase
+
+     if(this.auth.currentUser)
+        document.getElementById("submit_form").className = "container"
+    else
+        document.getElementById("submit_form").className = "hidden"
+
     if (this.auth.currentUser) {
         return true;
     }
     // Display a message to the user using a Toast.
-    alert("you must sign in first")
+    //alert("you must sign in first")
     return false;
 }
 ;
