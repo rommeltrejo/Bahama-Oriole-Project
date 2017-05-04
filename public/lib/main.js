@@ -5,6 +5,12 @@ var test = {};
 
 function ResearchForm() {
 
+    if(id.index){
+        console.log("this is index");
+    }else{
+        console.log("this is not index");
+    }
+
     this.submitButton = document.getElementsByClassName("btn btn-primary");
     this.userPic = document.getElementById('user-pic');
     this.username = document.getElementById('user-name');
@@ -58,8 +64,12 @@ ResearchForm.prototype.signIn = function() {
 ResearchForm.prototype.formify =  function(){
     if(this.auth.currentUser)
         document.getElementById("submit_form").className = "container"
-    else
+    else{
+        if(id.search)
+            document.getElementById("displayResults").innerHTML ="";
         document.getElementById("submit_form").className = "hidden"
+    }
+        
 }
 
 
