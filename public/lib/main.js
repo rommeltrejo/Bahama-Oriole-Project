@@ -1,8 +1,10 @@
 'use strict';
 
-// Initializes ResearchForm.
-var test = {};
+var searchPageNoIdentifiersError = '<div class="alert alert-danger"><strong>Warning!</strong></br>No or wrong submission ID passed.</br> '+
+        "The record might no longer exist in the database or you arrived at this page by mistake.</br>"+
+        "Please try searching again and clicking on the submission you wish to edit</div>";
 
+// Initializes ResearchForm.
 function ResearchForm() {
     if(getCurrentPage().includes("unknown")){
         $("body").remove();
@@ -24,6 +26,8 @@ function ResearchForm() {
     this.signOutButton.addEventListener('click', this.signOut.bind(this));
     this.signInButton.addEventListener('click', this.signIn.bind(this));
 
+    if(getCurrentPage().includes("edit"))
+        fillForm();
     /*
  // Saves message on form submit.
      this.messageForm.addEventListener('submit', this.saveMessage.bind(this));
@@ -94,7 +98,7 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         // Set the user's profile pic and name.
         this.userPic.style.backgroundImage = 'url(' + (profilePicUrl || '/images/profile_placeholder.png') + ')';
 
-        test.userpic = this.userPic;
+        
 
         //insert name of current researcher 
         this.username.textContent = username;
@@ -235,10 +239,11 @@ var how_many_children = 0;
 function addNewSearchResult(result_value, preview){
     var results = document.getElementById("displayResults");
     
-    results.innerHTML += '  <div id="'+"result"+how_many_children +'"'+
+    //add newer posts on top
+    results.innerHTML = '  <div id="'+"result"+how_many_children +'"'+
     ' class="panel panel-primary">'+
     '<div class="panel-heading"> '+
-    '<a class =" panel-title" href="./searchPage.html?key='+preview.key+'">'+result_value+' </a> </div>'+
+    '<a class =" panel-title" href="./editPage.html?key='+preview.key+'">'+result_value+' </a> </div>'+
     '<div class="panel-body">'+
     "Researcher: "+ preview.name + '</br>'+
     "Date: "+ preview.date + '</br>'+
@@ -246,14 +251,14 @@ function addNewSearchResult(result_value, preview){
     "Start time: "+ preview.start_time + '</br>'+
     //"key: "+ preview.key + '</br>'+
     '</div>'+
-    '</div>';
+    '</div>'+
+    results.innerHTML ; //this is all the older posts
+
     how_many_children +=1;
 }
 
 
 function searchFunction(field_name, search_value){
-  
-
   
 	var ref = firebase.database().ref("results");
     ref.off();
@@ -331,8 +336,7 @@ $(document).ready(function() {
 //i.e for index page return "index", for 
 //search return "search", and for edit return "edit"
 function getCurrentPage(){
-
-    
+ 
     if(!window.location.href.toLowerCase().includes(".htm") || window.location.href.toLowerCase().includes("index"))
         return "index";
     else if(window.location.href.toLowerCase().includes("search"))
@@ -381,3 +385,34 @@ var timer = new Date().getMinutes();
 
 console.log(timer);
 }
+
+function fillForm(){
+    if(location.search == "" || ! location.search.includes("key="))
+        {
+            document.getElementById("mainForm").innerHTML = searchPageNoIdentifiersError;
+            return;
+        }
+
+
+        var key =  location.search.substr(location.search.indexOf("key=")+4);
+        console.log(key)
+    
+
+        firebase.database().ref('/results/' + key).once("value")
+            .then(function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                // key will be "ada" the first time and "alan" the second time
+                var key = childSnapshot.key;
+                // childData will be the actual contents of the child
+            var childData = childSnapshot.val();
+
+            document.getElementsByName(key)[0].value = childData;
+            //document.getElementsByName(key) = childData;
+            console.log(key + ": "+ childData)
+            
+  });
+});
+    
+}
+
+
