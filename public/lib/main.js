@@ -103,20 +103,7 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         //insert name of current researcher 
         this.username.textContent = username;
         if(getCurrentPage().includes("index")){
-            document.getElementById("nameField").value =  username;
-            document.getElementById("dateField").value = getThisDate(); 
-            document.getElementById("dateTime").value = getThisTime();
-        
-            //insert lat,long
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position){
-                    document.getElementById("locationField").value = position.coords.longitude+
-                    ","+ position.coords.longitude;
-                });    
-            } else { 
-                document.getElementById("locationField").value = "Geolocation is not supported by this browser.";
-            }
-
+            prefillIndexForm();
         }
 
         // Show user's profile and sign-out button.
@@ -145,6 +132,23 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
 
 }
 ;
+
+    function prefillIndexForm() {
+            document.getElementById("nameField").value =  (Researchform.username.textContent ||"");
+            document.getElementById("dateField").value = getThisDate(); 
+            document.getElementById("dateTime").value = getThisTime();
+        
+            //insert lat,long
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position){
+                    document.getElementById("locationField").value = position.coords.longitude+
+                    ","+ position.coords.longitude;
+                });    
+            } else { 
+                document.getElementById("locationField").value = "Geolocation is not supported by this browser.";
+            }
+
+}
 
 //future use: could be used to send notifications to users
 // Saves the messaging device token to the datastore.
@@ -360,7 +364,13 @@ $('#mainForm').submit(function (e) {
     var data = $(this).serializeFormJSON();
     console.log(data);
     if(getCurrentPage().includes("index"))
-        saveData(data); //Will push the json object to the database
+        {
+            saveData(data); //Will push the json object to the database
+            //this cleans the form after submission
+            setFormData("Clean_Copy").then(
+                prefillIndexForm()); 
+            
+        }
     else if (getCurrentPage().includes("edit"))
         updateData(getSearchKey(), data); //will update the existing value
 
@@ -390,14 +400,20 @@ function fillForm(){
             return;
         }
 
+        //var key =  getSearchKey();
+        setFormData(getSearchKey());
+        //console.log(key)
 
-        var key =  getSearchKey();
-        console.log(key)
-   
 
+//fix buttons because they break for no reason I know
+$('#theVeryFirstGroup').attr('data-target','#obs1');
+$('#theVerySecondGroup').attr('data-target','#obs2');
 
-try{
-        
+}
+
+function setFormData(key){
+    
+    try{
         firebase.database().ref('/results/' + key).once("value")
             .then(function(snapshot) {
             
@@ -407,9 +423,7 @@ try{
                     document.getElementById("mainForm").innerHTML = searchPageNoIdentifiersError;
                     return;
                 }
-                
-                snapshot.forEach(function(childSnapshot) {
-                    
+                snapshot.forEach(function(childSnapshot) {                
 
                 // key will be "ada" the first time and "alan" the second time
                     var key = childSnapshot.key;
@@ -424,11 +438,6 @@ try{
 }catch(err){
     document.getElementById("mainForm").innerHTML = searchPageNoIdentifiersError;
 }
-
-//fix buttons because they break for no reason I know
-$('#theVeryFirstGroup').attr('data-target','#obs1');
-$('#theVerySecondGroup').attr('data-target','#obs2');
-
 }
 
 function getSearchKey(){
@@ -450,6 +459,16 @@ function getThisTime(){
     var second = d.getSeconds();
 
     return hour + ":"+ min + ":" + second; 
+}
 
+function cleanForm(){
+    $("form")(function(){
+                var jsonArray = {};
+        var serialize = this.serializeArray();
+        $.each(serialize, function () {
+             this.value = '';
+        });
+     
+    });
 }
 
