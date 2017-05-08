@@ -366,10 +366,14 @@ $('#mainForm').submit(function (e) {
     if(getCurrentPage().includes("index"))
         {
             saveData(data); //Will push the json object to the database
-            //this cleans the form after submission
-            setFormData("Clean_Copy").then(
-                prefillIndexForm()); 
+                var p1 = new Promise( (resolve, reject) => {
+                    setFormData("Clean_Copy");
+                    resolve('Success!');
+            } );
             
+            p1.then(prefillIndexForm())
+            ; //this cleans the form after submission
+        
         }
     else if (getCurrentPage().includes("edit"))
         updateData(getSearchKey(), data); //will update the existing value
@@ -438,6 +442,7 @@ function setFormData(key){
 }catch(err){
     document.getElementById("mainForm").innerHTML = searchPageNoIdentifiersError;
 }
+ resolve('Success!');
 }
 
 function getSearchKey(){
