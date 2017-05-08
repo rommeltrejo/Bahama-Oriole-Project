@@ -5,7 +5,7 @@ var test = {};
 
 function ResearchForm() {
 
-    if(id.index){
+    if(getCurrentPage().includes("index")){
         console.log("this is index");
     }else{
         console.log("this is not index");
@@ -65,7 +65,7 @@ ResearchForm.prototype.formify =  function(){
     if(this.auth.currentUser)
         document.getElementById("submit_form").className = "container"
     else{
-        if(id.search)
+        if(getCurrentPage().includes("search"))
             document.getElementById("displayResults").innerHTML ="";
         document.getElementById("submit_form").className = "hidden"
     }
@@ -303,6 +303,24 @@ $(document).ready(function() {
     window.Researchform = new ResearchForm();
 
 });
+
+// Read current URL and return a string with the current page
+//i.e for index page return "index", for 
+//search return "search", and for edit return "edit"
+function getCurrentPage(){
+
+    
+    if(!window.location.href.toLowerCase().includes(".htm") || window.location.href.toLowerCase().includes("index"))
+        return "index";
+    else if(window.location.href.toLowerCase().includes("search"))
+        return "search";
+    else if (window.location.href.toLowerCase().includes("edit"))
+        return "edit";
+    
+
+    return "unknown";
+}
+
 
 //This will create the json object from the given form data
 (function ($) {
