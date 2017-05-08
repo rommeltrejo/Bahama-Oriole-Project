@@ -98,21 +98,20 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
 
         //insert name of current researcher 
         this.username.textContent = username;
-        if(getCurrentPage().includes("index"))
+        if(getCurrentPage().includes("index")){
             document.getElementById("nameField").value =  username;
         
-        //insert lat,long
+            //insert lat,long
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(function (position){
                     document.getElementById("locationField").value = position.coords.longitude+
                     ","+ position.coords.longitude;
-                });
-                
+                });    
             } else { 
                 document.getElementById("locationField").value = "Geolocation is not supported by this browser.";
             }
 
-
+        }
 
         // Show user's profile and sign-out button.
         this.username.removeAttribute('hidden');
