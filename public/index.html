@@ -1,4 +1,17 @@
 <!doctype html>
+
+<!--***************************************************************************************************
+* File: index.html
+* Date: 05/02/2017
+* Authors: Andrew Maddox, Krunal Hirpara, Rommel Trejo, Lillian Lam, Sarah Newkirk, Sherwing Fong    
+* Project: Bahama Oriole Application
+* Description: This is the home page for Bahama Oriole Application, acts as a
+* 		 landing page allowing the user to access the rest of the site or form.
+*
+* Known Issues: Works only in Google Chrome and Mozilla Firefox
+*
+*****************************************************************************************************-->
+
 <html lang="en">
 	<head>
 
@@ -67,7 +80,7 @@
                 <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Menu<span class="caret"></span></a>        		
                     <ul class="dropdown-menu">
 						<li><a href="searchPage.html">Search</a></li>
-						<li><a href="editPage.html">Edit</a></li>
+						
 						<li><a href="#">Settings</a></li>
 					</ul>
       			</li>
@@ -104,6 +117,13 @@
                 <label class="control-label col-sm-2" for="dateField">Date: </label>
                 <div class="col-sm-8">
                     <input type="text" name="date" class="form-control" id="dateField"> 
+                </div>
+            </div>
+            <!--time-->
+             <div class="form-group">
+                <label class="control-label col-sm-2" for="dateField">Start Time: </label>
+                <div class="col-sm-8">
+                    <input type="text" name="start_time" class="form-control" id="dateTime"> 
                 </div>
             </div>
             <div class="form-group">
@@ -230,7 +250,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2">Observations: </label>
 				<div class="col-sm-10">
-					<button class="btn btn-default" data-toggle="collapse" data-target="#obs1">Group 1</button><br>
+					<button id="theVeryFirstGroup" class="btn btn-default" data-toggle="collapse" data-target="#obs1">Group 1</button><br>
 				</div>
 				<div id="obs1" class="col-sm-8 collapse">
 					<br>
@@ -334,7 +354,7 @@
 			<div class="form-group">
 				<label class="control-label col-sm-2">Observations: </label>
 				<div class="col-sm-10">
-					<button class="btn btn-default"data-toggle="collapse" data-target="#obs2">Group 2</button><br>
+					<button id="theVerySecondGroup"class="btn btn-default"data-toggle="collapse" data-target="#obs2">Group 2</button><br>
 				</div>
 				<div id="obs2" class="col-sm-8 collapse">
 					<br>
@@ -545,15 +565,6 @@
     
 
  <!-- init -->
- <script>
-     //Future use this will help identify which page we are running from 
-     //ask romeo
-    var id = {
-    index  :    true,
-    search :    false,
-    edit   :    false
-    }
- </script>
 <script  src="lib/main.js"></script>    
 </body>
 </html>

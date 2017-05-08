@@ -1,15 +1,27 @@
+/***************************************************************************************************
+* File: main.js
+* Date: 05/02/2017
+* Authors: Andrew Maddox, Krunal Hirpara, Rommel Trejo, Lillian Lam, Sarah Newkirk, Sherwing Fong    
+* Project: Bahama Oriole Application
+* Description: This file 
+* 		 
+*
+*****************************************************************************************************/
 'use strict';
 
+var searchPageNoIdentifiersError = '<div class="alert alert-danger"><strong>Warning!</strong></br>No or wrong submission ID passed.</br> '+
+        "The record might no longer exist in the database or you arrived at this page by mistake.</br>"+
+        "Please try searching again and clicking on the submission you wish to edit</div>";
+
 // Initializes ResearchForm.
-var test = {};
-
 function ResearchForm() {
-
-    if(id.index){
-        console.log("this is index");
+    if(getCurrentPage().includes("unknown")){
+        $("body").remove();
+        return;
     }else{
-        console.log("this is not index");
+        console.log("Current page: "+ getCurrentPage());
     }
+        
 
     this.submitButton = document.getElementsByClassName("btn btn-primary");
     this.userPic = document.getElementById('user-pic');
@@ -23,6 +35,8 @@ function ResearchForm() {
     this.signOutButton.addEventListener('click', this.signOut.bind(this));
     this.signInButton.addEventListener('click', this.signIn.bind(this));
 
+    if(getCurrentPage().includes("edit"))
+        fillForm();
     /*
  // Saves message on form submit.
      this.messageForm.addEventListener('submit', this.saveMessage.bind(this));
@@ -65,7 +79,7 @@ ResearchForm.prototype.formify =  function(){
     if(this.auth.currentUser)
         document.getElementById("submit_form").className = "container"
     else{
-        if(id.search)
+        if(getCurrentPage().includes("search"))
             document.getElementById("displayResults").innerHTML ="";
         document.getElementById("submit_form").className = "hidden"
     }
@@ -93,9 +107,13 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         // Set the user's profile pic and name.
         this.userPic.style.backgroundImage = 'url(' + (profilePicUrl || '/images/profile_placeholder.png') + ')';
 
-        test.userpic = this.userPic;
+        
 
+        //insert name of current researcher 
         this.username.textContent = username;
+        if(getCurrentPage().includes("index")){
+            prefillIndexForm();
+        }
 
         // Show user's profile and sign-out button.
         this.username.removeAttribute('hidden');
@@ -124,12 +142,29 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
 }
 ;
 
+    function prefillIndexForm() {
+            document.getElementById("nameField").value =  (Researchform.username.textContent ||"");
+            document.getElementById("dateField").value = getThisDate(); 
+            document.getElementById("dateTime").value = getThisTime();
+        
+            //insert lat,long
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position){
+                    document.getElementById("locationField").value = position.coords.longitude+
+                    ","+ position.coords.longitude;
+                });    
+            } else { 
+                document.getElementById("locationField").value = "Geolocation is not supported by this browser.";
+            }
+
+}
+
 //future use: could be used to send notifications to users
 // Saves the messaging device token to the datastore.
 ResearchForm.prototype.saveMessagingDeviceToken = function() {
     firebase.messaging().getToken().then(function(currentToken) {
         if (currentToken) {
-            console.log('Got FCM device token:', currentToken);
+            //console.log('Got FCM device token:', currentToken);
             // Saving the Device Token to the datastore.
             firebase.database().ref('/fcmTokens').child(currentToken).set(firebase.auth().currentUser.uid);
         } else {
@@ -212,26 +247,37 @@ var secondPart =  "</button> </br>"
 
 var how_many_children = 0;
 
+// Result value is the matching part
+//e.g if by name and search value = mario
+//then result value could be mario , mario vega, Mario, etc.
+
 function addNewSearchResult(result_value, preview){
     var results = document.getElementById("displayResults");
     
-    results.innerHTML += '  <div id="'+"result"+how_many_children +'"'+
+    //add newer posts on top
+    results.innerHTML = '  <div id="'+"result"+how_many_children +'"'+
     ' class="panel panel-primary">'+
+<<<<<<< HEAD
     '<div class="panel-heading"><a href="editPage.html">'+result_value+'</a></div>'+
+=======
+    '<div class="panel-heading"> '+
+    '<a class =" panel-title" href="./editPage.html?key='+preview.key+'">'+result_value+' </a> </div>'+
+>>>>>>> 4ba442b7df3877a2db96897a4b8032e7658fa6c7
     '<div class="panel-body">'+
     "Researcher: "+ preview.name + '</br>'+
     "Date: "+ preview.date + '</br>'+
     "Location: "+ preview.location_point + '</br>'+
-    "Date: "+ preview.start_time + '</br>'+
+    "Start time: "+ preview.start_time + '</br>'+
+    //"key: "+ preview.key + '</br>'+
     '</div>'+
-    '</div>';
+    '</div>'+
+    results.innerHTML ; //this is all the older posts
+
     how_many_children +=1;
 }
 
 
 function searchFunction(field_name, search_value){
-  
-
   
 	var ref = firebase.database().ref("results");
     ref.off();
@@ -252,7 +298,8 @@ function searchFunction(field_name, search_value){
             preview.date =              newPost.date;
             preview.name =              newPost.name;
             preview.location_point =    newPost.location_point;
-            preview.start_time =        "Dec 31, 1971";
+            preview.start_time =        "6:00 pm";
+            preview.key  =              snapshot.key;
             addNewSearchResult(newPost[field_name], preview);
 		}
 	});
@@ -276,23 +323,6 @@ function searchByName(search_value) {
 	//search anything under 'name' field that matches what the user typed
 	nameRef.orderByChild("point_number");
 	
-
-    /*ref.orderByChild("name").on("child_added", function(data) {
-        console.log(data.val().name)
-    });*/
-	
-	/*var playersRef = firebase.database().ref("results/");
-
-    playersRef.orderByChild("name").on("child_added", function(data) {
-        console.log(data.val().name);
-    });*/
-    
-    //   ref.on("value", function(snapshot) {
-    //    console.log(snapshot.val().results[1][valz]    );
-    // }, function (error) {
-    //    console.log("Error: " + error.code);
-    // });
-
 };
 
 ResearchForm.prototype.verify_submission = function() {
@@ -303,6 +333,23 @@ $(document).ready(function() {
     window.Researchform = new ResearchForm();
 
 });
+
+// Read current URL and return a string with the current page
+//i.e for index page return "index", for 
+//search return "search", and for edit return "edit"
+function getCurrentPage(){
+ 
+    if(!window.location.href.toLowerCase().includes(".htm") || window.location.href.toLowerCase().includes("index"))
+        return "index";
+    else if(window.location.href.toLowerCase().includes("search"))
+        return "search";
+    else if (window.location.href.toLowerCase().includes("edit"))
+        return "edit";
+    
+
+    return "unknown";
+}
+
 
 //This will create the json object from the given form data
 (function ($) {
@@ -329,7 +376,21 @@ $('#mainForm').submit(function (e) {
     //e.preventDefault();
     var data = $(this).serializeFormJSON();
     console.log(data);
-    saveData(data); //Will push the json object to the database
+    if(getCurrentPage().includes("index"))
+        {
+            saveData(data); //Will push the json object to the database
+                var p1 = new Promise( (resolve, reject) => {
+                    setFormData("Clean_Copy");
+                    resolve('Success!');
+            } );
+            
+            p1.then(prefillIndexForm())
+            ; //this cleans the form after submission
+        
+        }
+    else if (getCurrentPage().includes("edit"))
+        updateData(getSearchKey(), data); //will update the existing value
+
     return false;
 });
 
@@ -341,7 +402,98 @@ var timer = new Date().getMinutes();
 console.log(timer);
 }
 
+<<<<<<< HEAD
 // Fill form on edit page with current information
 function refillForm(){
 
 }
+=======
+function updateData(key, data){
+   // console.log("updating")
+   var updateKey= Researchform.dbRootRef.child(key);
+   updateKey.update(data);
+    //console.log("updated")
+};
+
+
+function fillForm(){
+    if(location.search == "" || ! location.search.includes("key="))
+        {
+            document.getElementById("mainForm").innerHTML = searchPageNoIdentifiersError;
+            return;
+        }
+
+        //var key =  getSearchKey();
+        setFormData(getSearchKey());
+        //console.log(key)
+
+
+//fix buttons because they break for no reason I know
+$('#theVeryFirstGroup').attr('data-target','#obs1');
+$('#theVerySecondGroup').attr('data-target','#obs2');
+
+}
+
+function setFormData(key){
+    
+    try{
+        firebase.database().ref('/results/' + key).once("value")
+            .then(function(snapshot) {
+            
+            //ensure that our node actually has children
+            if(!snapshot.hasChildren())
+                {
+                    document.getElementById("mainForm").innerHTML = searchPageNoIdentifiersError;
+                    return;
+                }
+                snapshot.forEach(function(childSnapshot) {                
+
+                // key will be "ada" the first time and "alan" the second time
+                    var key = childSnapshot.key;
+                    // childData will be the actual contents of the child
+                    var childData = childSnapshot.val();
+                    //write out
+                    document.getElementsByName(key)[0].value = childData;
+                    //console.log(key + ": "+ childData)      
+
+                });
+        });
+}catch(err){
+    document.getElementById("mainForm").innerHTML = searchPageNoIdentifiersError;
+}
+ resolve('Success!');
+}
+
+function getSearchKey(){
+    return location.search.substr(location.search.indexOf("key=")+4);
+}
+
+function getThisDate(){
+    var d = new Date();
+    var day = ("a.0" + d.getDate()).slice(-2)
+    var month = ("a.0" + (d.getMonth() + 1)).slice(-2);
+    var year = d.getFullYear();
+    return "" + month + "/" + day + "/" + year; 
+}
+
+function getThisTime(){
+    var d = new Date();
+    var hour = d.getHours();
+    var min = d.getMinutes();
+    var second = d.getSeconds();
+
+    return hour + ":"+ min + ":" + second; 
+}
+
+function cleanForm(){
+    $("form")(function(){
+                var jsonArray = {};
+        var serialize = this.serializeArray();
+        $.each(serialize, function () {
+             this.value = '';
+        });
+     
+    });
+}
+
+>>>>>>> 4ba442b7df3877a2db96897a4b8032e7658fa6c7
