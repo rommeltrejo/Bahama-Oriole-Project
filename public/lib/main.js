@@ -252,12 +252,8 @@ function addNewSearchResult(result_value, preview){
     //add newer posts on top
     results.innerHTML = '  <div id="'+"result"+how_many_children +'"'+
     ' class="panel panel-primary">'+
-<<<<<<< HEAD
-    '<div class="panel-heading"><a href="editPage.html">'+result_value+'</a></div>'+
-=======
     '<div class="panel-heading"> '+
     '<a class =" panel-title" href="./editPage.html?key='+preview.key+'">'+result_value+' </a> </div>'+
->>>>>>> 4ba442b7df3877a2db96897a4b8032e7658fa6c7
     '<div class="panel-body">'+
     "Researcher: "+ preview.name + '</br>'+
     "Date: "+ preview.date + '</br>'+
@@ -391,12 +387,6 @@ var timer = new Date().getMinutes();
 console.log(timer);
 }
 
-<<<<<<< HEAD
-// Fill form on edit page with current information
-function refillForm(){
-
-}
-=======
 function updateData(key, data){
    // console.log("updating")
    var updateKey= Researchform.dbRootRef.child(key);
@@ -483,5 +473,3 @@ function cleanForm(){
      
     });
 }
-
->>>>>>> 4ba442b7df3877a2db96897a4b8032e7658fa6c7
