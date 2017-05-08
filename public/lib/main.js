@@ -217,7 +217,7 @@ function addNewSearchResult(result_value, preview){
     
     results.innerHTML += '  <div id="'+"result"+how_many_children +'"'+
     ' class="panel panel-primary">'+
-    '<div class="panel-heading">'+result_value+'</div>'+
+    '<div class="panel-heading"><a href="editPage.html">'+result_value+'</a></div>'+
     '<div class="panel-body">'+
     "Researcher: "+ preview.name + '</br>'+
     "Date: "+ preview.date + '</br>'+
@@ -339,4 +339,9 @@ var maxTime = 3;
 var timer = new Date().getMinutes();
 
 console.log(timer);
+}
+
+// Fill form on edit page with current information
+function refillForm(){
+
 }
