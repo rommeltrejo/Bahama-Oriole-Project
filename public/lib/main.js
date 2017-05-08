@@ -67,12 +67,18 @@ ResearchForm.prototype.signIn = function() {
 ;
 
 ResearchForm.prototype.formify =  function(){
-    if(this.auth.currentUser)
-        document.getElementById("submit_form").className = "container"
+    if(this.auth.currentUser){
+        document.getElementById("submit_form").style.display = "block";
+        document.getElementById("log_in_block").style.display = "none";
+    }
     else{
-        if(getCurrentPage().includes("search"))
+        if(getCurrentPage().includes("search")){
             document.getElementById("displayResults").innerHTML ="";
-        document.getElementById("submit_form").className = "hidden"
+        document.getElementById("submit_form").style.display = "none";
+        }else{
+            document.getElementById("log_in_block").style.display = "block";
+            document.getElementById("submit_form").style.display = "none";
+        }
     }
         
 }
@@ -223,10 +229,12 @@ function saveData(param){
 ResearchForm.prototype.checkSignedInWithMessage = function() {
     // Return true if the user is signed in Firebase
 
-     if(this.auth.currentUser)
-        document.getElementById("submit_form").className = "container"
+     if(this.auth.currentUser){
+        document.getElementById("submit_form").style.display = "block";
+     }
     else
-        document.getElementById("submit_form").className = "hidden"
+        document.getElementById("submit_form").style.display = "none";
+        document.getElementById("log_in_block").style.display = "block";
 
     if (this.auth.currentUser) {
         return true;
@@ -470,6 +478,5 @@ function cleanForm(){
         $.each(serialize, function () {
              this.value = '';
         });
-     
     });
 }
