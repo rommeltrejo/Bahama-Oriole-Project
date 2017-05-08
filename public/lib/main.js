@@ -105,6 +105,7 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         if(getCurrentPage().includes("index")){
             document.getElementById("nameField").value =  username;
             document.getElementById("dateField").value = getThisDate(); 
+            document.getElementById("dateTime").value = getThisTime();
         
             //insert lat,long
             if (navigator.geolocation) {
@@ -440,5 +441,15 @@ function getThisDate(){
     var month = ("a.0" + (d.getMonth() + 1)).slice(-2);
     var year = d.getFullYear();
     return "" + month + "/" + day + "/" + year; 
+}
+
+function getThisTime(){
+    var d = new Date();
+    var hour = d.getHours();
+    var min = d.getMinutes();
+    var second = d.getSeconds();
+
+    return hour + ":"+ min + ":" + second; 
+
 }
 
