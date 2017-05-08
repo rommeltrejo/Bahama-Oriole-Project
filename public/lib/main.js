@@ -154,10 +154,6 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
                 document.getElementById("locationField").value = "Geolocation is not supported by this browser.";
             }
 
-            console.log(Researchform.username.textContent ||"");
-            console.log(getThisDate()); 
-            console.log(getThisTime());
-
 }
 
 //future use: could be used to send notifications to users
@@ -379,7 +375,7 @@ $('#mainForm').submit(function (e) {
         {
             saveData(data); //Will push the json object to the database
             setFormData("Clean_Copy"); //this cleans the form after submission
-            prefillIndexForm();
+            
         }
     else if (getCurrentPage().includes("edit"))
         updateData(getSearchKey(), data); //will update the existing value
@@ -414,11 +410,6 @@ function fillForm(){
         setFormData(getSearchKey());
         //console.log(key)
 
-
-//fix buttons because they break for no reason I know
-$('#theVeryFirstGroup').attr('data-target','#obs1');
-$('#theVerySecondGroup').attr('data-target','#obs2');
-
 }
 
 function setFormData(key){
@@ -444,6 +435,9 @@ function setFormData(key){
                     //console.log(key + ": "+ childData)      
 
                 });
+
+                if(getCurrentPage().includes("index"))
+                    prefillIndexForm();
         });
 }catch(err){
     document.getElementById("mainForm").innerHTML = searchPageNoIdentifiersError;
