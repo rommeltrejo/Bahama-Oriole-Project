@@ -374,10 +374,10 @@ console.log(timer);
 }
 
 function updateData(key, data){
-    console.log("updating")
+   // console.log("updating")
    var updateKey= Researchform.dbRootRef.child(key);
    updateKey.update(data);
-    console.log("updated")
+    //console.log("updated")
 };
 
 
@@ -423,6 +423,9 @@ try{
     document.getElementById("mainForm").innerHTML = searchPageNoIdentifiersError;
 }
 
+//fix buttons because they break for no reason I know
+$('#theVeryFirstGroup').attr('data-target','#obs1');
+$('#theVerySecondGroup').attr('data-target','#obs2');
 
 }
 
