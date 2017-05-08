@@ -4,12 +4,13 @@
 var test = {};
 
 function ResearchForm() {
-
-    if(getCurrentPage().includes("index")){
-        console.log("this is index");
+    if(getCurrentPage().includes("unknown")){
+        $("body").remove();
+        return;
     }else{
-        console.log("this is not index");
+        console.log("Current page: "+ getCurrentPage());
     }
+        
 
     this.submitButton = document.getElementsByClassName("btn btn-primary");
     this.userPic = document.getElementById('user-pic');
@@ -129,7 +130,7 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
 ResearchForm.prototype.saveMessagingDeviceToken = function() {
     firebase.messaging().getToken().then(function(currentToken) {
         if (currentToken) {
-            console.log('Got FCM device token:', currentToken);
+            //console.log('Got FCM device token:', currentToken);
             // Saving the Device Token to the datastore.
             firebase.database().ref('/fcmTokens').child(currentToken).set(firebase.auth().currentUser.uid);
         } else {
@@ -212,17 +213,23 @@ var secondPart =  "</button> </br>"
 
 var how_many_children = 0;
 
+// Result value is the matching part
+//e.g if by name and search value = mario
+//then result value could be mario , mario vega, Mario, etc.
+
 function addNewSearchResult(result_value, preview){
     var results = document.getElementById("displayResults");
     
     results.innerHTML += '  <div id="'+"result"+how_many_children +'"'+
     ' class="panel panel-primary">'+
-    '<div class="panel-heading">'+result_value+'</div>'+
+    '<div class="panel-heading"> '+
+    '<a class =" panel-title" href="./searchPage.html?key='+preview.key+'">'+result_value+' </a> </div>'+
     '<div class="panel-body">'+
     "Researcher: "+ preview.name + '</br>'+
     "Date: "+ preview.date + '</br>'+
     "Location: "+ preview.location_point + '</br>'+
-    "Date: "+ preview.start_time + '</br>'+
+    "Start time: "+ preview.start_time + '</br>'+
+    //"key: "+ preview.key + '</br>'+
     '</div>'+
     '</div>';
     how_many_children +=1;
@@ -252,7 +259,8 @@ function searchFunction(field_name, search_value){
             preview.date =              newPost.date;
             preview.name =              newPost.name;
             preview.location_point =    newPost.location_point;
-            preview.start_time =        "Dec 31, 1971";
+            preview.start_time =        "6:00 pm";
+            preview.key  =              snapshot.key;
             addNewSearchResult(newPost[field_name], preview);
 		}
 	});
