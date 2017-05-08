@@ -1,12 +1,3 @@
-/***************************************************************************************************
-* File: main.js
-* Date: 05/02/2017
-* Authors: Andrew Maddox, Krunal Hirpara, Rommel Trejo, Lillian Lam, Sarah Newkirk, Sherwing Fong    
-* Project: Bahama Oriole Application
-* Description: This file 
-* 		 
-*
-*****************************************************************************************************/
 'use strict';
 
 var searchPageNoIdentifiersError = '<div class="alert alert-danger"><strong>Warning!</strong></br>No or wrong submission ID passed.</br> '+
