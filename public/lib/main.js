@@ -402,11 +402,6 @@ function fillForm(){
         setFormData(getSearchKey());
         //console.log(key)
 
-
-//fix buttons because they break for no reason I know
-$('#theVeryFirstGroup').attr('data-target','#obs1');
-$('#theVerySecondGroup').attr('data-target','#obs2');
-
 }
 
 function setFormData(key){
