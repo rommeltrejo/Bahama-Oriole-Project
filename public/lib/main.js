@@ -304,23 +304,6 @@ function searchByName(search_value) {
 	//search anything under 'name' field that matches what the user typed
 	nameRef.orderByChild("point_number");
 	
-
-    /*ref.orderByChild("name").on("child_added", function(data) {
-        console.log(data.val().name)
-    });*/
-	
-	/*var playersRef = firebase.database().ref("results/");
-
-    playersRef.orderByChild("name").on("child_added", function(data) {
-        console.log(data.val().name);
-    });*/
-    
-    //   ref.on("value", function(snapshot) {
-    //    console.log(snapshot.val().results[1][valz]    );
-    // }, function (error) {
-    //    console.log("Error: " + error.code);
-    // });
-
 };
 
 ResearchForm.prototype.verify_submission = function() {
@@ -374,7 +357,11 @@ $('#mainForm').submit(function (e) {
     //e.preventDefault();
     var data = $(this).serializeFormJSON();
     console.log(data);
-    saveData(data); //Will push the json object to the database
+    if(getCurrentPage().includes("index"))
+        saveData(data); //Will push the json object to the database
+    else if (getCurrentPage().includes("edit"))
+        updateData(getSearchKey(), data); //will update the existing value
+
     return false;
 });
 
@@ -386,6 +373,14 @@ var timer = new Date().getMinutes();
 console.log(timer);
 }
 
+function updateData(key, data){
+    console.log("updating")
+   var updateKey= Researchform.dbRootRef.child(key);
+   updateKey.update(data);
+    console.log("updated")
+};
+
+
 function fillForm(){
     if(location.search == "" || ! location.search.includes("key="))
         {
@@ -394,25 +389,45 @@ function fillForm(){
         }
 
 
-        var key =  location.search.substr(location.search.indexOf("key=")+4);
+        var key =  getSearchKey();
         console.log(key)
-    
+   
 
+
+try{
+        
         firebase.database().ref('/results/' + key).once("value")
             .then(function(snapshot) {
-            snapshot.forEach(function(childSnapshot) {
-                // key will be "ada" the first time and "alan" the second time
-                var key = childSnapshot.key;
-                // childData will be the actual contents of the child
-            var childData = childSnapshot.val();
-
-            document.getElementsByName(key)[0].value = childData;
-            //document.getElementsByName(key) = childData;
-            console.log(key + ": "+ childData)
             
-  });
-});
-    
+            //ensure that our node actually has children
+            if(!snapshot.hasChildren())
+                {
+                    document.getElementById("mainForm").innerHTML = searchPageNoIdentifiersError;
+                    return;
+                }
+                
+                snapshot.forEach(function(childSnapshot) {
+                    
+
+                // key will be "ada" the first time and "alan" the second time
+                    var key = childSnapshot.key;
+                    // childData will be the actual contents of the child
+                    var childData = childSnapshot.val();
+                    //write out
+                    document.getElementsByName(key)[0].value = childData;
+                    //console.log(key + ": "+ childData)      
+
+                });
+        });
+}catch(err){
+    document.getElementById("mainForm").innerHTML = searchPageNoIdentifiersError;
+}
+
+
+}
+
+function getSearchKey(){
+    return location.search.substr(location.search.indexOf("key=")+4);
 }
 
 
