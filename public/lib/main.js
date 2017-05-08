@@ -104,6 +104,7 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         this.username.textContent = username;
         if(getCurrentPage().includes("index")){
             document.getElementById("nameField").value =  username;
+            document.getElementById("dateField").value = getThisDate(); 
         
             //insert lat,long
             if (navigator.geolocation) {
@@ -433,4 +434,11 @@ function getSearchKey(){
     return location.search.substr(location.search.indexOf("key=")+4);
 }
 
+function getThisDate(){
+    var d = new Date();
+    var day = ("a.0" + d.getDate()).slice(-2)
+    var month = ("a.0" + (d.getMonth() + 1)).slice(-2);
+    var year = d.getFullYear();
+    return "" + month + "/" + day + "/" + year; 
+}
 
