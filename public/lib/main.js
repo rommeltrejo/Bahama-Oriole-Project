@@ -66,18 +66,33 @@ ResearchForm.prototype.signIn = function() {
 }
 ;
 
+var logInMessage = '<h1 id=greeting_message>Please Sign In</h1> <!--<img src="/images/bahamaoriole.png" id="image1"></img>-->'
+
 ResearchForm.prototype.formify =  function(){
     if(this.auth.currentUser){
         document.getElementById("submit_form").style.display = "block";
-      document.getElementById("log_in_block").style.display = "none";
+        if(getCurrentPage().includes("index")){
+            document.getElementById("log_in_block").innerHTML = "";
+            document.getElementById("log_in_block").style.display = "none";
+            document.getElementById("log_in_block").style.visibility = "hidden";
+        }
+            
     }
     else{
         if(getCurrentPage().includes("search")){
             document.getElementById("displayResults").innerHTML ="";
-        document.getElementById("submit_form").style.display = "none";
-        }else{
-            document.getElementById("log_in_block").style.display = "block";
             document.getElementById("submit_form").style.display = "none";
+           
+        }else{
+            document.getElementById("submit_form").style.display = "none";
+            
+            if(getCurrentPage() == "index")
+            {
+                document.getElementById("log_in_block").innerHTML = logInMessage;
+                document.getElementById("log_in_block").style.display = "block";
+                document.getElementById("log_in_block").style.visibility = "visible";
+            }
+            
         }
     }
         
