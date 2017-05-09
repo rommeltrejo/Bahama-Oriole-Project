@@ -14,7 +14,7 @@ function ResearchForm() {
     }
         
 
-    this.submitButton = document.getElementsByClassName("btn btn-primary");
+    this.submitButton = document.getElementById("submitForm");
     this.userPic = document.getElementById('user-pic');
     this.username = document.getElementById('user-name');
     this.signInButton = document.getElementById('sign-in');
