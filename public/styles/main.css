@@ -184,3 +184,23 @@ html, body {
 	display: inline-block !important;
 	width: auto !important;
 }
+
+#obsNotes1 {
+    position: relative;
+    right: 25px;
+}
+
+#obsDistance1 {
+    position: relative;
+    right: 5px;
+}
+
+#obsDistance6 {
+    position: relative;
+    right: 5px;
+}
+
+#obsNotes6 {
+    position: relative;
+    right: 25px;
+}
