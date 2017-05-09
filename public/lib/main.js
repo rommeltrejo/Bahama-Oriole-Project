@@ -69,7 +69,7 @@ ResearchForm.prototype.signIn = function() {
 ResearchForm.prototype.formify =  function(){
     if(this.auth.currentUser){
         document.getElementById("submit_form").style.display = "block";
-        document.getElementById("log_in_block").style.display = "none";
+      document.getElementById("log_in_block").style.display = "none";
     }
     else{
         if(getCurrentPage().includes("search")){
@@ -293,7 +293,7 @@ function searchFunction(field_name, search_value){
             preview.date =              newPost.date;
             preview.name =              newPost.name;
             preview.location_point =    newPost.location_point;
-            preview.start_time =        "6:00 pm";
+            preview.start_time =        newPost.start_time;
             preview.key  =              snapshot.key;
             addNewSearchResult(newPost[field_name], preview);
 		}
@@ -461,6 +461,10 @@ function getThisTime(){
     var hour = d.getHours();
     var min = d.getMinutes();
     var second = d.getSeconds();
+    if(second < 10){
+        second = second.toString();
+        second = "0"+second;
+    }
 
     return hour + ":"+ min + ":" + second; 
 }
