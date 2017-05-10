@@ -11,8 +11,7 @@ function ResearchForm() {
         return;
     }else{
         console.log("Current page: "+ getCurrentPage());
-    }
-        
+    }   
 
     this.submitButton = document.getElementById("submitForm");
     this.userPic = document.getElementById('user-pic');
