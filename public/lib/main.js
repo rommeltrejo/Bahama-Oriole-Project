@@ -332,8 +332,6 @@ function searchFunction(field_name, search_value){
             if(how_many_children == 0){
                 document.getElementById("displayResults").innerHTML ="";
             }
-                
-
             preview.date =              newPost.date;
             preview.name =              newPost.name;
             preview.location_point =    newPost.location_point;
@@ -534,4 +532,90 @@ function cleanForm(){
              this.value = '';
         });
     });
+}
+
+function downloadData(){
+    
+    var dataArray = [];
+    var recordsCount = 0;
+
+    try{
+        firebase.database().ref('/results').once("value")
+            .then(function(snapshot) {
+            //ensure that our node actually has children
+            if(!snapshot.hasChildren())
+                {
+                    alert("no records were found.")
+                    return;
+                }
+                snapshot.forEach(function(childSnapshot) { 
+
+                    var key = childSnapshot.key;
+                    var childData = childSnapshot.val();
+
+                    if(recordsCount == 0)
+                    {
+                        var ii = 0;
+                        var mm = {};
+                        Object.keys(childData).forEach(
+                            function(key_id){
+                                console.log(key_id);
+                                mm[ii] =  key_id;
+                                ii++;
+                            }
+                        );
+                        dataArray[recordsCount]  = mm;
+                         recordsCount++;
+                        //console.log(Object.keys(childData));
+                    }    
+                    
+                    dataArray[recordsCount]  = childData; 
+                    //console.log(childData);
+                    //console.log(key + ": "+ childData)      
+                recordsCount++;       
+                });
+                //middle man is needed
+                 var jsonObject = JSON.stringify(dataArray);
+                // console.log(dataArray);
+                 var csvRes = ConvertToCSV(jsonObject);
+                // console.log(csvRes);
+
+                 //Download
+                 var element = document.createElement('a');
+                 element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(csvRes));
+                 element.setAttribute('download', "all_data.csv");
+                 
+                 element.style.display = 'none';
+                 document.body.appendChild(element);
+                 
+                 element.click();
+                 document.body.removeChild(element);
+
+        });
+}catch(err){
+    document.getElementById("mainForm").innerHTML = searchPageNoIdentifiersError;
+}
+
+
+}
+
+// JSON to CSV Converter
+//by Hemant Metalia, Raghd Hamzeh
+//from http://stackoverflow.com/questions/11257062/converting-json-object-to-csv-format-in-javascript
+
+function ConvertToCSV(objArray) 
+{
+    var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
+    var str = '';
+
+    for (var i = 0; i < array.length; i++) 
+    {
+        var line = '';
+        for (var index in array[i]) {
+            if (line != '') line += ','
+                line += array[i][index];
+            }
+        str += line + '\r\n';
+    }
+    return str;
 }
