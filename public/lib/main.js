@@ -64,7 +64,7 @@ function deleteSubmission(dataKey){
     
     var removeKey= Researchform.dbRootRef.child(dataKey);
     
-    document.getElementById("submit-status").innerHTML = "deleting submission ID "+dataKey;
+    document.getElementById("submit-status").innerHTML = "deletting submission ID "+dataKey;
     document.getElementById("submit-status").focus();
     
     removeKey.remove().then(
