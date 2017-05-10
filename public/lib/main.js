@@ -300,7 +300,7 @@ function addNewSearchResult(result_value, preview){
     '<div class="panel-body">'+
     "Researcher: "+ preview.name + '</br>'+
     "Date: "+ preview.date + '</br>'+
-    "Location: "+ preview.location_point + '</br>'+
+    "Point Number: "+ preview.location_point + '</br>'+
     "Start time: "+ preview.start_time + '</br>'+
     //"key: "+ preview.key + '</br>'+
     '</div>'+
@@ -312,7 +312,7 @@ function addNewSearchResult(result_value, preview){
 
 
 function searchFunction(field_name, search_value){
-  
+    how_many_children = 0;
 	var ref = firebase.database().ref("results");
     ref.off();
     document.getElementById("displayResults").innerHTML ="";
@@ -329,13 +329,20 @@ function searchFunction(field_name, search_value){
 		var newPost = snapshot.val();
 		if(newPost[field_name].toLowerCase().includes(search_value.toLowerCase()))
         {
+            if(how_many_children == 0){
+                document.getElementById("displayResults").innerHTML ="";
+            }
+                
+
             preview.date =              newPost.date;
             preview.name =              newPost.name;
             preview.location_point =    newPost.location_point;
             preview.start_time =        newPost.start_time;
             preview.key  =              snapshot.key;
             addNewSearchResult(newPost[field_name], preview);
-		}
+		}else if(how_many_children == 0){
+            document.getElementById("displayResults").innerHTML ="No Results";
+        }
 	});
 }
 
