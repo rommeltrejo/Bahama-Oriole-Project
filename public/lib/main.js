@@ -27,15 +27,10 @@ function ResearchForm() {
     this.signInButton.addEventListener('click', this.signIn.bind(this));
 
     if(getCurrentPage().includes("edit"))
+    {
         fillForm();
-    /*
- // Saves message on form submit.
-     this.messageForm.addEventListener('submit', this.saveMessage.bind(this));
- // Toggle for the button.
- this.messageInput.addEventListener('keyup', buttonTogglingHandler);
- this.messageInput.addEventListener('change', buttonTogglingHandler);
-
- ;*/
+    }
+    
 
 }
 
@@ -66,6 +61,20 @@ ResearchForm.prototype.signIn = function() {
 }
 ;
 
+function deleteSubmission(dataKey){
+    
+    var removeKey= Researchform.dbRootRef.child(dataKey);
+    
+    document.getElementById("submit-status").innerHTML = "deleting submission ID "+dataKey;
+    document.getElementById("submit-status").focus();
+    
+    removeKey.remove().then(
+        function(anys){
+            document.location.href="/";
+        }
+    );
+}
+
 var logInMessage = '<h1 id=greeting_message>Please Sign In</h1> <!--<img src="/images/bahamaoriole.png" id="image1"></img>-->'
 
 ResearchForm.prototype.formify =  function(){
@@ -75,6 +84,17 @@ ResearchForm.prototype.formify =  function(){
             document.getElementById("log_in_block").innerHTML = "";
             document.getElementById("log_in_block").style.display = "none";
             document.getElementById("log_in_block").style.visibility = "hidden";
+        }else if(getCurrentPage().includes("edit")){
+            //add delete button to menu
+
+            if (!($('#delete-button-nav-bar').length > 0)) {
+                var ul = document.getElementById("navigation_bar");
+                var li = document.createElement("li");
+                li.setAttribute("id", "delete-button-nav-bar");
+                li.innerHTML = '<a href="javascript:deleteSubmission(getSearchKey())">Delete Entry</a>';
+                ul.appendChild(li);  
+               
+            }
         }
             
     }
@@ -91,6 +111,8 @@ ResearchForm.prototype.formify =  function(){
                 document.getElementById("log_in_block").innerHTML = logInMessage;
                 document.getElementById("log_in_block").style.display = "block";
                 document.getElementById("log_in_block").style.visibility = "visible";
+            }else if ($('#delete-button-nav-bar').length > 0) {
+                $('#delete-button-nav-bar').remove();
             }
             
         }
@@ -196,7 +218,7 @@ ResearchForm.prototype.initFirebase = function() {
     this.database = firebase.database();
     this.storage = firebase.storage();
 
-    this.initDataGetters();
+    this.dbRootRef = firebase.database().ref().child("results"); 
     
      this.formify();
 
@@ -206,9 +228,6 @@ ResearchForm.prototype.initFirebase = function() {
 }
 ;
 
-ResearchForm.prototype.initDataGetters = function() {
-    this.dbRootRef = firebase.database().ref().child("results"); 
-};
 
 /**
  * pushes an object to DB under results/
@@ -233,7 +252,13 @@ ResearchForm.prototype.initDataGetters = function() {
 function saveData(param){
  // var Observation = (param ||"no_Observation")
  // Researchform.dbRootRef.push(Observation);
-  Researchform.dbRootRef.push(param);
+  Researchform.dbRootRef.push(param).then(
+      function(anys){
+          document.getElementById("submit-status").innerHTML = "Submit uploaded: "+ param.location_point;
+          document.getElementById("submit-status").focus();
+      }
+  );
+  
 }
 
 // Returns true if user is signed-in. Otherwise false and displays a message.
@@ -384,19 +409,26 @@ function getCurrentPage(){
 
 $('#mainForm').submit(function (e) {
     // This prevent from clearing the form after submit
-    //e.preventDefault();
+    e.preventDefault();
     var data = $(this).serializeFormJSON();
     console.log(data);
     if(getCurrentPage().includes("index"))
         {
-            saveData(data); //Will push the json object to the database
-            setFormData("Clean_Copy"); //this cleans the form after submission
+            document.getElementById("submit-status").innerHTML = "Submit scheduled for upload: "+ data.location_point;
+            saveData(data); //Will push the json object to the database//will udate submit-status to uploaded after upload finishes
+            document.getElementById("mainForm").reset();    //reset form
+            prefillIndexForm();
+            document.getElementById("submit-status").focus();
             
         }
-    else if (getCurrentPage().includes("edit"))
+    else if (getCurrentPage().includes("edit")){
+        document.getElementById("submit-status").innerHTML = "Submit scheduled for upload: "+ data.location_point;
         updateData(getSearchKey(), data); //will update the existing value
-
-    return false;
+        document.getElementById("submit-status").focus();
+    }
+        
+        
+    return false;   //prevent refresh
 });
 
 //Timer (Maybe)
@@ -410,9 +442,15 @@ console.log(timer);
 function updateData(key, data){
    // console.log("updating")
    var updateKey= Researchform.dbRootRef.child(key);
-   updateKey.update(data);
+   updateKey.update(data).then(
+       function(anys){
+           document.getElementById("submit-status").innerHTML = "Submit uploaded: "+ data.location_point;
+          document.getElementById("submit-status").focus();
+       }
+   );
     //console.log("updated")
 };
+
 
 
 function fillForm(){
@@ -451,9 +489,6 @@ function setFormData(key){
                     //console.log(key + ": "+ childData)      
 
                 });
-
-                if(getCurrentPage().includes("index"))
-                    prefillIndexForm();
         });
 }catch(err){
     document.getElementById("mainForm").innerHTML = searchPageNoIdentifiersError;
