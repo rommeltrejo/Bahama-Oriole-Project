@@ -76,24 +76,47 @@ function deleteSubmission(dataKey){
 
 var logInMessage = '<h1 id=greeting_message>Please Sign In</h1> <!--<img src="/images/bahamaoriole.png" id="image1"></img>-->'
 
+//adds or deletes the download all button on the index page
+function doTheDownloadButton(on_off){
+    if(on_off == "on"){
+        if (!($('#download_all').length > 0)) {
+            var ul = document.getElementById("navigation_bar");
+            var li = document.createElement("li");
+            li.setAttribute("id", "download_all");
+            li.innerHTML = '<a href="javascript:downloadData();">Download all</a>';
+            ul.appendChild(li);       
+            //console.log("exists" +($('#download_all').length));
+        }
+    }else//turn off
+    {
+        $('#download_all').remove();
+    }
+    
+
+}
+
+function addDeleteEntry(){
+    if (!($('#delete-button-nav-bar').length > 0)) {
+        var ul = document.getElementById("navigation_bar");
+        var li = document.createElement("li");
+        li.setAttribute("id", "delete-button-nav-bar");
+        li.innerHTML = '<a href="javascript:deleteSubmission(getSearchKey())">Delete Entry</a>';
+        ul.appendChild(li);       
+    }
+}
+
+
 ResearchForm.prototype.formify =  function(){
     if(this.auth.currentUser){
         document.getElementById("submit_form").style.display = "block";
+
         if(getCurrentPage().includes("index")){
             document.getElementById("log_in_block").innerHTML = "";
             document.getElementById("log_in_block").style.display = "none";
             document.getElementById("log_in_block").style.visibility = "hidden";
+            doTheDownloadButton("on");
         }else if(getCurrentPage().includes("edit")){
-            //add delete button to menu
-
-            if (!($('#delete-button-nav-bar').length > 0)) {
-                var ul = document.getElementById("navigation_bar");
-                var li = document.createElement("li");
-                li.setAttribute("id", "delete-button-nav-bar");
-                li.innerHTML = '<a href="javascript:deleteSubmission(getSearchKey())">Delete Entry</a>';
-                ul.appendChild(li);  
-               
-            }
+            addDeleteEntry();////add delete button to menu
         }
             
     }
@@ -110,6 +133,7 @@ ResearchForm.prototype.formify =  function(){
                 document.getElementById("log_in_block").innerHTML = logInMessage;
                 document.getElementById("log_in_block").style.display = "block";
                 document.getElementById("log_in_block").style.visibility = "visible";
+                doTheDownloadButton("off");
             }else if ($('#delete-button-nav-bar').length > 0) {
                 $('#delete-button-nav-bar').remove();
             }
@@ -559,16 +583,19 @@ function downloadData(){
                         var mm = {};
                         Object.keys(childData).forEach(
                             function(key_id){
-                                console.log(key_id);
+                              //  console.log(key_id);
                                 mm[ii] =  key_id;
                                 ii++;
                             }
                         );
+
                         dataArray[recordsCount]  = mm;
+    
                          recordsCount++;
                         //console.log(Object.keys(childData));
                     }    
                     
+                    childData["location"] =  '"'+childData["location"]+'"';
                     dataArray[recordsCount]  = childData; 
                     //console.log(childData);
                     //console.log(key + ": "+ childData)      
