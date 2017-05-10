@@ -351,10 +351,11 @@ function getCurrentPage(){
  
     if(!window.location.href.toLowerCase().includes(".htm") || window.location.href.toLowerCase().includes("index"))
         return "index";
-    else if(window.location.href.toLowerCase().includes("search"))
-        return "search";
     else if (window.location.href.toLowerCase().includes("edit"))
         return "edit";
+    else if(window.location.href.toLowerCase().includes("search"))
+        return "search";
+    
     
 
     return "unknown";
