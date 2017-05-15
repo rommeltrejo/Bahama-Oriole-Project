@@ -5,7 +5,7 @@
   "description": "App for Bahama Oriole Researchers to enter, edit, and view data",
   "developer": {
     "name": "UMBC Students",
-    "url": "https://cs447bioresearchform.firebaseapp.com"
+    "url": "https://bahama-oriole-app.firebaseapp.com"
   },
   "installs_allowed_from": [
     "*"
