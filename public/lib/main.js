@@ -10,6 +10,7 @@
 * Sarah Newkirk 
 * Andrew Maddox
 * Sherwin Fong
+*
 * Project: Bahama Oriole Application
 * Description: Code for generating all pages is defined in this page. in addition this page handles
 *               -login 
@@ -18,6 +19,9 @@
 *               -deleting data
 *               -auto filling the forms
 *               -connecting firebase to the page
+*               -sign up
+*               -download data
+*               -pretty much everything
 *
 * Known Issues: Works in Google Chrome and Mozilla Firefox. Behavior on MS Internet explorer is undefined.
 *****************************************************************************************************/
