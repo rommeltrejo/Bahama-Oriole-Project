@@ -566,6 +566,14 @@ function getThisTime(){
         second = second.toString();
         second = "0"+second;
     }
+    if(min < 10){
+        min = min.toString();
+        min = "0"+min;
+    }
+    if(hour < 10){
+        hour = hour.toString();
+        hour = "0"+hour;
+    }
 
     return hour + ":"+ min + ":" + second; 
 }
