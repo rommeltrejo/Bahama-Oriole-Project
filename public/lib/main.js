@@ -1,5 +1,27 @@
 'use strict';
 
+/***************************************************************************************************
+* File: main.js
+* Date: 05/02/2017
+* Authors:
+* Rommel Trejo
+* Lillian Lam
+* Krunal Hirpara
+* Sarah Newkirk 
+* Andrew Maddox
+* Sherwin Fong
+* Project: Bahama Oriole Application
+* Description: Code for generating all pages is defined in this page. in addition this page handles
+*               -login 
+*               -submitting forms
+*               -searching up data
+*               -deleting data
+*               -auto filling the forms
+*               -connecting firebase to the page
+*
+* Known Issues: Works in Google Chrome and Mozilla Firefox. Behavior on MS Internet explorer is undefined.
+*****************************************************************************************************/
+
 var searchPageNoIdentifiersError = '<div class="alert alert-danger"><strong>Warning!</strong></br>No or wrong submission ID passed.</br> '+
         "The record might no longer exist in the database or you arrived at this page by mistake.</br>"+
         "Please try searching again and clicking on the submission you wish to edit</div>";
