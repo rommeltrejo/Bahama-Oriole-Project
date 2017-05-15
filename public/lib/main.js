@@ -29,9 +29,19 @@
 var searchPageNoIdentifiersError = '<div class="alert alert-danger"><strong>Warning!</strong></br>No or wrong submission ID passed.</br> '+
         "The record might no longer exist in the database or you arrived at this page by mistake.</br>"+
         "Please try searching again and clicking on the submission you wish to edit</div>";
+//log in message
+var logInMessage = '<h1 id=greeting_message>Please Sign In</h1> <!--<img src="/images/bahamaoriole.png" id="image1"></img>-->'
 
-// Initializes ResearchForm.
+/**
+ * Research Form initialized the application
+ * this is the builder. The Researchform object (note:lowercase)
+ * gets initiated on JQuery document.ready function
+ */
+
+
 function ResearchForm() {
+    //Add new pages to getCurrentPage() function or nothing will show up 
+    //added for security
     if(getCurrentPage().includes("unknown")){
         $("body").remove();
         return;
@@ -39,6 +49,7 @@ function ResearchForm() {
         console.log("Current page: "+ getCurrentPage());
     }   
 
+    //they're used through the project
     this.submitButton = document.getElementById("submitForm");
     this.userPic = document.getElementById('user-pic');
     this.username = document.getElementById('user-name');
@@ -60,9 +71,9 @@ function ResearchForm() {
 }
 
 
-//##############################            useful
-
-// Checks that the Firebase SDK has been correctly setup and configured.
+/**
+ * Checks that the Firebase SDK has been correctly setup and configured.
+ */
 ResearchForm.prototype.checkSetup = function() {
     if (!window.firebase || !(firebase.app instanceof Function) || !window.config) {
         window.alert('You have not configured and imported the Firebase SDK. ' + 'Make sure you go through the codelab setup instructions.');
@@ -71,25 +82,31 @@ ResearchForm.prototype.checkSetup = function() {
     } else {
         console.log("firebase connection established successfully.");
     }
-
 }
 ;
 
-// Signs-in Friendly Chat.
+/**
+ * This function handles login 
+ */
 ResearchForm.prototype.signIn = function() {
     // Sign in Firebase using popup auth and Google as the identity provider.
     var provider = new firebase.auth.GoogleAuthProvider();
     this.auth.signInWithPopup(provider);
-
+    //ensure page loads after login in
     this.formify();
-
 }
 ;
 
-function deleteSubmission(dataKey){
-    
+
+/**
+ * Deleted a submission 
+ * used on edit page and edit page only
+ * if key doesn't exist an exception will occur.
+ * exception not handled here
+ * If succeeds user is sent to homepage
+ */
+function deleteSubmission(dataKey){    
     var removeKey= Researchform.dbRootRef.child(dataKey);
-    
     document.getElementById("submit-status").innerHTML = "deletting submission ID "+dataKey;
     document.getElementById("submit-status").focus();
     
@@ -100,9 +117,10 @@ function deleteSubmission(dataKey){
     );
 }
 
-var logInMessage = '<h1 id=greeting_message>Please Sign In</h1> <!--<img src="/images/bahamaoriole.png" id="image1"></img>-->'
-
-//adds or deletes the download all button on the index page
+/**
+ * Adds or deletes the download all button on the index page
+ * on log in/ log out/ auth change
+ */
 function doTheDownloadButton(on_off){
     if(on_off == "on"){
         if (!($('#download_all').length > 0)) {
@@ -117,10 +135,13 @@ function doTheDownloadButton(on_off){
     {
         $('#download_all').remove();
     }
-    
-
 }
 
+
+/**
+ * adds the delete entry option under the menu
+ * if it doesn't exists yet
+ */
 function addDeleteEntry(){
     if (!($('#delete-button-nav-bar').length > 0)) {
         var ul = document.getElementById("navigation_bar");
@@ -131,7 +152,11 @@ function addDeleteEntry(){
     }
 }
 
-
+/**
+ * this is the security 
+ * if user is not logged in make them login 
+ * if not them let them use the app
+ */
 ResearchForm.prototype.formify =  function(){
     if(this.auth.currentUser){
         document.getElementById("submit_form").style.display = "block";
@@ -143,8 +168,7 @@ ResearchForm.prototype.formify =  function(){
             doTheDownloadButton("on");
         }else if(getCurrentPage().includes("edit")){
             addDeleteEntry();////add delete button to menu
-        }
-            
+        }          
     }
     else{
         if(getCurrentPage().includes("search")){
@@ -163,23 +187,27 @@ ResearchForm.prototype.formify =  function(){
             }else if ($('#delete-button-nav-bar').length > 0) {
                 $('#delete-button-nav-bar').remove();
             }
-            
         }
-    }
-        
+    }    
 }
 
 
-// Signs-out of Friendly Chat.
+/**
+ * allows the user to sign out of the app
+ * and changes the page accordingly
+ */
 ResearchForm.prototype.signOut = function() {
     // Sign out of Firebase.
     this.auth.signOut();
-    
      this.formify();
-}
-;
+};
 
-// Triggers when the auth state change for instance when the user signs-in or signs-out.
+/**
+ *  Triggers when the auth state change for instance when the user signs-in or signs-out.
+ *  this code was provided by Google.
+ *  and edited to fit our needs
+ */
+
 ResearchForm.prototype.onAuthStateChanged = function(user) {
     if (user) {
         // User is signed in!
@@ -190,14 +218,11 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         // Set the user's profile pic and name.
         this.userPic.style.backgroundImage = 'url(' + (profilePicUrl || '/images/profile_placeholder.png') + ')';
 
-        
-
         //insert name of current researcher 
         this.username.textContent = username;
         if(getCurrentPage().includes("index")){
             prefillIndexForm();
         }
-
         // Show user's profile and sign-out button.
         this.username.removeAttribute('hidden');
         this.userPic.removeAttribute('hidden');
@@ -218,14 +243,16 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
         // Show sign-in button.
         this.signInButton.removeAttribute('hidden');
     }
-
-
      this.formify();
+};
 
-}
-;
-
-    function prefillIndexForm() {
+/**
+ * this will fill the following items on index page
+ * -name
+ * -date
+ * -[geo]location
+ */
+function prefillIndexForm() {
             document.getElementById("nameField").value =  (Researchform.username.textContent ||"");
             document.getElementById("dateField").value = getThisDate(); 
             document.getElementById("dateTime").value = getThisTime();
@@ -239,11 +266,14 @@ ResearchForm.prototype.onAuthStateChanged = function(user) {
             } else { 
                 document.getElementById("locationField").value = "Geolocation is not supported by this browser.";
             }
-
 }
 
-//future use: could be used to send notifications to users
-// Saves the messaging device token to the datastore.
+/**
+ * Future use: could be used to send notifications to users
+ * Saves the messaging device token to the datastore.
+ * Not currently used for anything but this could be used to send messages to all researchers 
+ * Google Firebase FCM tokens for more info.
+ */
 ResearchForm.prototype.saveMessagingDeviceToken = function() {
     firebase.messaging().getToken().then(function(currentToken) {
         if (currentToken) {
@@ -260,22 +290,24 @@ ResearchForm.prototype.saveMessagingDeviceToken = function() {
      });
 };
 
-// Sets up shortcuts to Firebase features and initiate firebase auth.
+
+/**
+ * Sets up shortcuts to Firebase features,
+ * initiates firebase auth,
+ * and changes the page accordingly.
+ */
 ResearchForm.prototype.initFirebase = function() {
     // Shortcuts to Firebase SDK features.
     this.auth = firebase.auth();
     this.database = firebase.database();
     this.storage = firebase.storage();
 
-    this.dbRootRef = firebase.database().ref().child("results"); 
-    
-     this.formify();
-
+    this.dbRootRef = firebase.database().ref().child("results");     
+    this.formify();
 
     // Initiates Firebase auth and listen to auth state changes.
     this.auth.onAuthStateChanged(this.onAuthStateChanged.bind(this));
-}
-;
+};
 
 
 /**
@@ -307,10 +339,13 @@ function saveData(param){
           document.getElementById("submit-status").focus();
       }
   );
-  
 }
 
-// Returns true if user is signed-in. Otherwise false and displays a message.
+
+/**
+ * Returns true if user is signed-in. Otherwise false and displays a message.
+ * Not currently used
+ */
 ResearchForm.prototype.checkSignedInWithMessage = function() {
     // Return true if the user is signed in Firebase
 
@@ -327,21 +362,20 @@ ResearchForm.prototype.checkSignedInWithMessage = function() {
     // Display a message to the user using a Toast.
     //alert("you must sign in first")
     return false;
-}
-;
+};
 
-var sampleResult = "<button>"
-var secondPart =  "</button> </br>"
 
 var how_many_children = 0;
 
-// Result value is the matching part
-//e.g if by name and search value = mario
-//then result value could be mario , mario vega, Mario, etc.
+
+/**
+ * Used by the search function to add new results on page
+ * enter oldes/newest first could be changed here.
+ * Depends on Bootstrap panels
+ */
 
 function addNewSearchResult(result_value, preview){
     var results = document.getElementById("displayResults");
-    
     //add newer posts on top
     results.innerHTML = '  <div id="'+"result"+how_many_children +'"'+
     ' class="panel panel-primary">'+
@@ -360,7 +394,16 @@ function addNewSearchResult(result_value, preview){
     how_many_children +=1;
 }
 
-
+/**
+ * Search function used by search page:
+ * Result value is the matching part
+ * e.g if by name and search value = mario
+ * then result value could be mario , mario vega, Mario, etc.
+ * 
+ * To change previewed fields add/remove from preview
+ * and change on addNewSearchResult as well
+ * 
+ */
 function searchFunction(field_name, search_value){
     how_many_children = 0;
 	var ref = firebase.database().ref("results");
@@ -394,17 +437,22 @@ function searchFunction(field_name, search_value){
 	});
 }
 
-//NEED A GENERAL GETDATA FUNCTION!!!
-// Query functions for searchPage.html
+/**
+ * Attempt at search by location
+ * Not used but kept for example
+ */
 function searchByLocation(search_value) {
     
 	var rootRef = firebase.database().ref(); //rootRef, this is everything
 	var locationRef = rootRef.child('location').child(search_value);
 	//search anything under 'location' field that matches what the user typed
-	locationRef.orderByChild("point_number"); //ordering them tentatively by point #
-	
+	locationRef.orderByChild("point_number"); //ordering them tentatively by point #	
 };
 
+/**
+ * Attempt at search by name
+ * Not used but kept for example
+ */
 function searchByName(search_value) {
   	
 	var rootRef = firebase.database().ref(); //rootRef, this is everything
@@ -414,18 +462,23 @@ function searchByName(search_value) {
 	
 };
 
+/**
+ * Event handler
+ * could be used to perform additional validation
+ * not currently used
+ */
 ResearchForm.prototype.verify_submission = function() {
         alert("form submission started");
 };
 
-$(document).ready(function() {
-    window.Researchform = new ResearchForm();
 
-});
+/**
+ * Read current URL and return a string with the current page
+ * i.e for index page return "index", for 
+ * search return "search", and for edit return "edit"
+ * if page is not known return unknown  
+ */
 
-// Read current URL and return a string with the current page
-//i.e for index page return "index", for 
-//search return "search", and for edit return "edit"
 function getCurrentPage(){
  
     if(!window.location.href.toLowerCase().includes(".htm") || window.location.href.toLowerCase().includes("index"))
@@ -434,14 +487,16 @@ function getCurrentPage(){
         return "edit";
     else if(window.location.href.toLowerCase().includes("search"))
         return "search";
-    
-    
-
+      
     return "unknown";
 }
 
 
 //This will create the json object from the given form data
+/**
+ * used to obtain all the inside the form
+ * on index and update page
+ */
 (function ($) {
     $.fn.serializeFormJSON = function () {
 
@@ -461,6 +516,10 @@ function getCurrentPage(){
     };
 })(jQuery);
 
+/**
+ * submit function
+ * prevents pages from reloading
+ */
 $('#mainForm').submit(function (e) {
     // This prevent from clearing the form after submit
     e.preventDefault();
@@ -480,19 +539,27 @@ $('#mainForm').submit(function (e) {
         updateData(getSearchKey(), data); //will update the existing value
         document.getElementById("submit-status").focus();
     }
-        
-        
+               
     return false;   //prevent refresh
 });
 
+
+/**
+ * timer was requested but we were unable to deliver
+ */
 //Timer (Maybe)
 function countDown(){
-var maxTime = 3;
-var timer = new Date().getMinutes();
-
-console.log(timer);
+    var maxTime = 3;
+    var timer = new Date().getMinutes();
+    console.log(timer);
 }
 
+/**
+ * updates the original form on 
+ * firebase db
+ * two steps schedule for upload 
+ * and finally upload to db 
+ */
 function updateData(key, data){
    // console.log("updating")
    var updateKey= Researchform.dbRootRef.child(key);
@@ -506,6 +573,12 @@ function updateData(key, data){
 };
 
 
+/**
+ * Used by the edit page 
+ * calls funciton to 
+ * fill all of the information on the page
+ * key must real or error message will come up
+ */
 
 function fillForm(){
     if(location.search == "" || ! location.search.includes("key="))
@@ -513,15 +586,16 @@ function fillForm(){
             document.getElementById("mainForm").innerHTML = searchPageNoIdentifiersError;
             return;
         }
-
         //var key =  getSearchKey();
         setFormData(getSearchKey());
         //console.log(key)
-
 }
+/**
+ * Obtains the data from the DB 
+ * and actually fills the page
+ */
 
-function setFormData(key){
-    
+function setFormData(key){   
     try{
         firebase.database().ref('/results/' + key).once("value")
             .then(function(snapshot) {
@@ -549,10 +623,21 @@ function setFormData(key){
 }
 }
 
+/**
+ * looks at current url to obtain the search key 
+ * example: https://bahama-oriole-app.firebaseapp.com/editPage.html?key=-KkCvD7muU27B9MeUmfl
+ * the key is -KkCvD7muU27B9MeUmfl
+ * the key is the id of submission on Firebase DB
+ */
 function getSearchKey(){
     return location.search.substr(location.search.indexOf("key=")+4);
 }
 
+/**
+ * gets the date
+ * date looks like:
+ * 05/15/2017
+ */
 function getThisDate(){
     var d = new Date();
     var day = ("a.0" + d.getDate()).slice(-2)
@@ -561,6 +646,11 @@ function getThisDate(){
     return "" + month + "/" + day + "/" + year; 
 }
 
+/**
+ * gets the current time as of page load
+ * example:
+ * 17:03:09
+ */
 function getThisTime(){
     var d = new Date();
     var hour = d.getHours();
@@ -582,6 +672,12 @@ function getThisTime(){
     return hour + ":"+ min + ":" + second; 
 }
 
+/**
+ * Protype not used for cleaning the form after
+ * submission
+ * This is not used but could be to encapsulate the process
+ */
+
 function cleanForm(){
     $("form")(function(){
                 var jsonArray = {};
@@ -591,6 +687,11 @@ function cleanForm(){
         });
     });
 }
+
+/**
+ * Used by the index page's menu's Download all data option
+ * downloads all data from DB and asks the user to download all the data
+ */
 
 function downloadData(){
     
@@ -659,11 +760,12 @@ function downloadData(){
 
 
 }
-
-// JSON to CSV Converter
-//by Hemant Metalia, Raghd Hamzeh
-//from http://stackoverflow.com/questions/11257062/converting-json-object-to-csv-format-in-javascript
-
+/**
+*  Creates the CSV File in an array
+* JSON to CSV Converter
+* by Hemant Metalia, Raghd Hamzeh
+*from http://stackoverflow.com/questions/11257062/converting-json-object-to-csv-format-in-javascript
+*/
 function ConvertToCSV(objArray) 
 {
     var array = typeof objArray != 'object' ? JSON.parse(objArray) : objArray;
@@ -680,3 +782,12 @@ function ConvertToCSV(objArray)
     }
     return str;
 }
+
+/**
+ * Most important function 
+ * initializes everything
+ */
+$(document).ready(function() {
+    window.Researchform = new ResearchForm();
+
+});
