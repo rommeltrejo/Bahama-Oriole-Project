@@ -1,6 +1,6 @@
 {
-  "name": "Bahama Oriole Project APP",
-  "short_name": "Bahama Oriole Project APP",
+  "name": "Bahama Oriole Project",
+  "short_name": "Bahama Oriole Project",
   "start_url": "/index.html",
   "display": "standalone",
   "orientation": "portrait"

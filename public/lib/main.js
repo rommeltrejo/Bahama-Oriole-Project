@@ -30,7 +30,7 @@ var searchPageNoIdentifiersError = '<div class="alert alert-danger"><strong>Warn
         "The record might no longer exist in the database or you arrived at this page by mistake.</br>"+
         "Please try searching again and clicking on the submission you wish to edit</div>";
 //log in message
-var logInMessage = '<h1 id=greeting_message>Please Sign In</h1> <!--<img src="/images/bahamaoriole.png" id="image1"></img>-->'
+var logInMessage = '<h1 id=greeting_message>Bahama Oriole Project</h1> <!--<img src="/images/bahamaoriole.png" id="image1"></img>-->'
 
 /**
  * Research Form initialized the application
